@@ -1,0 +1,16 @@
+# Nmap 7.80 scan initiated Sun Aug  9 10:49:52 2020 as: nmap -sC -v -sV -oN nmapinit.txt 10.10.37.195
+Nmap scan report for 10.10.37.195
+Host is up (0.27s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+| http-robots.txt: 1 disallowed entry 
+|_/fuel/
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Welcome to FUEL CMS
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Aug  9 10:50:14 2020 -- 1 IP address (1 host up) scanned in 21.56 seconds
