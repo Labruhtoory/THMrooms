@@ -1,0 +1,5 @@
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/cats (Status: 301)
+/dogs (Status: 301)
+/server-status (Status: 403)

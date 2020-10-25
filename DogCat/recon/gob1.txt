@@ -1,0 +1,2 @@
+/cats (Status: 301)
+/dogs (Status: 301)

