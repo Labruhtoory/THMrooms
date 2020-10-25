@@ -1,0 +1,8 @@
+/img (Status: 301)
+/r (Status: 301)
+/poem (Status: 301)
+/http%!A(MISSING)%!F(MISSING)%!F(MISSING)www (Status: 301)
+/http%!A(MISSING)%!F(MISSING)%!F(MISSING)youtube (Status: 301)
+/http%!A(MISSING)%!F(MISSING)%!F(MISSING)blogs (Status: 301)
+/http%!A(MISSING)%!F(MISSING)%!F(MISSING)blog (Status: 301)
+/**http%!A(MISSING)%!F(MISSING)%!F(MISSING)www (Status: 301)

