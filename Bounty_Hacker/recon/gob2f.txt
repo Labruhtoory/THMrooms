@@ -1,0 +1,2 @@
+/images (Status: 301)
+/index.html (Status: 200)
