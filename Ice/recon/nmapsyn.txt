@@ -1,0 +1,70 @@
+# Nmap 7.80 scan initiated Tue Jul  7 09:36:12 2020 as: nmap -r -v -sC -v -sV -v -oN nmapsyn.txt 10.10.198.112
+Increasing send delay for 10.10.198.112 from 0 to 5 due to 271 out of 901 dropped probes since last increase.
+Nmap scan report for 10.10.198.112
+Host is up, received reset ttl 125 (0.26s latency).
+Scanned at 2020-07-07 09:36:12 AKDT for 149s
+Not shown: 988 closed ports
+Reason: 988 resets
+PORT      STATE SERVICE            REASON          VERSION
+135/tcp   open  msrpc              syn-ack ttl 125 Microsoft Windows RPC
+139/tcp   open  netbios-ssn        syn-ack ttl 125 Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds       syn-ack ttl 125 Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP)
+3389/tcp  open  ssl/ms-wbt-server? syn-ack ttl 125
+5357/tcp  open  http               syn-ack ttl 125 Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Service Unavailable
+8000/tcp  open  http               syn-ack ttl 125 Icecast streaming media server
+| http-methods: 
+|_  Supported Methods: GET
+|_http-title: Site doesn't have a title (text/html).
+49152/tcp open  msrpc              syn-ack ttl 125 Microsoft Windows RPC
+49153/tcp open  msrpc              syn-ack ttl 125 Microsoft Windows RPC
+49154/tcp open  msrpc              syn-ack ttl 125 Microsoft Windows RPC
+49158/tcp open  msrpc              syn-ack ttl 125 Microsoft Windows RPC
+49159/tcp open  msrpc              syn-ack ttl 125 Microsoft Windows RPC
+49160/tcp open  msrpc              syn-ack ttl 125 Microsoft Windows RPC
+Service Info: Host: DARK-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 1h40m01s, deviation: 2h53m12s, median: 0s
+| nbstat: NetBIOS name: DARK-PC, NetBIOS user: <unknown>, NetBIOS MAC: 02:3d:fa:f3:d1:74 (unknown)
+| Names:
+|   DARK-PC<00>          Flags: <unique><active>
+|   WORKGROUP<00>        Flags: <group><active>
+|   DARK-PC<20>          Flags: <unique><active>
+|   WORKGROUP<1e>        Flags: <group><active>
+|   WORKGROUP<1d>        Flags: <unique><active>
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+| Statistics:
+|   02 3d fa f3 d1 74 00 00 00 00 00 00 00 00 00 00 00
+|   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|_  00 00 00 00 00 00 00 00 00 00 00 00 00 00
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 51369/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 11943/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 48488/udp): CLEAN (Timeout)
+|   Check 4 (port 17322/udp): CLEAN (Failed to receive data)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb-os-discovery: 
+|   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+|   Computer name: Dark-PC
+|   NetBIOS computer name: DARK-PC\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2020-07-07T12:37:35-05:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-07-07T17:37:35
+|_  start_date: 2020-07-07T17:28:08
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Jul  7 09:38:41 2020 -- 1 IP address (1 host up) scanned in 148.88 seconds

