@@ -1,0 +1,2 @@
+/server-status (Status: 403)
+bots.txt (Status: 200)

