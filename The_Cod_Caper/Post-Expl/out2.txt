@@ -1,0 +1,51 @@
+INPUT:
+
+r < <(cyclic 50)
+
+OUTPUT:
+
+Starting program: /opt/secret/root < <(cyclic 50)
+[*] Checking for new versions of pwntools
+    To disable this functionality, set the contents of /home/pingu/.pwntools-cache-2.7/update to 'never'.
+[!] An issue occurred while checking PyPI
+[*] You have the latest version of Pwntools (4.0.0)
+
+Program received signal SIGSEGV, Segmentation fault.
+0x6161616c in ?? ()
+LEGEND: STACK | HEAP | CODE | DATA | RWX | RODATA
+──────────────────────────────────────────────[ REGISTERS ]──────────────────────────────────────────────
+ EAX  0x1
+ EBX  0x0
+ ECX  0x1
+ EDX  0xf76cb87c (_IO_stdfile_0_lock) ◂— 0
+ EDI  0xf76ca000 (_GLOBAL_OFFSET_TABLE_) ◂— mov    al, 0x1d /* 0x1b1db0 */
+ ESI  0xf76ca000 (_GLOBAL_OFFSET_TABLE_) ◂— mov    al, 0x1d /* 0x1b1db0 */
+ EBP  0x6161616b ('kaaa')
+ ESP  0xffc32fe0 ◂— 0xf700616d /* 'ma' */
+ EIP  0x6161616c ('laaa')
+───────────────────────────────────────────────[ DISASM ]────────────────────────────────────────────────
+Invalid address 0x6161616c
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────[ STACK ]────────────────────────────────────────────────
+00:0000│ esp  0xffc32fe0 ◂— 0xf700616d /* 'ma' */
+01:0004│      0xffc32fe4 —▸ 0xffc33000 ◂— 0x1
+02:0008│      0xffc32fe8 ◂— 0x0
+03:000c│      0xffc32fec —▸ 0xf7530637 (__libc_start_main+247) ◂— add    esp, 0x10
+04:0010│      0xffc32ff0 —▸ 0xf76ca000 (_GLOBAL_OFFSET_TABLE_) ◂— mov    al, 0x1d /* 0x1b1db0 */
+... ↓
+06:0018│      0xffc32ff8 ◂— 0x0
+07:001c│      0xffc32ffc —▸ 0xf7530637 (__libc_start_main+247) ◂— add    esp, 0x10
+──────────────────────────────────────────────[ BACKTRACE ]──────────────────────────────────────────────
+ ► f 0 6161616c
+   f 1 f700616d
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+Program received signal SIGSEGV (fault address 0x6161616c)

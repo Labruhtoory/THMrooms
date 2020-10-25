@@ -1,0 +1,47 @@
+INPUT: 
+
+r < <(cyclic 50)
+
+OUTPUT:
+
+Starting program: /opt/secret/root < <(cyclic 50)
+
+Program received signal SIGSEGV, Segmentation fault.
+0x6161616c in ?? ()
+LEGEND: STACK | HEAP | CODE | DATA | RWX | RODATA
+──────────────────────────────────────────────[ REGISTERS ]──────────────────────────────────────────────
+ EAX  0x1
+ EBX  0x0
+ ECX  0x1
+ EDX  0xf773c87c (_IO_stdfile_0_lock) ◂— 0
+ EDI  0xf773b000 (_GLOBAL_OFFSET_TABLE_) ◂— mov    al, 0x1d /* 0x1b1db0 */
+ ESI  0xf773b000 (_GLOBAL_OFFSET_TABLE_) ◂— mov    al, 0x1d /* 0x1b1db0 */
+ EBP  0x6161616b ('kaaa')
+ ESP  0xffea7ce0 ◂— 0xf700616d /* 'ma' */
+ EIP  0x6161616c ('laaa')
+───────────────────────────────────────────────[ DISASM ]────────────────────────────────────────────────
+Invalid address 0x6161616c
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────[ STACK ]────────────────────────────────────────────────
+00:0000│ esp  0xffea7ce0 ◂— 0xf700616d /* 'ma' */
+01:0004│      0xffea7ce4 —▸ 0xffea7d00 ◂— 0x1
+02:0008│      0xffea7ce8 ◂— 0x0
+03:000c│      0xffea7cec —▸ 0xf75a1637 (__libc_start_main+247) ◂— add    esp, 0x10
+04:0010│      0xffea7cf0 —▸ 0xf773b000 (_GLOBAL_OFFSET_TABLE_) ◂— mov    al, 0x1d /* 0x1b1db0 */
+... ↓
+06:0018│      0xffea7cf8 ◂— 0x0
+07:001c│      0xffea7cfc —▸ 0xf75a1637 (__libc_start_main+247) ◂— add    esp, 0x10
+──────────────────────────────────────────────[ BACKTRACE ]──────────────────────────────────────────────
+ ► f 0 6161616c
+   f 1 f700616d
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+Program received signal SIGSEGV (fault address 0x6161616c)

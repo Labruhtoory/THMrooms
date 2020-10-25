@@ -1,0 +1,26 @@
+INPUT:
+
+disassemble shell
+
+OUTPUT:
+
+Dump of assembler code for function shell:
+   0x080484cb <+0>:	push   ebp
+   0x080484cc <+1>:	mov    ebp,esp
+   0x080484ce <+3>:	sub    esp,0x8
+   0x080484d1 <+6>:	sub    esp,0xc
+   0x080484d4 <+9>:	push   0x3e8
+   0x080484d9 <+14>:	call   0x80483a0 <setuid@plt>
+   0x080484de <+19>:	add    esp,0x10
+   0x080484e1 <+22>:	sub    esp,0xc
+   0x080484e4 <+25>:	push   0x3e8
+   0x080484e9 <+30>:	call   0x8048370 <setgid@plt>
+   0x080484ee <+35>:	add    esp,0x10
+   0x080484f1 <+38>:	sub    esp,0xc
+   0x080484f4 <+41>:	push   0x80485d0
+   0x080484f9 <+46>:	call   0x8048380 <system@plt>
+   0x080484fe <+51>:	add    esp,0x10
+   0x08048501 <+54>:	nop
+   0x08048502 <+55>:	leave  
+   0x08048503 <+56>:	ret    
+End of assembler dump.
