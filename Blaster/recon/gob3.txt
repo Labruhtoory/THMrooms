@@ -1,0 +1,3 @@
+/wp-content (Status: 301)
+/wp-includes (Status: 301)
+/wp-admin (Status: 301)

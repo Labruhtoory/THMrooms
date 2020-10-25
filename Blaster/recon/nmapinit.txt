@@ -1,0 +1,58 @@
+# Nmap 7.80 scan initiated Sun Jul 26 16:42:25 2020 as: nmap -Pn -sC -v -sV -v -oN nmapinit.txt 10.10.52.2
+Nmap scan report for 10.10.52.2
+Host is up, received user-set (0.23s latency).
+Scanned at 2020-07-26 16:42:26 AKDT for 30s
+Not shown: 998 filtered ports
+Reason: 998 no-responses
+PORT     STATE SERVICE       REASON          VERSION
+80/tcp   open  http          syn-ack ttl 125 Microsoft IIS httpd 10.0
+| http-methods: 
+|   Supported Methods: OPTIONS TRACE GET HEAD POST
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: IIS Windows Server
+3389/tcp open  ms-wbt-server syn-ack ttl 125 Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: RETROWEB
+|   NetBIOS_Domain_Name: RETROWEB
+|   NetBIOS_Computer_Name: RETROWEB
+|   DNS_Domain_Name: RetroWeb
+|   DNS_Computer_Name: RetroWeb
+|   Product_Version: 10.0.14393
+|_  System_Time: 2020-07-27T00:42:52+00:00
+| ssl-cert: Subject: commonName=RetroWeb
+| Issuer: commonName=RetroWeb
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2020-05-21T21:44:38
+| Not valid after:  2020-11-20T21:44:38
+| MD5:   dc1a 219e aee5 c428 1a53 5c03 7a4c 9a6f
+| SHA-1: b359 f8c9 6c31 2619 957a a417 78fa 8347 c1d8 7da7
+| -----BEGIN CERTIFICATE-----
+| MIIC1DCCAbygAwIBAgIQXV1wnGTxiqRHPD6dXi7hDjANBgkqhkiG9w0BAQsFADAT
+| MREwDwYDVQQDEwhSZXRyb1dlYjAeFw0yMDA1MjEyMTQ0MzhaFw0yMDExMjAyMTQ0
+| MzhaMBMxETAPBgNVBAMTCFJldHJvV2ViMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+| MIIBCgKCAQEAzIUAiSfQ2rfBwehg19hPkYPu9HTlBioQ71zBo++vHyXXqTqdsPNs
+| 4JiajY4iqh/SA/wSa99Y/0AxCbNYyFhGhJ8O5WbfS2Ibj/JsKk3s1Vg4816ZSRca
+| Vow43V7l4zXAPoXKrZs+S8xLwdtsY5Mf3QGoATXx7xTyR2tFJ2Y19uYJhcxbBUNX
+| V1QAABVfXciKWvsl1R/+hLHQyctqSnTqPcvoKRj+mLOykAIGPrGoyRJv53LOFPid
+| mHGAn0QcwAKQxFhGpWImcy8Vagy2I0uwpz4dviWWOeuD/GwVH5h9gUzp2Aybygg8
+| 2RfTDJyK5gI551dvLKy34tPNpG3tLqQSUQIDAQABoyQwIjATBgNVHSUEDDAKBggr
+| BgEFBQcDATALBgNVHQ8EBAMCBDAwDQYJKoZIhvcNAQELBQADggEBAGUZcF7EPNBJ
+| 9k8QmKVTLPmr8Go2wz35W6fF9HotysatfefYQrGEgsKR+ueJxsaJSXiB3UnGzflD
+| M1OszGFAhPwheE/UN45ChoPW9BSD+ZJW5aE6PIpuLaScYM9nlWS5iOV2HJ2HCPTJ
+| QBA9c3Rz4BQaKCwLzpN1mQfR4PcEBY5VAUsN8Y2M6HUZyOXV5L+m8xwqYVJcLqYM
+| VjyGMo5tV3swkY9ewdaeTJFXhhZcJpv97r0MV1ZZvDZM8K4wGtRB0L/VTiY3OB+o
+| jJghCylHrwQbumtkAcBjrv26j2T9u0NlrLFu9lmehrrlRw4x3Jc7cUeaOzTTh1gt
+| b9qAL8Qz1Mk=
+|_-----END CERTIFICATE-----
+|_ssl-date: 2020-07-27T00:42:56+00:00; 0s from scanner time.
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 0s, deviation: 0s, median: 0s
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Jul 26 16:42:56 2020 -- 1 IP address (1 host up) scanned in 30.67 seconds
