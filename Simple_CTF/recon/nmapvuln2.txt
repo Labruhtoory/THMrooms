@@ -1,0 +1,22 @@
+# Nmap 7.80 scan initiated Wed Jul 29 17:10:27 2020 as: nmap --script vuln -v -oN nmapvuln2.txt 10.10.11.205
+Pre-scan script results:
+|_broadcast-avahi-dos: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.11.205
+Host is up (0.23s latency).
+Not shown: 997 filtered ports
+PORT     STATE SERVICE
+21/tcp   open  ftp
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+|_sslv2-drown: 
+80/tcp   open  http
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|_  /robots.txt: Robots file
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+2222/tcp open  EtherNetIP-1
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Wed Jul 29 17:16:30 2020 -- 1 IP address (1 host up) scanned in 362.99 seconds
