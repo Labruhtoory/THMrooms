@@ -1,0 +1,125 @@
+# Nmap 7.80 scan initiated Mon Jul  6 15:48:52 2020 as: nmap -sC -v -sV -v -oN initialscan.txt 10.10.177.193
+Nmap scan report for 10.10.177.193
+Host is up, received echo-reply ttl 61 (0.26s latency).
+Scanned at 2020-07-06 15:48:52 AKDT for 35s
+Not shown: 941 closed ports
+Reason: 941 resets
+PORT      STATE    SERVICE            REASON         VERSION
+21/tcp    open     ftp                syn-ack ttl 61 vsftpd 3.0.3
+22/tcp    open     ssh                syn-ack ttl 61 OpenSSH 7.2p2 Ubuntu 4ubuntu2.7 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 5a:4f:fc:b8:c8:76:1c:b5:85:1c:ac:b2:86:41:1c:5a (RSA)
+| ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYQExoU9R0VCGoQW6bOwg0U7ILtmfBQ3x/rdK8uuSM/fEH80hgG81Xpqu52siXQXOn1hpppYs7rpZN+KdwAYYDmnxSPVwkj2yXT9hJ/fFAmge3vk0Gt5Kd8q3CdcLjgMcc8V4b8v6UpYemIgWFOkYTzji7ZPrTNlo4HbDgY5/F9evC9VaWgfnyiasyAT6aio4hecn0Sg1Ag35NTGnbgrMmDqk6hfxIBqjqyYLPgJ4V1QrqeqMrvyc6k1/XgsR7dlugmqXyICiXu03zz7lNUf6vuWT707yDi9wEdLE6Hmah78f+xDYUP7iNA0raxi2H++XQjktPqjKGQzJHemtPY5bn
+|   256 ac:9d:ec:44:61:0c:28:85:00:88:e9:68:e9:d0:cb:3d (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHCK2yd1f39AlLoIZFsvpSlRlzyO1wjBoVy8NvMp4/6Db2TJNwcUNNFjYQRd5EhxNnP+oLvOTofBlF/n0ms6SwE=
+|   256 30:50:cb:70:5a:86:57:22:cb:52:d9:36:34:dc:a5:58 (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGqh93OTpuL32KRVEn9zL/Ybk+5mAsT/81axilYUUvUB
+81/tcp    filtered hosts2-ns          no-response
+139/tcp   open     netbios-ssn        syn-ack ttl 61 Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+264/tcp   filtered bgmp               no-response
+445/tcp   open     netbios-ssn        syn-ack ttl 61 Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
+544/tcp   filtered kshell             no-response
+593/tcp   filtered http-rpc-epmap     no-response
+648/tcp   filtered rrp                no-response
+981/tcp   filtered unknown            no-response
+1000/tcp  filtered cadlock            no-response
+1033/tcp  filtered netinfo            no-response
+1047/tcp  filtered neod1              no-response
+1059/tcp  filtered nimreg             no-response
+1068/tcp  filtered instl_bootc        no-response
+1073/tcp  filtered bridgecontrol      no-response
+1094/tcp  filtered rootd              no-response
+1102/tcp  filtered adobeserver-1      no-response
+1147/tcp  filtered capioverlan        no-response
+1233/tcp  filtered univ-appserver     no-response
+1461/tcp  filtered ibm_wrless_lan     no-response
+1947/tcp  filtered sentinelsrm        no-response
+2009/tcp  filtered news               no-response
+2065/tcp  filtered dlsrpn             no-response
+2106/tcp  filtered ekshell            no-response
+2119/tcp  filtered gsigatekeeper      no-response
+2190/tcp  filtered tivoconnect        no-response
+2608/tcp  filtered wag-service        no-response
+2638/tcp  filtered sybase             no-response
+2811/tcp  filtered gsiftp             no-response
+3128/tcp  open     http-proxy         syn-ack ttl 61 Squid http proxy 3.5.12
+|_http-server-header: squid/3.5.12
+|_http-title: ERROR: The requested URL could not be retrieved
+3221/tcp  filtered xnm-clear-text     no-response
+3325/tcp  filtered active-net         no-response
+3333/tcp  open     http               syn-ack ttl 61 Apache httpd 2.4.18 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: POST OPTIONS GET HEAD
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Vuln University
+3801/tcp  filtered ibm-mgr            no-response
+3828/tcp  filtered neteh              no-response
+4003/tcp  filtered pxc-splr-ft        no-response
+4129/tcp  filtered nuauth             no-response
+4445/tcp  filtered upnotifyp          no-response
+4900/tcp  filtered hfcs               no-response
+5061/tcp  filtered sip-tls            no-response
+5280/tcp  filtered xmpp-bosh          no-response
+5550/tcp  filtered sdadmind           no-response
+5906/tcp  filtered unknown            no-response
+6025/tcp  filtered x11                no-response
+6389/tcp  filtered clariion-evr01     no-response
+6666/tcp  filtered irc                no-response
+6881/tcp  filtered bittorrent-tracker no-response
+8292/tcp  filtered blp3               no-response
+9575/tcp  filtered unknown            no-response
+9998/tcp  filtered distinct32         no-response
+10001/tcp filtered scp-config         no-response
+13782/tcp filtered netbackup          no-response
+19101/tcp filtered unknown            no-response
+30000/tcp filtered ndmps              no-response
+32782/tcp filtered unknown            no-response
+50002/tcp filtered iiimsf             no-response
+51103/tcp filtered unknown            no-response
+60443/tcp filtered unknown            no-response
+Service Info: Host: VULNUNIVERSITY; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1h20m00s, deviation: 2h18m34s, median: 0s
+| nbstat: NetBIOS name: VULNUNIVERSITY, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| Names:
+|   VULNUNIVERSITY<00>   Flags: <unique><active>
+|   VULNUNIVERSITY<03>   Flags: <unique><active>
+|   VULNUNIVERSITY<20>   Flags: <unique><active>
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+|   WORKGROUP<00>        Flags: <group><active>
+|   WORKGROUP<1d>        Flags: <unique><active>
+|   WORKGROUP<1e>        Flags: <group><active>
+| Statistics:
+|   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|_  00 00 00 00 00 00 00 00 00 00 00 00 00 00
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 63978/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 64051/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 3650/udp): CLEAN (Failed to receive data)
+|   Check 4 (port 2897/udp): CLEAN (Failed to receive data)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)
+|   Computer name: vulnuniversity
+|   NetBIOS computer name: VULNUNIVERSITY\x00
+|   Domain name: \x00
+|   FQDN: vulnuniversity
+|_  System time: 2020-07-06T19:49:20-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-07-06T23:49:19
+|_  start_date: N/A
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jul  6 15:49:27 2020 -- 1 IP address (1 host up) scanned in 35.86 seconds
