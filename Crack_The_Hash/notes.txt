@@ -1,0 +1,107 @@
+sites:
+
+https://www.techsolvency.com/passwords/hashcat-example-hashes/
+
+https://crackstation.net/
+
+https://embeddedworld.home.blog/2019/05/11/hacking-walk-through-cracking-the-hashes/comment-page-1/
+
+
+								Task 1-1: MD5 hash
+
+Hash: 48bb6e862e54f2a795ffc4e541caed4d
+
+Solution: This one is easy, there are two ways to crack this MD5 hash
+
+Method 1: Online hash cracker
+
+You can visit any hash cracker site to crack the hash instantly. For example, the crack station. Just paste the hash and crack it.
+
+Method 2: Hashcat
+
+This method is more flexible when compared to the online hash cracker. It provides a tons of hash mode. You can download hashcat (Window/Linux/MacOS) from this website. However, you need to know some command line for terminal/CMD as the prerequisite of using this tool. On the other hand, I highly recommend launching this tool in your host computer (not on your virtual machine). This is due to cracking the hash require a large amount of processing resource and GPU is the ideal choice when compared to CPU. Also, the virtual machine cannot access GPU resource.
+
+For this walk-through, I’m going to use Window OS. After you have downloaded the hashcat, be sure to redirect to the path where you extract the hashcat (using the command: cd). Also, I going to use dictionary attack for this hash crack walk-through, you can download the famous wordlist (rockyou.txt). After that, I store the rockyou.txt into the ‘Dict’ directory (the directory is inside the hashcat folder).
+
+Please create a ‘Hash’ directory to store all the hashes that going to be cracked soon. For this case, i saved my hash in ‘hash.txt’.
+My hashcat directory
+
+After that launch the hashcat using following command
+
+hashcat64.exe -D 2 -m 0 Hash/hash.txt Dict/rockyou.txt
+
+Answer: easy
+
+
+										Task 1-2: SHA1 hash
+
+Hash: CBFDAC6008F9CAB4083784CBD1874F76618D2A97 
+
+Solution: Similar to Task 1-1, but the mode is (-m 100) for hashcat
+
+Answer: password123
+
+
+										Task 1-3: SHA256 hash
+
+Hash: 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032
+
+Solution: Similar to Task 1-1, but the mode is (-m 1400) for hashcat
+
+Answer: letmein
+										
+
+										Task 1-4: bcrypt-blowfish hash
+
+Hash: $2y$12$Dwt1BZj6pcyc3Dy1FWZ5ieeUznr71EeNkJkUlypTsgbX1H68wsRom
+
+Solution: This one is little bit tricky which is this hash cannot be cracked using online tool. That is why hashcat came in, set the mode to -m 3200
+
+Answer: bleh
+										
+
+										Task 1-5: MD4 hash
+
+Hash: 279412f945939ba78ce0758d3fd83daa
+
+Solution: Similar to Task 1-1, but the mode is (-m 900) for hashcat
+
+Answer: Eternity22
+										
+
+										Task 2-1: SHA256 hash
+
+Hash:
+F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85
+
+Solution: Similar to Task 1-1, but the mode is (-m 1400) for hashcat
+
+Answer: paule
+										
+
+										Task 2-2: NTLM hash
+
+Hash: 1DFECA0C002AE40B8619ECF94819CC1B
+
+Solution: Similar to Task 1-1, but the mode is (-m 1000) for hashcat
+
+Answer: n63umy8lkf4i
+										
+
+										Task 2-3: SHA512crypt, $6$ hash
+
+Hash:
+$6$aReallyHardSalt$6WKUTqzq.UQQmrm0p/T7MPpMbGNnzXPMAXi4bJMl9be.cfi3/qxIf.hsGpS41BqMhSrHVXgMpdjS6xeKZAs02.
+
+Solution: This hash cannot be cracked using online tool but can be cracked using hashcat by setting the mode -m 1800. (It take some time).
+
+Answer: waka99
+										
+
+										Task 2-4: SHA1 with salt hash
+
+Hash: e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme
+
+Solution: This hash also cannot be cracked using online tool due to the present of salt ( tryhackme ). This only can be done by using hashcat with mode -m 110.
+
+Answer: 481616481616
