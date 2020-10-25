@@ -1,0 +1,63 @@
+# Nmap 7.80 scan initiated Sun Jul  5 13:31:05 2020 as: nmap -sC -v -sV -v -oN initnmap.txt 10.10.172.65
+Increasing send delay for 10.10.172.65 from 0 to 5 due to 262 out of 873 dropped probes since last increase.
+Nmap scan report for 10.10.172.65
+Host is up, received reset ttl 125 (0.29s latency).
+Scanned at 2020-07-05 13:31:06 AKDT for 171s
+Not shown: 991 closed ports
+Reason: 991 resets
+PORT      STATE SERVICE      REASON          VERSION
+135/tcp   open  msrpc        syn-ack ttl 125 Microsoft Windows RPC
+139/tcp   open  netbios-ssn  syn-ack ttl 125 Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds syn-ack ttl 125 Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP)
+3389/tcp  open  tcpwrapped   syn-ack ttl 125
+|_ssl-date: 2020-07-05T21:32:58+00:00; 0s from scanner time.
+49152/tcp open  msrpc        syn-ack ttl 125 Microsoft Windows RPC
+49153/tcp open  msrpc        syn-ack ttl 125 Microsoft Windows RPC
+49154/tcp open  msrpc        syn-ack ttl 125 Microsoft Windows RPC
+49158/tcp open  msrpc        syn-ack ttl 125 Microsoft Windows RPC
+49160/tcp open  msrpc        syn-ack ttl 125 Microsoft Windows RPC
+Service Info: Host: JON-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 1h15m00s, deviation: 2h30m00s, median: 0s
+| nbstat: NetBIOS name: JON-PC, NetBIOS user: <unknown>, NetBIOS MAC: 02:91:37:95:d1:36 (unknown)
+| Names:
+|   JON-PC<00>           Flags: <unique><active>
+|   WORKGROUP<00>        Flags: <group><active>
+|   JON-PC<20>           Flags: <unique><active>
+|   WORKGROUP<1e>        Flags: <group><active>
+|   WORKGROUP<1d>        Flags: <unique><active>
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+| Statistics:
+|   02 91 37 95 d1 36 00 00 00 00 00 00 00 00 00 00 00
+|   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|_  00 00 00 00 00 00 00 00 00 00 00 00 00 00
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 10424/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 35438/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 22589/udp): CLEAN (Timeout)
+|   Check 4 (port 30511/udp): CLEAN (Failed to receive data)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb-os-discovery: 
+|   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+|   Computer name: Jon-PC
+|   NetBIOS computer name: JON-PC\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2020-07-05T16:32:43-05:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-07-05T21:32:43
+|_  start_date: 2020-07-05T21:26:41
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Jul  5 13:33:57 2020 -- 1 IP address (1 host up) scanned in 172.22 seconds
