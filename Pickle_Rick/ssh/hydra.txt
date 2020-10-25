@@ -1,0 +1,1 @@
+# Hydra v9.0 run at 2020-09-05 18:14:34 on 10.10.223.213 ssh (hydra -l R1ckRul3s -P /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -o hydra.txt ssh://10.10.223.213)

