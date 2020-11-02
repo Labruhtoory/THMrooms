@@ -1,0 +1,2 @@
+/uploads (Status: 301)
+/secret (Status: 301)
