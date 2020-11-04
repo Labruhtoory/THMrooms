@@ -1,0 +1,151 @@
+# Nmap 7.91 scan initiated Wed Nov  4 15:22:17 2020 as: nmap -sC -sV --script=vulscan.nse -v -oN nmap2.txt 10.10.143.180
+Nmap scan report for 10.10.143.180
+Host is up (0.23s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+80/tcp   open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+8000/tcp open  http    (PHP 7.2.32-1)
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.0 404 Not Found
+|     Date: Wed, 04 Nov 2020 23:22:36 GMT
+|     Connection: close
+|     X-Powered-By: PHP/7.2.32-1+ubuntu18.04.1+deb.sury.org+1
+|     Cache-Control: private, must-revalidate
+|     Date: Wed, 04 Nov 2020 23:22:36 GMT
+|     Content-Type: text/html; charset=UTF-8
+|     pragma: no-cache
+|     expires: -1
+|     X-Debug-Token: d072bf
+|     <!doctype html>
+|     <html lang="en">
+|     <head>
+|     <meta charset="utf-8">
+|     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+|     <title>Bolt | A hero is unleashed</title>
+|     <link href="https://fonts.googleapis.com/css?family=Bitter|Roboto:400,400i,700" rel="stylesheet">
+|     <link rel="stylesheet" href="/theme/base-2018/css/bulma.css?8ca0842ebb">
+|     <link rel="stylesheet" href="/theme/base-2018/css/theme.css?6cb66bfe9f">
+|     <meta name="generator" content="Bolt">
+|     </head>
+|     <body>
+|     href="#main-content" class="vis
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     Date: Wed, 04 Nov 2020 23:22:35 GMT
+|     Connection: close
+|     X-Powered-By: PHP/7.2.32-1+ubuntu18.04.1+deb.sury.org+1
+|     Cache-Control: public, s-maxage=600
+|     Date: Wed, 04 Nov 2020 23:22:35 GMT
+|     Content-Type: text/html; charset=UTF-8
+|     X-Debug-Token: 1f122a
+|     <!doctype html>
+|     <html lang="en-GB">
+|     <head>
+|     <meta charset="utf-8">
+|     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+|     <title>Bolt | A hero is unleashed</title>
+|     <link href="https://fonts.googleapis.com/css?family=Bitter|Roboto:400,400i,700" rel="stylesheet">
+|     <link rel="stylesheet" href="/theme/base-2018/css/bulma.css?8ca0842ebb">
+|     <link rel="stylesheet" href="/theme/base-2018/css/theme.css?6cb66bfe9f">
+|     <meta name="generator" content="Bolt">
+|     <link rel="canonical" href="http://0.0.0.0:8000/">
+|     </head>
+|_    <body class="front">
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8000-TCP:V=7.91%I=7%D=11/4%Time=5FA337B9%P=x86_64-pc-linux-gnu%r(Ge
+SF:tRequest,29E1,"HTTP/1\.0\x20200\x20OK\r\nDate:\x20Wed,\x2004\x20Nov\x20
+SF:2020\x2023:22:35\x20GMT\r\nConnection:\x20close\r\nX-Powered-By:\x20PHP
+SF:/7\.2\.32-1\+ubuntu18\.04\.1\+deb\.sury\.org\+1\r\nCache-Control:\x20pu
+SF:blic,\x20s-maxage=600\r\nDate:\x20Wed,\x2004\x20Nov\x202020\x2023:22:35
+SF:\x20GMT\r\nContent-Type:\x20text/html;\x20charset=UTF-8\r\nX-Debug-Toke
+SF:n:\x201f122a\r\n\r\n<!doctype\x20html>\n<html\x20lang=\"en-GB\">\n\x20\
+SF:x20\x20\x20<head>\n\x20\x20\x20\x20\x20\x20\x20\x20<meta\x20charset=\"u
+SF:tf-8\">\n\x20\x20\x20\x20\x20\x20\x20\x20<meta\x20name=\"viewport\"\x20
+SF:content=\"width=device-width,\x20initial-scale=1\.0\">\n\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<title>Bolt\x20\|\x20A
+SF:\x20hero\x20is\x20unleashed</title>\n\x20\x20\x20\x20\x20\x20\x20\x20<l
+SF:ink\x20href=\"https://fonts\.googleapis\.com/css\?family=Bitter\|Roboto
+SF::400,400i,700\"\x20rel=\"stylesheet\">\n\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0<link\x20rel=\"stylesheet\"\x20href=\"/theme/base-2018/css/bulma\.css\
+SF:?8ca0842ebb\">\n\x20\x20\x20\x20\x20\x20\x20\x20<link\x20rel=\"styleshe
+SF:et\"\x20href=\"/theme/base-2018/css/theme\.css\?6cb66bfe9f\">\n\x20\x20
+SF:\x20\x20\t<meta\x20name=\"generator\"\x20content=\"Bolt\">\n\x20\x20\x2
+SF:0\x20\t<link\x20rel=\"canonical\"\x20href=\"http://0\.0\.0\.0:8000/\">\
+SF:n\x20\x20\x20\x20</head>\n\x20\x20\x20\x20<body\x20class=\"front\">\n\x
+SF:20\x20\x20\x20\x20\x20\x20\x20<a\x20")%r(FourOhFourRequest,16C3,"HTTP/1
+SF:\.0\x20404\x20Not\x20Found\r\nDate:\x20Wed,\x2004\x20Nov\x202020\x2023:
+SF:22:36\x20GMT\r\nConnection:\x20close\r\nX-Powered-By:\x20PHP/7\.2\.32-1
+SF:\+ubuntu18\.04\.1\+deb\.sury\.org\+1\r\nCache-Control:\x20private,\x20m
+SF:ust-revalidate\r\nDate:\x20Wed,\x2004\x20Nov\x202020\x2023:22:36\x20GMT
+SF:\r\nContent-Type:\x20text/html;\x20charset=UTF-8\r\npragma:\x20no-cache
+SF:\r\nexpires:\x20-1\r\nX-Debug-Token:\x20d072bf\r\n\r\n<!doctype\x20html
+SF:>\n<html\x20lang=\"en\">\n\x20\x20\x20\x20<head>\n\x20\x20\x20\x20\x20\
+SF:x20\x20\x20<meta\x20charset=\"utf-8\">\n\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0<meta\x20name=\"viewport\"\x20content=\"width=device-width,\x20initial
+SF:-scale=1\.0\">\n\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20<title>Bolt\x20\|\x20A\x20hero\x20is\x20unleashed</title>\n\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20<link\x20href=\"https://fonts\.googleapis\
+SF:.com/css\?family=Bitter\|Roboto:400,400i,700\"\x20rel=\"stylesheet\">\n
+SF:\x20\x20\x20\x20\x20\x20\x20\x20<link\x20rel=\"stylesheet\"\x20href=\"/
+SF:theme/base-2018/css/bulma\.css\?8ca0842ebb\">\n\x20\x20\x20\x20\x20\x20
+SF:\x20\x20<link\x20rel=\"stylesheet\"\x20href=\"/theme/base-2018/css/them
+SF:e\.css\?6cb66bfe9f\">\n\x20\x20\x20\x20\t<meta\x20name=\"generator\"\x2
+SF:0content=\"Bolt\">\n\x20\x20\x20\x20</head>\n\x20\x20\x20\x20<body>\n\x
+SF:20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\"#main-content\"\x20class=\"v
+SF:is");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Nov  4 15:22:49 2020 -- 1 IP address (1 host up) scanned in 32.27 seconds
