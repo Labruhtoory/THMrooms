@@ -1,0 +1,42 @@
+# Nmap 7.91 scan initiated Sun Nov 22 13:29:39 2020 as: nmap -sC -sV -v -oN nmaopinit.txt 10.10.23.51
+Nmap scan report for 10.10.23.51
+Host is up (0.22s latency).
+Not shown: 995 closed ports
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: WIN-LU09299160F
+|   NetBIOS_Domain_Name: WIN-LU09299160F
+|   NetBIOS_Computer_Name: WIN-LU09299160F
+|   DNS_Domain_Name: WIN-LU09299160F
+|   DNS_Computer_Name: WIN-LU09299160F
+|   Product_Version: 10.0.17763
+|_  System_Time: 2020-11-22T21:30:21+00:00
+| ssl-cert: Subject: commonName=WIN-LU09299160F
+| Issuer: commonName=WIN-LU09299160F
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2020-11-21T21:29:26
+| Not valid after:  2021-05-23T21:29:26
+| MD5:   b58d ec6b 4973 228e bf34 c89d 54c0 d987
+|_SHA-1: 948a edd6 1498 c468 7fab 500f be5d 567b 8549 aa2d
+|_ssl-date: 2020-11-22T21:31:20+00:00; +12s from scanner time.
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 12s, deviation: 0s, median: 12s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-11-22T21:30:21
+|_  start_date: N/A
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Nov 22 13:31:08 2020 -- 1 IP address (1 host up) scanned in 89.72 seconds

@@ -1,0 +1,65 @@
+
+					Recon
+web:80
+rdp:3389
+
+
+					Enum
+
+/robots.txt
+possible cred
+pass:UmbracoIsTheBest!
+
+
+jd@anthem.com   ---->   sg@anthem.com
+
+
+
+					Web_Flags
+
+view-source:http://10.10.23.51/authors - THM{L0L_WH0_D15}
+
+view-source:http://10.10.23.51/authors - THM{G!T_G00D}
+
+view-source:http://10.10.23.51/1079 - THM{AN0TH3R_M3TA}
+
+view-source:http://10.10.23.51/1078 - THM{L0L_WH0_US3S_M3T4}
+
+
+					Init Access
+
+trial&error
+
+user:sg
+pass:UmbracoIsTheBest!
+
+
+
+					privesc
+
+
+*enable hidden files
+
+
+*sus file
+
+C:\backup\restore.txt 
+
+*can change perms
+
+
+ChangeMeBaby1MoreTime
+
+
+
+*new creds
+
+user:Admin
+pass:ChangeMeBaby1MoreTime
+
+
+					
+					root_stuff
+
+C:\Users\Administrator\Desktop\root.txt
+

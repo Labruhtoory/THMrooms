@@ -1,0 +1,72 @@
+# Nmap 7.91 scan initiated Sun Nov 22 13:38:08 2020 as: nmap -A -v -oN nmapAgress.txt 10.10.23.51
+Increasing send delay for 10.10.23.51 from 0 to 5 due to 148 out of 491 dropped probes since last increase.
+Nmap scan report for 10.10.23.51
+Host is up (0.22s latency).
+Not shown: 995 closed ports
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+| http-robots.txt: 4 disallowed entries 
+|_/bin/ /config/ /umbraco/ /umbraco_client/
+|_http-title: Anthem.com - Welcome to our blog
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: WIN-LU09299160F
+|   NetBIOS_Domain_Name: WIN-LU09299160F
+|   NetBIOS_Computer_Name: WIN-LU09299160F
+|   DNS_Domain_Name: WIN-LU09299160F
+|   DNS_Computer_Name: WIN-LU09299160F
+|   Product_Version: 10.0.17763
+|_  System_Time: 2020-11-22T21:39:38+00:00
+| ssl-cert: Subject: commonName=WIN-LU09299160F
+| Issuer: commonName=WIN-LU09299160F
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2020-11-21T21:29:26
+| Not valid after:  2021-05-23T21:29:26
+| MD5:   b58d ec6b 4973 228e bf34 c89d 54c0 d987
+|_SHA-1: 948a edd6 1498 c468 7fab 500f be5d 567b 8549 aa2d
+|_ssl-date: 2020-11-22T21:40:02+00:00; +13s from scanner time.
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.91%E=4%D=11/22%OT=80%CT=1%CU=32527%PV=Y%DS=4%DC=T%G=Y%TM=5FBADA
+OS:A9%P=x86_64-pc-linux-gnu)SEQ(SP=106%GCD=2%ISR=10B%TI=I%CI=I%TS=U)SEQ(SP=
+OS:106%GCD=1%ISR=10B%CI=I%TS=U)SEQ(SP=107%GCD=1%ISR=10B%TI=I%CI=RD%II=I%SS=
+OS:S%TS=U)OPS(O1=M505NW8NNS%O2=M505NW8NNS%O3=M505NW8%O4=M505NW8NNS%O5=M505N
+OS:W8NNS%O6=M505NNS)WIN(W1=FFFF%W2=FFFF%W3=FFFF%W4=FFFF%W5=FFFF%W6=FF70)ECN
+OS:(R=Y%DF=Y%T=80%W=FFFF%O=M505NW8NNS%CC=Y%Q=)T1(R=Y%DF=Y%T=80%S=O%A=S+%F=A
+OS:S%RD=0%Q=)T2(R=Y%DF=Y%T=80%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)T3(R=Y%DF=Y%T=80%
+OS:W=0%S=Z%A=O%F=AR%O=%RD=0%Q=)T4(R=Y%DF=Y%T=80%W=0%S=A%A=O%F=R%O=%RD=0%Q=)
+OS:T5(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=80%W=0%S=A%A
+OS:=O%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%D
+OS:F=N%T=80%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=8
+OS:0%CD=Z)
+
+Network Distance: 4 hops
+TCP Sequence Prediction: Difficulty=262 (Good luck!)
+IP ID Sequence Generation: Incremental
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 12s, deviation: 0s, median: 11s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-11-22T21:39:37
+|_  start_date: N/A
+
+TRACEROUTE (using port 111/tcp)
+HOP RTT       ADDRESS
+1   73.16 ms  10.2.0.1
+2   ... 3
+4   227.45 ms 10.10.23.51
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Nov 22 13:39:53 2020 -- 1 IP address (1 host up) scanned in 105.36 seconds
