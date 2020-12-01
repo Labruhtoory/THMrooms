@@ -1,0 +1,21 @@
+# Nmap 7.91 scan initiated Mon Nov 30 20:25:06 2020 as: nmap -sC -sV -v -oN nmapinit.txt 10.10.131.111
+Nmap scan report for 10.10.131.111
+Host is up (0.24s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 55:17:c1:d4:97:ba:8d:82:b9:60:81:39:e4:aa:1e:e8 (RSA)
+|   256 8d:f5:4b:ab:23:ed:a3:c0:e9:ca:90:e9:80:be:14:44 (ECDSA)
+|_  256 3e:ae:91:86:81:12:04:e4:70:90:b1:40:ef:b7:f1:b6 (ED25519)
+80/tcp open  http    Apache httpd 2.4.43 ((Unix))
+| http-methods: 
+|   Supported Methods: OPTIONS HEAD GET POST TRACE
+|_  Potentially risky methods: TRACE
+|_http-server-header: Apache/2.4.43 (Unix)
+|_http-title: Site doesn't have a title (text/html).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov 30 20:25:28 2020 -- 1 IP address (1 host up) scanned in 21.26 seconds

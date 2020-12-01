@@ -1,0 +1,15 @@
+# Nmap 7.91 scan initiated Mon Nov 30 20:26:04 2020 as: nmap -p 1337 -sC -sV -v -oN nmap1337t.txt 10.10.131.111
+Nmap scan report for 10.10.131.111
+Host is up (0.27s latency).
+
+PORT     STATE SERVICE VERSION
+1337/tcp open  http    nginx 1.14.0 (Ubuntu)
+| http-methods: 
+|_  Supported Methods: OPTIONS HEAD GET
+|_http-server-header: nginx/1.14.0 (Ubuntu)
+|_http-title: Help Alex!
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov 30 20:26:53 2020 -- 1 IP address (1 host up) scanned in 49.43 seconds
