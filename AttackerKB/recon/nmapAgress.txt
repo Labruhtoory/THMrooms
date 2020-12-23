@@ -1,0 +1,37 @@
+# Nmap 7.91 scan initiated Wed Dec 23 00:06:00 2020 as: nmap -Pn -A -v -oN nmapAgress.txt 10.10.18.163
+adjust_timeouts2: packet supposedly had rtt of -1154577 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -1154577 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -902607 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -902607 microseconds.  Ignoring time.
+Nmap scan report for 10.10.18.163
+Host is up (0.30s latency).
+Not shown: 998 closed ports
+PORT      STATE SERVICE VERSION
+22/tcp    open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 b7:4c:d0:bd:e2:7b:1b:15:72:27:64:56:29:15:ea:23 (RSA)
+|   256 b7:85:23:11:4f:44:fa:22:00:8e:40:77:5e:cf:28:7c (ECDSA)
+|_  256 a9:fe:4b:82:bf:89:34:59:36:5b:ec:da:c2:d3:95:ce (ED25519)
+10000/tcp open  http    MiniServ 1.890 (Webmin httpd)
+|_http-favicon: Unknown favicon MD5: 56C2C73DA3FDCE7346C0A4EA8A9DC307
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-title: Site doesn't have a title (text/html; Charset=iso-8859-1).
+Device type: WAP
+Running: Linux 2.4.X
+OS CPE: cpe:/o:linux:linux_kernel:2.4.20
+OS details: Tomato 1.28 (Linux 2.4.20)
+Uptime guess: 2.265 days (since Sun Dec 20 17:44:51 2020)
+Network Distance: 3 hops
+IP ID Sequence Generation: All zeros
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE (using port 554/tcp)
+HOP RTT       ADDRESS
+1   98.25 ms  10.2.0.1
+2   ...
+3   763.85 ms 10.10.18.163
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Dec 23 00:07:06 2020 -- 1 IP address (1 host up) scanned in 66.49 seconds
