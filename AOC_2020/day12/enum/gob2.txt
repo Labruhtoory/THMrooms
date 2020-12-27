@@ -1,0 +1,4 @@
+/api (Status: 302)
+/apr.html (Status: 200)
+/architecture (Status: 302)
+/building.html (Status: 200)

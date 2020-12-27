@@ -1,0 +1,47 @@
+
+
+
+
+To solve Elf McSkidy's problem with the elves slacking in the workshop, he has created the CGI script: elfwhacker.bat
+
+
+
+search CVE-2019-0232
+
+use 0
+
+
+
+
+
+
+
+-------------------------------------------------------
+Written by ElfMcEager for The Best Festival Company ~CMNatic
+-------------------------------------------------------
+
+Current time: 27/12/2020  4:15:28.70
+
+-------------------------------------------------------
+                 Debugging Information
+-------------------------------------------------------
+Hostname: TBFC-WEB-01
+User: tbfc-web-01\elfmcskidy
+
+-------------------------------------------------------
+                  ELF WHACK COUNTER
+-------------------------------------------------------
+
+ Number of Elves whacked and sent back to work: 8783 
+
+
+
+
+
+
+
+set targeturi /cgi-bin/elfwhacker.bat
+
+
+thm{whacking_all_the_elves}
+

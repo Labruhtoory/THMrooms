@@ -1,0 +1,47 @@
+# Nmap 7.91 scan initiated Thu Dec 10 07:24:30 2020 as: nmap -p 22,139,445 -sC -sV -v -oN nmapinit.txt 10.10.215.215
+Nmap scan report for 10.10.215.215
+Host is up (0.27s latency).
+
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 fa:70:d4:c2:86:0e:e3:fb:9f:0a:36:7a:11:36:a5:dc (RSA)
+|   256 4b:12:67:10:b4:a5:21:0d:30:ad:ef:15:ae:c4:04:97 (ECDSA)
+|_  256 e4:ea:83:e9:cf:fe:9f:e9:fa:a2:8e:2f:b7:fc:b4:c0 (ED25519)
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: TBFC-SMB-01)
+445/tcp open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: TBFC-SMB-01)
+Service Info: Host: TBFC-SMB; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 24s, deviation: 0s, median: 23s
+| nbstat: NetBIOS name: TBFC-SMB, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| Names:
+|   TBFC-SMB<00>         Flags: <unique><active>
+|   TBFC-SMB<03>         Flags: <unique><active>
+|   TBFC-SMB<20>         Flags: <unique><active>
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+|   TBFC-SMB-01<00>      Flags: <group><active>
+|   TBFC-SMB-01<1d>      Flags: <unique><active>
+|_  TBFC-SMB-01<1e>      Flags: <group><active>
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
+|   Computer name: tbfc-smb
+|   NetBIOS computer name: TBFC-SMB\x00
+|   Domain name: \x00
+|   FQDN: tbfc-smb
+|_  System time: 2020-12-10T16:25:08+00:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-12-10T16:25:08
+|_  start_date: N/A
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Dec 10 07:24:50 2020 -- 1 IP address (1 host up) scanned in 20.79 seconds

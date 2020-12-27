@@ -1,0 +1,4 @@
+/docs (Status: 302)
+/examples (Status: 302)
+/favicon.ico (Status: 200)
+/manager (Status: 302)

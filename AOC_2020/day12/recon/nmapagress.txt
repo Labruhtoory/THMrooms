@@ -1,0 +1,54 @@
+# Nmap 7.91 scan initiated Sat Dec 12 11:20:43 2020 as: nmap -Pn -A -v -oN nmapagress.txt 10.10.77.251
+Nmap scan report for 10.10.77.251
+Host is up (0.23s latency).
+Not shown: 997 filtered ports
+PORT     STATE SERVICE       VERSION
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: TBFC-WEB-01
+|   NetBIOS_Domain_Name: TBFC-WEB-01
+|   NetBIOS_Computer_Name: TBFC-WEB-01
+|   DNS_Domain_Name: tbfc-web-01
+|   DNS_Computer_Name: tbfc-web-01
+|   Product_Version: 10.0.17763
+|_  System_Time: 2020-12-12T20:21:40+00:00
+| ssl-cert: Subject: commonName=tbfc-web-01
+| Issuer: commonName=tbfc-web-01
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2020-11-27T01:29:04
+| Not valid after:  2021-05-29T01:29:04
+| MD5:   00ab 1b83 e8e5 f516 f148 d602 2dea 18f4
+|_SHA-1: bd1d 6535 5d3c 80a3 8a5f 98dd 8f98 44ee 9320 509e
+|_ssl-date: 2020-12-12T20:21:44+00:00; +25s from scanner time.
+8009/tcp open  ajp13         Apache Jserv (Protocol v1.3)
+| ajp-methods: 
+|_  Supported methods: GET HEAD POST OPTIONS
+8080/tcp open  http          Apache Tomcat 9.0.17
+|_http-favicon: Apache Tomcat
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-title: Apache Tomcat/9.0.17
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: specialized
+Running (JUST GUESSING): AVtech embedded (87%)
+Aggressive OS guesses: AVtech Room Alert 26W environmental monitor (87%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 4 hops
+TCP Sequence Prediction: Difficulty=257 (Good luck!)
+IP ID Sequence Generation: Incremental
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 24s, deviation: 0s, median: 24s
+
+TRACEROUTE (using port 3389/tcp)
+HOP RTT       ADDRESS
+1   78.34 ms  10.2.0.1
+2   ... 3
+4   252.66 ms 10.10.77.251
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Dec 12 11:21:20 2020 -- 1 IP address (1 host up) scanned in 37.26 seconds

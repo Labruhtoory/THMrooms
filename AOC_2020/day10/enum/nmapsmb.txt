@@ -1,0 +1,61 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-10 07:29 AKST
+Stats: 0:00:02 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 0.00% done
+Stats: 0:00:04 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 0.00% done
+Nmap scan report for 10.10.215.215
+Host is up (0.22s latency).
+
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+
+Host script results:
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.10.215.215\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: IPC Service (tbfc-smb server (Samba, Ubuntu))
+|     Users: 1
+|     Max Users: <unlimited>
+|     Path: C:\tmp
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.215.215\tbfc-hr: 
+|     Type: STYPE_DISKTREE
+|     Comment: tbfc-hr
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\shares\tbfc-hr
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.10.215.215\tbfc-it: 
+|     Type: STYPE_DISKTREE
+|     Comment: tbfc-it
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\shares\tbfc-hr
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.10.215.215\tbfc-santa: 
+|     Type: STYPE_DISKTREE
+|     Comment: tbfc-santa
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\shares\tbfc-santa
+|     Anonymous access: READ/WRITE
+|_    Current user access: READ/WRITE
+| smb-enum-users: 
+|   TBFC-SMB\elfmceager (RID: 1002)
+|     Full name:   elfmceager
+|     Description: 
+|     Flags:       Normal user account
+|   TBFC-SMB\elfmcelferson (RID: 1001)
+|     Full name:   
+|     Description: 
+|     Flags:       Normal user account
+|   TBFC-SMB\elfmcskidy (RID: 1000)
+|     Full name:   
+|     Description: 
+|_    Flags:       Normal user account
+
+Nmap done: 1 IP address (1 host up) scanned in 59.67 seconds
