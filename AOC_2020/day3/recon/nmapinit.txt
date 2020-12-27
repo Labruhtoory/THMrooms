@@ -1,0 +1,19 @@
+# Nmap 7.91 scan initiated Thu Dec  3 08:36:02 2020 as: nmap -sC -sV -v -oN nmapinit.txt 10.10.103.90
+Nmap scan report for 10.10.103.90
+Host is up (0.34s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 45:db:2e:96:6d:24:7d:ba:c3:dc:e7:ff:78:e0:97:8c (RSA)
+|   256 3a:b0:b7:77:5a:46:ad:15:3a:53:a0:9f:84:69:e7:66 (ECDSA)
+|_  256 e4:a8:66:f0:87:bd:3c:7b:a1:9b:d9:75:1f:a6:f4:d9 (ED25519)
+80/tcp open  http    Node.js Express framework
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-title: Santa Sleigh Tracker
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Dec  3 08:36:22 2020 -- 1 IP address (1 host up) scanned in 20.04 seconds

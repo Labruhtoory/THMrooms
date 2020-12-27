@@ -1,0 +1,33 @@
+# Nmap 7.91 scan initiated Sat Dec  5 11:20:32 2020 as: nmap -sC -sV -oN nmapinit.txt 10.10.27.59
+Nmap scan report for 10.10.27.59
+Host is up (0.24s latency).
+Not shown: 996 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 35:30:91:45:b9:d1:ed:5a:13:42:3e:20:95:6d:c7:b7 (RSA)
+|   256 f5:69:6a:7b:c8:ac:89:b5:38:93:50:2f:05:24:22:70 (ECDSA)
+|_  256 8f:4d:37:ba:40:12:05:fa:f0:e6:d6:82:fb:65:52:e8 (ED25519)
+3000/tcp open  http    PHP cli server 5.5 or later (PHP 7.4.12)
+|_http-title: Really Insecure PHP Page
+3306/tcp open  mysql   MySQL 8.0.22
+| mysql-info: 
+|   Protocol: 10
+|   Version: 8.0.22
+|   Thread ID: 26
+|   Capabilities flags: 65535
+|   Some Capabilities: InteractiveClient, IgnoreSigpipes, SwitchToSSLAfterHandshake, ODBCClient, Speaks41ProtocolOld, FoundRows, SupportsLoadDataLocal, Support41Auth, LongColumnFlag, SupportsCompression, Speaks41ProtocolNew, ConnectWithDatabase, SupportsTransactions, IgnoreSpaceBeforeParenthesis, LongPassword, DontAllowDatabaseTableColumn, SupportsAuthPlugins, SupportsMultipleResults, SupportsMultipleStatments
+|   Status: Autocommit
+|   Salt: n\x10XF}%2\x0F_{\x05vAoCl\x11yU\x1A
+|_  Auth Plugin Name: caching_sha2_password
+| ssl-cert: Subject: commonName=MySQL_Server_8.0.22_Auto_Generated_Server_Certificate
+| Not valid before: 2020-11-19T19:12:24
+|_Not valid after:  2030-11-17T19:12:24
+|_ssl-date: TLS randomness does not represent time
+8000/tcp open  http    Gunicorn 20.0.4
+|_http-server-header: gunicorn/20.0.4
+|_http-title: Santa's forum
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Dec  5 11:21:12 2020 -- 1 IP address (1 host up) scanned in 39.47 seconds

@@ -1,0 +1,17 @@
+# Nmap 7.91 scan initiated Wed Dec  2 08:28:23 2020 as: nmap -sC -sV -v -oN nmapinit.txt 10.10.162.121
+Nmap scan report for 10.10.162.121
+Host is up (0.23s latency).
+Not shown: 997 filtered ports
+PORT     STATE  SERVICE    VERSION
+22/tcp   closed ssh
+80/tcp   open   http       Apache httpd 2.4.37 ((centos))
+|_http-favicon: Unknown favicon MD5: B03704D89F07B17BEF88490E96116C47
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.4.37 (centos)
+|_http-title: Protection
+9090/tcp closed zeus-admin
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Dec  2 08:28:46 2020 -- 1 IP address (1 host up) scanned in 23.04 seconds

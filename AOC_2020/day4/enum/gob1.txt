@@ -1,0 +1,5 @@
+/.htpasswd (Status: 403)
+/.htaccess (Status: 403)
+/LICENSE (Status: 200)
+/api (Status: 301)
+/server-status (Status: 403)

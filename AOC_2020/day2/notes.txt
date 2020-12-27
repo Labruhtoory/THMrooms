@@ -1,0 +1,82 @@
+
+
+
+*Upload file at:
+
+http://10.10.162.121/?id=ODIzODI5MTNiYmYw
+
+
+
+*find uploaded file
+
+http://10.10.162.121/uploads/
+
+
+
+*start listener
+
+
+*execute file 
+
+
+
+*find flag 
+
+
+
+/var/www/flag.txt
+
+
+
+
+You've reached the end of the Advent of Cyber, Day 2 -- hopefully you're enjoying yourself so far, and are learning lots! 
+This is all from me, so I'm going to take the chance to thank the awesome @Vargnaar for his invaluable design lessons, without which the theming of the past two websites simply would not be the same. 
+
+
+Have a flag -- you deserve it!
+THM{MGU3Y2UyMGUwNjExYTY4NTAxOWJhMzhh}
+
+
+Good luck on your mission (and maybe I'll see y'all again on Christmas Eve)!
+ --Muiri (@MuirlandOracle)
+
+
+
+
+
+
+
+
+
+
+
+ 							shits and gigs
+
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+systemd-resolve:x:193:193:systemd Resolver:/:/sbin/nologin
+tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
+sssd:x:997:994:User for sssd:/:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+chrony:x:996:993::/var/lib/chrony:/sbin/nologin
+rngd:x:995:992:Random Number Generator Daemon:/var/lib/rngd:/sbin/nologin
+unbound:x:994:991:Unbound DNS resolver:/etc/unbound:/sbin/nologin
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+nginx:x:993:990:Nginx web server:/var/lib/nginx:/sbin/nologin
+
+
+

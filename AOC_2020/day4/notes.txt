@@ -1,0 +1,90 @@
+Advent of Cyber Day4
+====================
+
+> Labruhtooryboi | Saturday, December 4th, 2020
+
+# 10.10.230.103
+
+# 10.10.230.103 > shibes.xyz
+
+
+
+
+# Recon --> nmap 
+
+
+'''
+nmap -sC -sV -v -oN nmapiinit.txt 10.10.230.103
+'''
+
+
+'''
+Nmap scan report for 10.10.230.103
+Host is up (0.29s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: HEAD GET POST OPTIONS
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+'''
+
+
+
+
+
+# Enumeration --> gobuster
+
+
+'''
+gobuster dir -u http://10.10.230.103/ -w /usr/share/wordlists/dirb/big.txt -o gob1.txt
+'''
+
+'''
+===============================================================
+[+] Url:            http://10.10.230.103/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/big.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/12/04 09:10:18 Starting gobuster
+===============================================================
+/.htpasswd (Status: 403)
+/.htaccess (Status: 403)
+/LICENSE (Status: 200)
+/api (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2020/12/04 09:18:55 Finished
+===============================================================
+'''
+
+
+
+
+#Enumeration --> wfuzz
+
+'''
+wfuzz -c -z file,/opt/AoC-2020/Day4/wordlist -u http://10.10.230.103/api/site-log.php?date=FUZZ
+'''
+
+*I ran the comman on the Attackbox provided by THM becaus I did not have the wordlist containing the correct values for the date parameter. 
+
+'''
+********************************************************
+* Wfuzz 2.2.9 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://10.10.230.103/api/site-log.php?date=FUZZ
+Total requests: 63
+
+==================================================================
+ID	Response   Lines      Word         Chars          Payload    
+==================================================================
+
+000026:  C=200      0 L	       1 W	     13 Ch	  "20201125"
+
+'''

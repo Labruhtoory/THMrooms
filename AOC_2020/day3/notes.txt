@@ -1,0 +1,47 @@
+Response:
+
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <title>Santa Sleigh Tracker</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <form class="tracker">
+        <div id='msg'></div>
+        <img class="mb-4" src="sleigh.svg" alt="" width="172">
+        <h1 class="h3 mb-3 font-weight-normal">Santa Sleigh Tracker App</h1>
+        
+        <div id='world-app'>
+            <img src='world.png'>
+        </div>
+
+        <div class='float-left text-warning'>GPS: Online</div>
+        <div class='float-right text-danger'>Santa Sleigh: Offline</div>
+        <div class='text-center'><i>Last Airborne: 24th December 2019</i></div>
+
+        </br></br>
+
+        <p>Flag: <code>THM{885ffab980e049847516f9d8fe99ad1a}</code></p>
+
+        <p class="mt-4 mb-3">The Santa Sleigh Tracker App uses state of the art technology to track Santa as he travels
+            around the world delivering presents.</p>
+        <p class="mt-5 mb-3 text-muted">Portal made with love by Santa's Elves.</p>
+    </form>
+</body>
+
+</html>
