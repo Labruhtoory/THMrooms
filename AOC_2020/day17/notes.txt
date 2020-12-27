@@ -1,0 +1,61 @@
+Username: elfmceager
+
+Password: adventofcyber
+
+
+
+
+r2 -d ./file1
+
+
+
+[0x00400a30]> pdf @main
+            ;-- main:
+/ (fcn) sym.main 68
+|   sym.main ();
+|           ; var int local_ch @ rbp-0xc
+|           ; var int local_8h @ rbp-0x8
+|           ; var int local_4h @ rbp-0x4
+|              ; DATA XREF from 0x00400a4d (entry0)
+|           0x00400b4d      55             push rbp
+|           0x00400b4e      4889e5         mov rbp, rsp
+|           0x00400b51      4883ec10       sub rsp, 0x10
+|           0x00400b55      c745f4040000.  mov dword [local_ch], 4
+|           0x00400b5c      c745f8050000.  mov dword [local_8h], 5
+|           0x00400b63      8b55f4         mov edx, dword [local_ch]
+|           0x00400b66      8b45f8         mov eax, dword [local_8h]
+|           0x00400b69      01d0           add eax, edx
+|           0x00400b6b      8945fc         mov dword [local_4h], eax
+|           0x00400b6e      8b4dfc         mov ecx, dword [local_4h]
+|           0x00400b71      8b55f8         mov edx, dword [local_8h]
+|           0x00400b74      8b45f4         mov eax, dword [local_ch]
+|           0x00400b77      89c6           mov esi, eax
+|           0x00400b79      488d3d881409.  lea rdi, qword str.the_value_of_a_is__d__the_value_of_b_is__d_and_the_value_of_c_is__d ; 0x492008 ; "the value of a is %d, the value of b is %d and the value of c is %d"
+|           0x00400b80      b800000000     mov eax, 0
+|           0x00400b85      e8f6ea0000     call sym.__printf
+|           0x00400b8a      b800000000     mov eax, 0
+|           0x00400b8f      c9             leave
+\           0x00400b90      c3             ret
+
+
+
+
+
+
+db 0x00400b55 
+
+
+dr, ds
+
+
+
+
+
+1
+
+
+6
+
+
+6
+

@@ -1,0 +1,92 @@
+
+user:mceager
+pass:r0ckStar!
+
+ssh -l mceager 10.10.219.211
+
+
+
+
+Get-ChildItem -Hidden -File
+
+
+Get-ChildItem -Hidden -Directory
+
+
+
+
+
+
+elfone.txt
+
+All I want is my '2 front teeth'!!!
+
+
+
+
+
+e70smsW10Y4k.txt
+I want the movie Scrooged <3!
+
+
+
+
+
+
+cd c:\Windows 
+
+Get-ChildItem -Hidden -Directory -Filter "*3*" -Recurse
+
+
+
+
+Directory: C:\Windows\System32
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d--h--       11/23/2020   3:26 PM                3lfthr3e
+
+
+
+
+'''
+in the hidden directory
+'''
+1.txt
+2.txt
+
+
+
+Get-Content -Path 1.txt | Measure-Object -Word
+
+
+
+
+Lines Words Characters Property
+----- ----- ---------- --------
+       9999
+
+
+
+
+(Get-Content -Path 1.txt)[551]
+
+Red
+
+
+
+
+(Get-Content -Path 1.txt)[6991]
+
+Ryder 
+
+
+
+
+Get-Content -Path 2.txt | Select-String -Pattern "redryder"
+
+redryderbbgun
+
+red ryder bb gun
+

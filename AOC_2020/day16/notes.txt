@@ -1,0 +1,14 @@
+https://github.com/BulmaTemplates/bulma-templates/blob/master/templates/hero.html
+https://tryhackme.com
+#
+http://machine_ip/api/api_key
+#
+https://github.com/BulmaTemplates/bulma-templates
+
+
+
+api_key 57
+{"item_id":57,"q":"Winter Wonderland, Hyde Park, London."}
+
+
+

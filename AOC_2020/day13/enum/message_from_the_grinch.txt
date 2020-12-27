@@ -1,0 +1,22 @@
+Nice work, Santa!
+
+Wow, this house sure was DIRTY!
+I think they deserve coal for Christmas, don't you?
+So let's leave some coal under the Christmas `tree`!
+
+Let's work together on this. Leave this text file here,
+and leave the christmas.sh script here too...
+but, create a file named `coal` in this directory!
+Then, inside this directory, pipe the output
+of the `tree` command into the `md5sum` command.
+
+The output of that command (the hash itself) is
+the flag you can submit to complete this task
+for the Advent of Cyber!
+
+	- Yours,
+		John Hammond
+		er, sorry, I mean, the Grinch
+
+	  - THE GRINCH, SERIOUSLY
+

