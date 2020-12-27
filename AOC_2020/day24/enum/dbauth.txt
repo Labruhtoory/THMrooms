@@ -1,0 +1,7 @@
+$dbaddr = "localhost";
+$dbuser = "tron";
+$dbpass = "IFightForTheUsers";
+$database = "tron";
+
+
+
