@@ -1,0 +1,19 @@
+# Nmap 7.91 scan initiated Sun Dec  6 09:18:16 2020 as: nmap -sC -sV -v -oN nmapinit.txt 10.10.240.166
+Nmap scan report for 10.10.240.166
+Host is up (0.25s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 35:30:91:45:b9:d1:ed:5a:13:42:3e:20:95:6d:c7:b7 (RSA)
+|   256 f5:69:6a:7b:c8:ac:89:b5:38:93:50:2f:05:24:22:70 (ECDSA)
+|_  256 8f:4d:37:ba:40:12:05:fa:f0:e6:d6:82:fb:65:52:e8 (ED25519)
+5000/tcp open  http    Werkzeug httpd 1.0.1 (Python 2.7.17)
+| http-methods: 
+|_  Supported Methods: HEAD GET POST OPTIONS
+|_http-title: Santa's portal
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Dec  6 09:18:40 2020 -- 1 IP address (1 host up) scanned in 24.05 seconds
