@@ -1,0 +1,10 @@
+# Nmap 7.91 scan initiated Mon Nov 30 19:26:48 2020 as: nmap -p 49667 -Pn -sC -sV -v -oN nmap49667.txt 10.10.142.48
+Nmap scan report for 10.10.142.48
+Host is up.
+
+PORT      STATE    SERVICE VERSION
+49667/tcp filtered unknown
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov 30 19:26:50 2020 -- 1 IP address (1 host up) scanned in 2.65 seconds

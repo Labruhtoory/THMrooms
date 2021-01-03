@@ -1,0 +1,46 @@
+https://www.hackingarticles.in/iron-corp-tryhackme-walkthrough/
+
+					recon
+
+53/tcp   open  domain        Simple DNS Plus
+135/tcp  open  msrpc         Microsoft Windows RPC
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+8080/tcp open  http          Microsoft IIS httpd 10.0
+11025/tcp open  http    Apache httpd 2.4.41
+49667/tcp filtered unknown
+49670/tcp filtered unknown
+
+
+
+					enum
+
+
+Sarajhon Mccoy
+
+http://10.10.142.48:8080/profile.html
+
+Mark Stern
+Abby
+Gary
+Kensington
+John
+Skell
+
+
+
+*multiple domains
+admin.ironcorp.me.	3600	IN	A	127.0.0.1
+internal.ironcorp.me.	3600	IN	A	127.0.0.1
+
+
+
+http://admin.ironcorp.me:11025/
+[11025][http-get] host: admin.ironcorp.me   login: admin   password: password123
+
+
+
+
+					exploitation
+
+SSRF - Server-side request forgery
+
