@@ -1,0 +1,1 @@
+# Nmap 7.91 scan initiated Wed Jun 16 02:04:09 2021 as: nmap -Pn -p- -sC -sV -v -oN recon/nmapfull.txt 10.10.79.199
