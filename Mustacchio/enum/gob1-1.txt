@@ -1,0 +1,3 @@
+/images               (Status: 301) [Size: 311] [--> http://10.10.23.41/images/]
+/custom               (Status: 301) [Size: 311] [--> http://10.10.23.41/custom/]
+/fonts                (Status: 301) [Size: 310] [--> http://10.10.23.41/fonts/]
