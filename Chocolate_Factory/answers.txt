@@ -1,0 +1,38 @@
+
+					Task 1 Introduction
+Deploy machine
+'''
+no answer
+'''
+					Task 2 Challenges 
+
+
+Enter the key you found!
+'''
+-VkgXhFf6sAEcAwrC6YR-SZbiuSb8ABXeQuvhcGSQzY=
+'''
+
+
+What is Charlie's password?
+'''
+cn7824
+'''
+
+
+change user to charlie
+'''
+no answer
+'''
+
+
+Enter the user flag
+'''
+flag{cd5509042371b34e4826e4838b522d2e}
+'''
+
+
+Enter the root flag
+'''
+flag{cec59161d338fef787fcb4e296b42124}
+'''
+
