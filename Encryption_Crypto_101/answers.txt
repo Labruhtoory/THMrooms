@@ -1,0 +1,159 @@
+					
+					Task 1 What will this room cover?
+					
+
+I'm ready to learn about encryption
+'''
+no answer
+'''
+
+					Task 2 Key terms
+					
+
+I agree not to complain too much about how theory heavy this room is.
+'''
+no answer
+'''
+
+Are SSH keys protected with a passphrase or a password?
+'''
+passphrase
+'''
+
+					Task 3 Why is Encryption important?
+					
+What does SSH stand for?
+'''
+secure shell
+'''
+
+How do webservers prove their identity?
+'''
+certificate
+'''
+
+What is the main set of standards you need to comply with if you store or process payment card details?
+'''
+PCI-DSS
+'''
+
+
+					Task 4 Crucial Crypto Maths
+					
+
+What's 30 % 5?
+'''
+0
+'''
+
+What's 25 % 7
+'''
+4
+'''
+
+What's 118613842 % 9091
+'''
+3565
+'''
+
+					Task 5 Types of Encryption
+					
+Should you trust DES? Yea/Nay
+'''
+Nay
+'''
+
+What was the result of the attempt to make DES more secure so that it could be used for longer?
+'''
+Triple DES
+'''
+
+Is it ok to share your public key? Yea/Nay
+'''
+yea
+'''
+
+
+					Task 6 RSA - Rivest Shamir Adleman
+					
+p = 4391, q = 6659. What is n?
+'''
+29239669
+'''
+
+I understand enough about RSA to move on, and I know where to look to learn more if I want to.
+'''
+no answer
+'''
+
+
+					Task 7 Establishing Keys Using Asymmetric Cryptography
+					
+I understand how keys can be established using Public Key (asymmetric) cryptography.
+'''
+no answer
+'''
+
+
+					Task 8 Digital signatures and Certificates
+					
+
+What company is TryHackMe's certificate issued to?
+'''
+Cloudflare
+'''
+
+
+					Task 9 SSH Authentication
+					
+
+I recommend giving this a go yourself. Deploy a VM, like Linux Fundamentals 2 and try to add an SSH key and log in with the private key.
+'''
+no answer
+'''
+
+Download the SSH Private Key attached to this room.
+'''
+no answer
+'''
+
+What algorithm does the key use?
+'''
+RSA
+'''
+
+Crack the password with John The Ripper and rockyou, what's the passphrase for the key?
+'''
+delicious
+'''
+
+
+					Task 10 Explaining Diffie Hellman Key Exchange
+					
+
+I understand how Diffie Hellman Key Exchange works at a basic level
+'''
+no answer
+'''
+
+
+					Task 11 PGP, GPG and AES
+
+Time to try some GPG. Download the archive attached and extract it somewhere sensible.
+'''
+no anwer
+'''
+
+You have the private key, and a file encrypted with the public key. Decrypt the file. What's the secret word?
+'''
+Pineapple.
+'''
+
+
+					Task 12 The Future - Quantum Computers and Encryption 
+
+
+I understand that quantum computers affect the future of encryption. I know where to look if I want to learn more.
+'''
+no answer
+'''
