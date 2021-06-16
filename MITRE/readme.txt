@@ -82,7 +82,7 @@ Windows Credential Editor
 
 For the above analytic, what is the pseudocode a representation of?
 '''
-
+Splunk Search
 '''
 
 
