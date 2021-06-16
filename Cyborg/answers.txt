@@ -1,0 +1,34 @@
+
+					Task 1 Deploy the machine
+
+Deploy the machine
+'''
+no answer
+'''
+
+					Task 2 Compromise the System 
+
+Scan the machine, how many ports are open?
+'''
+'''
+
+
+What service is running on port 22?
+'''
+'''
+
+
+What service is running on port 80?
+'''
+'''
+
+
+What is the user.txt flag?
+'''
+'''
+
+
+What is the root.txt flag?
+'''
+'''
+

