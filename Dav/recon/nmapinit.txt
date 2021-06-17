@@ -1,0 +1,14 @@
+# Nmap 7.91 scan initiated Thu Jun 17 15:38:51 2021 as: nmap -Pn -p 80 -v -sC -sV -oN recon/nmapinit.txt 10.10.82.0
+Nmap scan report for 10.10.82.0
+Host is up (0.23s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: OPTIONS GET HEAD POST
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Apache2 Ubuntu Default Page: It works
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Jun 17 15:39:03 2021 -- 1 IP address (1 host up) scanned in 12.68 seconds
