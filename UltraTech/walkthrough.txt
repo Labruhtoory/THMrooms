@@ -1,0 +1,67 @@
+
+					Task 1 Deploy the machine
+
+﻿~_. UltraTech ._~
+
+This room is inspired from real-life vulnerabilities and misconfigurations I encountered during security assessments.
+
+If you get stuck at some point, take some time to keep enumerating.
+
+
+[ Your Mission ]
+
+You have been contracted by UltraTech to pentest their infrastructure.
+
+It is a grey-box kind of assessment, the only information you have
+
+is the company's name and their server's IP address.
+
+Start this room by hitting the "deploy" button on the right!
+
+
+Good luck and more importantly, have fun!
+
+__
+
+Lp1 <fenrir.pro>
+
+
+[ Extra Information ]
+
+If you have any comment or question regarding this room, you can contact me on TryHackMe's Discord.
+Answer the questions below
+
+
+					Task 2 It's enumeration time!
+
+
+After enumerating the services and resources available on this machine, what did you discover?
+Answer the questions below
+
+
+					Task 3 Let the fun begin
+
+
+
+Now that you know which services are available, it's time to exploit them!
+
+Did you find somewhere you could try to login? Great!
+
+Quick and dirty login implementations usually goes with poor data management.
+
+There must be something you can do to explore this machine more thoroughly..
+Answer the questions below
+
+
+					Task 4 The root of all evil 
+
+
+
+Congrats if you've made it this far, you should be able to comfortably run commands on the server by now!
+
+Now's the time for the final step!
+
+You'll be on your own for this one, there is only one question and there might be more than a single way to reach your goal.
+
+Mistakes were made, take advantage of it.
+Answer the questions below

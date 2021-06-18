@@ -1,0 +1,4 @@
+/images               (Status: 301) [Size: 324] [--> http://10.10.114.162:31331/images/]
+/css                  (Status: 301) [Size: 321] [--> http://10.10.114.162:31331/css/]
+/js                   (Status: 301) [Size: 320] [--> http://10.10.114.162:31331/js/]
+/javascript           (Status: 301) [Size: 328] [--> http://10.10.114.162:31331/javascript/]
